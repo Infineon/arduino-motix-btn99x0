@@ -8,102 +8,92 @@
 #include <stdint.h>
 #include "Arduino.h"
 
-#define tau 100 //how long does it take
-#define Ris 2000
-#define APin1 A0
-#define APin1 A1
-#define Pin2 D10
-#define Pin1 D9
-#define ktis 3.72e-6 // typical value
-#define counter 8 // 8 different possible slew rates
-
-
 double Iisoffset1;
 double Iisoffset2;
 
-void PWM(double switch; int duty )
+void PWM(double sw, int duty )
 {
     duty=duty*255/100; // converts duty which is 0% - 100% duty for arduino 
-    if(switch==0)
+    if(sw==0)
     {
         analogWrite(Pin1, duty);
     }
     
-    if(switch==1)
+    if(sw==1)
     {
         analogWrite(Pin2, duty);
     }
- return 0;
+ return;
 }  
 
-double loadcurrent (int switch; double Vis)
+double loadcurrent (int sw, double Vis)
 {
     // if statement is possible useless
 
-    if(switch==0)
+    if(sw==0)
     {
-        return dk(switch)*(Iis(Vis1())-Iisoffset(switch))
+        return dk(sw)*(Iis(Vis1())-Iisoffset(sw));
     }
-    
-    if(switch==1)
+
+    if(sw==1)
     {
-        return dk(switch)*(Iis(Vis2())-Iisoffset(switch));
+        return dk(sw)*(Iis(Vis2())-Iisoffset(sw));
     }
 }
 
-double temperature (int switch)
+double temperature (int sw)
 {
     double Tcc;
     
-    if (switch==0)
+    if (sw==0)
     {
-        digitalWrite(INH1; LOW);
+        digitalWrite(INH1, LOW);
         //vielleicht ein delay 
         Tcc=Iis(Vis1())/ktis;
-        digitalWrite(INH1; HIGH);
+        digitalWrite(INH1, HIGH);
         return Tcc;
     }
-    if (switch==1)
+    if (sw==1)
     {
-        digitalWrite(INH2; LOW);
+        digitalWrite(INH2, LOW);
         //vielleicht ein delay 
         Tcc=Iis(Vis2())/ktis;
-        digitalWrite(INH2; HIGH);
+        digitalWrite(INH2, HIGH);
         return Tcc;
         
     }
 
 }
 
-double slewrate (int switch; int selected)
+double slewrate (int sw, int selected)
 {
     int i;
-    if(switch==0)
+    if(sw==0)
     {
-        digitalWrite(INH1; LOW);    //INH1 Low
-        delayMicroseconds(5); /
+        digitalWrite(INH1, LOW);    //INH1 Low
+        delayMicroseconds(5); 
         for (i=0; i<selected; i++)
         {
-            digitalWrite(Pin1; HIGH);  //IN1 Pin on
+            digitalWrite(Pin1, HIGH);  //IN1 Pin on
             delayMicroseconds(1);      
-            digitalWrite(Pin1; LOW);  //IN1 Pin low   
+            digitalWrite(Pin1, LOW);  //IN1 Pin low   
         }
         delayMicroseconds(5);
-        digitalWrite(INH1; HIGH);// INH1 on
+        digitalWrite(INH1, HIGH);// INH1 on
     }
 
-    if(switch==1)
+    if(sw==1)
     {
-        digitalWrite(INH2; LOW);  //INH2 Low
-        delayMicroseconds(5); /
+        digitalWrite(INH2, LOW);  //INH2 Low
+        delayMicroseconds(5); 
         for (i=0; i<selected; i++)
         {
-            digitalWrite(Pin2; HIGH);  //IN2 Pin on
+            digitalWrite(Pin2, HIGH);  //IN2 Pin on
             delayMicroseconds(1);      
-            digitalWrite(Pin2; LOW);  //IN2 Pin low
+            digitalWrite(Pin2, LOW);  //IN2 Pin low
         }
         delayMicroseconds(5);
-        digitalWrite(INH2; HIGH);// INH2 on
+        digitalWrite(INH2, HIGH);// INH2 on
     }
 }
 
@@ -115,49 +105,49 @@ double Iis(double Vis)
 
 bool init1(void)
 {
-    digitalWrite(Pin1; LOW);
+    digitalWrite(Pin1, LOW);
     delayMicroseconds(5);
     Iisoffset1 =Iis(Vis1());
-    digitalWrite(Pin1; HIGH);
+    digitalWrite(Pin1, HIGH);
     return(true);  
 }
 
 bool init2(void)
 {
-    digitalWrite(Pin1; LOW);
+    digitalWrite(Pin1, LOW);
     delayMicroseconds(5);
     Iisoffset2 =Iis(Vis2());
-    digitalWrite(Pin1; HIGH);
+    digitalWrite(Pin1, HIGH);
     return(true);
 }
 
-double Iisoffset(double switch)
+double Iisoffset(double sw)
 {
     static const bool marker1 = init1(); //only one time isoffset is determined
     static const bool marker2 = init2(); //only one time isoffset is determined
-    if(switch==0)
+    if(sw==0)
     {
         return Iisoffset1;
     }
 
-    if(switch==1)
+    if(sw==1)
     {
         return Iisoffset2;  
     }
 }
 
 
-double dk(double switch)
+double dk(double sw)
 {
     int dk1= 40000; 
     int dk2= 50000;
     
-    if(switch==0)
+    if(sw==0)
     {
         return dk1;
     }
 
-    if(switch==1)
+    if(sw==1)
     {
         return dk2;
     }
@@ -173,26 +163,26 @@ double Vis2 (void)
     return analogRead(APin2);  
 }
 
-double enable(int switch)
+double enable(int sw)
 {
-    if(switch ==0)
+    if(sw ==0)
     {
-        digitalWrite(Pin1; HIGH);
+        digitalWrite(Pin1, HIGH);
     }
-     if(switch ==1)
+     if(sw ==1)
     {
-        digitalWrite(Pin2; HIGH);
+        digitalWrite(Pin2, HIGH);
     }
 }
 
-double disable(int switch)
+double disable(int sw)
 {
-    if(switch ==0)
+    if(sw ==0)
     {
-        digitalWrite(Pin1; LOW);
+        digitalWrite(Pin1, LOW);
     }
-     if(switch ==1)
+     if(sw ==1)
     {
-        digitalWrite(Pin2; LOW);
+        digitalWrite(Pin2, LOW);
     }
 }

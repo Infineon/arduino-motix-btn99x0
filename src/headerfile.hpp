@@ -7,6 +7,8 @@
 #include <unistd.h>
 #include "Arduino.h"
 
+
+#define faultcurrent 0.0025
 #define tau 100 //how long does it take
 #define Ris 2000
 #define APin1 A0
@@ -26,10 +28,10 @@ namespace BTN99x0
     class BTN99x0
     {
         public:
-            void PWM(double sw, int duty);
+            void PWM(int sw, int duty);
             double loadcurrent (int sw, double Vis);
             double temperature (int sw);
-            double slewrate (int sw, int selected);
+            void slewrate (int sw, int selected);
             double Iis(double Vis);
             bool init1(void);
             bool init2(void);
@@ -39,6 +41,8 @@ namespace BTN99x0
             double Vis2 (void);
             double Iisoffset1;
             double Iisoffset2;
+            void disable(int sw);
+            void enable(int sw);
 
         private:
     };

@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "Arduino.h"
-
+#include "platform.hpp"
 
 #define faultcurrent 0.0025
 #define tau 100 //how long does it take
@@ -43,6 +43,24 @@ namespace BTN99x0
             double Iisoffset2;
             void disable(int sw);
             void enable(int sw);
+            void error(void);
+
+        private:
+            BTN99x0HwConfig_t* BTN99x0config;
+    };
+}
+
+namespace Motor
+{
+    class Motor
+    {
+        public:
+        void Freewheel();
+        void forward();
+        void backward();
+        void brake(); //muss herausfinden welche zustand es hat
+        void error(); //fehler
+        double zustand;
 
         private:
     };

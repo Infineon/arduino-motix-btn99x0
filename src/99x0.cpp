@@ -11,6 +11,7 @@
 double Iisoffset1;
 double Iisoffset2;
 
+
 void PWM(double sw, int duty )
 {
     duty=duty*255/100; // converts duty which is 0% - 100% duty for arduino 
@@ -23,7 +24,6 @@ void PWM(double sw, int duty )
     {
         analogWrite(Pin2, duty);
     }
- return;
 }  
 
 double loadcurrent (int sw, double Vis)
@@ -32,12 +32,12 @@ double loadcurrent (int sw, double Vis)
 
     if(sw==1)
     {
-        return dk(sw)*(Iis(Vis1())-Iisoffset(sw));
+        return dk(sw)*(Iis(Vis1())-Iisoffset(sw)); //calculate load current 1
     }
 
     if(sw==2)
     {
-        return dk(sw)*(Iis(Vis2())-Iisoffset(sw));
+        return dk(sw)*(Iis(Vis2())-Iisoffset(sw)); //calculate load current 2
     }
 }
 
@@ -121,7 +121,7 @@ bool init2(void)
     return(true);
 }
 
-double Iisoffset(double sw)
+double Iisoffset(int sw)
 {
     static const bool marker1 = init1(); //only one time isoffset is determined
     static const bool marker2 = init2(); //only one time isoffset is determined
@@ -192,17 +192,18 @@ void disable(int sw)
 //when Iis is higher then 2,5mA then is fault current
 
 
-void undervolatge(void)
+void error(void)
 {
-if(Iis(Vis1())>faultcurrent)
-{
-    disable(1); //disable chip 1
-    PWM(1,0);   //disable inputsignal from chip 1
+    if(Iis(Vis1())>faultcurrent)
+    {
+        disable(1); //disable chip 1
+        PWM(1,0);   //disable inputsignal from chip 1
+    }
+
+    if(Iis(Vis2())>faultcurrent)
+    {
+        disable(2); //disable chip 2
+        PWM(2,0);   //disable inputsignal from chip 2
+    }
 }
 
-if(Iis(Vis2())>faultcurrent)
-{
-    disable(2); //disable chip 2
-    PWM(2,0);   //disable inputsignal from chip 2
-   }
-}

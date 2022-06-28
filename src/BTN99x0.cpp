@@ -3,7 +3,7 @@
  * @copyright   Copyright (c) 2022 Infineon Technologies AG
  */
 
-#include "headerfile.hpp"
+#include "BTN99x0.hpp"
 #include <stdlib.h>
 #include <stdint.h>
 #include "Arduino.h"
@@ -11,18 +11,38 @@
 double Iisoffset1;
 double Iisoffset2;
 
+BTN99x0::BTN99x0::BTN99x0()
+{
+    
+    pinMode(BTN99x0_CurrentSense1, INPUT);
+    pinMode(BTN99x0_CurrentSense2, INPUT);
+    pinMode(BTN99x0_INH1, OUTPUT);
+    pinMode(BTN99x0_INH2, OUTPUT);
+    pinMode(BTN99x0_Input1, OUTPUT);
+    pinMode(BTN99x0_Input2, OUTPUT);
+}
+/**
+ * @brief Destructor of the Ligh-Side-Switch class
+ *
+ */
+BTN99x0::BTN99x0::~BTN99x0()
+{
+
+}
+
 
 void PWM(double sw, int duty )
 {
     duty=duty*255/100; // converts duty which is 0% - 100% duty for arduino 
     if(sw==1)
     {
-        analogWrite(Pin1, duty);
+        analogWrite(BTN99x0_Input1, duty);
     }
     
     if(sw==2)
     {
-        analogWrite(Pin2, duty);
+        analogWrite(BTN99x0_Input2, duty);
+        pinMode(BTN99x0_Input2, OUTPUT);
     }
 }  
 
@@ -47,18 +67,18 @@ double temperature (int sw)
     
     if (sw==1)
     {
-        digitalWrite(INH1, LOW);
+        digitalWrite(BTN99x0_INH1, LOW);
         //vielleicht ein delay 
         Tcc=Iis(Vis1())/ktis;
-        digitalWrite(INH1, HIGH);
+        digitalWrite(BTN99x0_INH1, HIGH);
         return Tcc;
     }
     if (sw==2)
     {
-        digitalWrite(INH2, LOW);
+        digitalWrite(BTN99x0_INH2, LOW);
         //vielleicht ein delay 
         Tcc=Iis(Vis2())/ktis;
-        digitalWrite(INH2, HIGH);
+        digitalWrite(BTN99x0_INH2, HIGH);
         return Tcc;
         
     }
@@ -70,30 +90,30 @@ void slewrate (int sw, int selected)
     int i;
     if(sw==1)
     {
-        digitalWrite(INH1, LOW);    //INH1 Low
+        digitalWrite(BTN99x0_INH1, LOW);    //BTN99x0_INH1 Low
         delayMicroseconds(5); 
         for (i=0; i<selected; i++)
         {
-            digitalWrite(Pin1, HIGH);  //IN1 Pin on
+            digitalWrite(BTN99x0_Input1, HIGH);  //IN1 Pin on
             delayMicroseconds(1);      
-            digitalWrite(Pin1, LOW);  //IN1 Pin low   
+            digitalWrite(BTN99x0_Input1, LOW);  //IN1 Pin low   
         }
         delayMicroseconds(5);
-        digitalWrite(INH1, HIGH);// INH1 on
+        digitalWrite(BTN99x0_INH1, HIGH);// BTN99x0_INH1 on
     }
 
     if(sw==2)
     {
-        digitalWrite(INH2, LOW);  //INH2 Low
+        digitalWrite(BTN99x0_INH2, LOW);  //BTN99x0_INH2 Low
         delayMicroseconds(5); 
         for (i=0; i<selected; i++)
         {
-            digitalWrite(Pin2, HIGH);  //IN2 Pin on
+            digitalWrite(BTN99x0_Input2, HIGH);  //IN2 Pin on
             delayMicroseconds(1);      
-            digitalWrite(Pin2, LOW);  //IN2 Pin low
+            digitalWrite(BTN99x0_Input2, LOW);  //IN2 Pin low
         }
         delayMicroseconds(5);
-        digitalWrite(INH2, HIGH);// INH2 on
+        digitalWrite(BTN99x0_INH2, HIGH);// BTN99x0_INH2 on
     }
 }
 
@@ -105,19 +125,19 @@ double Iis(double Vis)
 
 bool init1(void)
 {
-    digitalWrite(Pin1, LOW);
+    digitalWrite(BTN99x0_Input1, LOW);
     delayMicroseconds(5);
     Iisoffset1 =Iis(Vis1());
-    digitalWrite(Pin1, HIGH);
+    digitalWrite(BTN99x0_Input1, HIGH);
     return(true);  
 }
 
 bool init2(void)
 {
-    digitalWrite(Pin1, LOW);
+    digitalWrite(BTN99x0_Input1, LOW);
     delayMicroseconds(5);
     Iisoffset2 =Iis(Vis2());
-    digitalWrite(Pin1, HIGH);
+    digitalWrite(BTN99x0_Input1, HIGH);
     return(true);
 }
 
@@ -155,23 +175,23 @@ double dk(double sw)
 
 double Vis1 (void)
 {
-    return analogRead(APin1);  
+    return analogRead(BTN99x0_Input1);  
 }
 
 double Vis2 (void)
 {
-    return analogRead(APin2);  
+    return analogRead(BTN99x0_Input2);  
 }
 
 void enable(int sw)
 {
     if(sw ==1)
     {
-        digitalWrite(Pin1, HIGH);
+        digitalWrite(BTN99x0_Input1, HIGH);
     }
      if(sw ==2)
     {
-        digitalWrite(Pin2, HIGH);
+        digitalWrite(BTN99x0_Input2, HIGH);
     }
 }
 
@@ -179,17 +199,16 @@ void disable(int sw)
 {
     if(sw ==1)
     {
-        digitalWrite(Pin1, LOW);
+        digitalWrite(BTN99x0_Input1, LOW);
     }
      if(sw ==2)
     {
-        digitalWrite(Pin2, LOW);
+        digitalWrite(BTN99x0_Input2, LOW);
     }
 }
 
-//undervoltage function
-
-//when Iis is higher then 2,5mA then is fault current
+//error function
+//when Iis is higher then 2.5mA then is fault current
 
 
 void error(void)

@@ -24,8 +24,8 @@ namespace BTN99x0
     class BTN99x0
     {
         public:
-            BTN99x0();
-            ~BTN99x0();
+            BTN99x0();                                  //constructor
+            ~BTN99x0();                                 //deconstructor
             void PWM(int sw, int duty);
             double loadcurrent (int sw, double Vis);
             double temperature (int sw);

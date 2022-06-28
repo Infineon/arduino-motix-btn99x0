@@ -1,5 +1,5 @@
 /**
- * @file        99x0-arduinoboard.hpp
+ * @file        99x0-arduinoboard.cpp
  * @copyright   Copyright (c) 2022 Infineon Technologies AG
  */
 
@@ -11,7 +11,8 @@
 double Iisoffset1;
 double Iisoffset2;
 
-BTN99x0::BTN99x0::BTN99x0()
+
+BTN99x0::BTN99x0::BTN99x0()                      //constructor
 {
     
     pinMode(BTN99x0_CurrentSense1, INPUT);
@@ -21,11 +22,9 @@ BTN99x0::BTN99x0::BTN99x0()
     pinMode(BTN99x0_Input1, OUTPUT);
     pinMode(BTN99x0_Input2, OUTPUT);
 }
-/**
- * @brief Destructor of the Ligh-Side-Switch class
- *
- */
-BTN99x0::BTN99x0::~BTN99x0()
+
+
+BTN99x0::BTN99x0::~BTN99x0()                //deconstructor
 {
 
 }
@@ -33,23 +32,20 @@ BTN99x0::BTN99x0::~BTN99x0()
 
 void PWM(double sw, int duty )
 {
-    duty=duty*255/100; // converts duty which is 0% - 100% duty for arduino 
+    duty=duty*255/100;                              // converts duty which is 0% - 100% duty for arduino 
     if(sw==1)
     {
-        analogWrite(BTN99x0_Input1, duty);
+        analogWrite(BTN99x0_Input1, duty);          //PWM signal on the input pin from chip 1
     }
     
     if(sw==2)
     {
-        analogWrite(BTN99x0_Input2, duty);
-        pinMode(BTN99x0_Input2, OUTPUT);
+        analogWrite(BTN99x0_Input2, duty);          //PWM signal on the input pin from chip 2
     }
 }  
 
 double loadcurrent (int sw, double Vis)
 {
-    // if statement is possible useless
-
     if(sw==1)
     {
         return dk(sw)*(Iis(Vis1())-Iisoffset(sw)); //calculate load current 1
@@ -68,16 +64,14 @@ double temperature (int sw)
     if (sw==1)
     {
         digitalWrite(BTN99x0_INH1, LOW);
-        //vielleicht ein delay 
-        Tcc=Iis(Vis1())/ktis;
+        Tcc=Iis(Vis1())/ktis;                       //calculate the temperature form chip 1 
         digitalWrite(BTN99x0_INH1, HIGH);
         return Tcc;
     }
     if (sw==2)
     {
         digitalWrite(BTN99x0_INH2, LOW);
-        //vielleicht ein delay 
-        Tcc=Iis(Vis2())/ktis;
+        Tcc=Iis(Vis2())/ktis;                       //calculate the temperature form chip 2
         digitalWrite(BTN99x0_INH2, HIGH);
         return Tcc;
         
@@ -90,30 +84,30 @@ void slewrate (int sw, int selected)
     int i;
     if(sw==1)
     {
-        digitalWrite(BTN99x0_INH1, LOW);    //BTN99x0_INH1 Low
+        digitalWrite(BTN99x0_INH1, LOW);        //BTN99x0_INH1 Low
         delayMicroseconds(5); 
         for (i=0; i<selected; i++)
         {
-            digitalWrite(BTN99x0_Input1, HIGH);  //IN1 Pin on
+            digitalWrite(BTN99x0_Input1, HIGH); //IN1 Pin on
             delayMicroseconds(1);      
             digitalWrite(BTN99x0_Input1, LOW);  //IN1 Pin low   
         }
         delayMicroseconds(5);
-        digitalWrite(BTN99x0_INH1, HIGH);// BTN99x0_INH1 on
+        digitalWrite(BTN99x0_INH1, HIGH);       // BTN99x0_INH1 on
     }
 
     if(sw==2)
     {
-        digitalWrite(BTN99x0_INH2, LOW);  //BTN99x0_INH2 Low
+        digitalWrite(BTN99x0_INH2, LOW);        //BTN99x0_INH2 Low
         delayMicroseconds(5); 
         for (i=0; i<selected; i++)
         {
-            digitalWrite(BTN99x0_Input2, HIGH);  //IN2 Pin on
+            digitalWrite(BTN99x0_Input2, HIGH); //IN2 Pin on
             delayMicroseconds(1);      
             digitalWrite(BTN99x0_Input2, LOW);  //IN2 Pin low
         }
         delayMicroseconds(5);
-        digitalWrite(BTN99x0_INH2, HIGH);// BTN99x0_INH2 on
+        digitalWrite(BTN99x0_INH2, HIGH);       // BTN99x0_INH2 on
     }
 }
 
@@ -121,77 +115,81 @@ double Iis(double Vis)
 {
     return Ris/Vis;
 }
+
 //should be determined at the beginning
 
 bool init1(void)
 {
-    digitalWrite(BTN99x0_Input1, LOW);
+    digitalWrite(BTN99x0_Input1, LOW);          //set the input pin form chip 1 to low
     delayMicroseconds(5);
-    Iisoffset1 =Iis(Vis1());
-    digitalWrite(BTN99x0_Input1, HIGH);
+    Iisoffset1 =Iis(Vis1());                    //messuere Isoffset form chip 1
+    digitalWrite(BTN99x0_Input1, HIGH);         //set the input pin form chip 1 to high
     return(true);  
 }
 
 bool init2(void)
 {
-    digitalWrite(BTN99x0_Input1, LOW);
+    digitalWrite(BTN99x0_Input1, LOW);          //set the input pin form chip 2 to low
     delayMicroseconds(5);
-    Iisoffset2 =Iis(Vis2());
-    digitalWrite(BTN99x0_Input1, HIGH);
+    Iisoffset2 =Iis(Vis2());                    //messuere Isoffset from chip 2
+    digitalWrite(BTN99x0_Input1, HIGH);         //set the input pin form chip 2 to high
     return(true);
 }
 
 double Iisoffset(int sw)
 {
-    static const bool marker1 = init1(); //only one time isoffset is determined
-    static const bool marker2 = init2(); //only one time isoffset is determined
+    static const bool marker1 = init1();     //only one time isoffset is determined
+    static const bool marker2 = init2();     //only one time isoffset is determined
     if(sw==1)
     {
-        return Iisoffset1;
+        return Iisoffset1;                   //return the Isoffset from chip 1
     }
 
     if(sw==2)
     {
-        return Iisoffset2;  
+        return Iisoffset2;                   //return the Isoffset from chip 2
     }
 }
 
 
 double dk(double sw)
 {
-    int dk1= 40000; 
+    int dk1= 40000;                         //typical values from dk
     int dk2= 50000;
     
     if(sw==1)
     {
-        return dk1;
+        return dk1;                         //return dk for chip 1
     }
 
     if(sw==2)
     {
-        return dk2;
+        return dk2;                         //return dk for chip 2
     }
 }
 
 double Vis1 (void)
 {
-    return analogRead(BTN99x0_Input1);  
+    return analogRead(BTN99x0_Input1);      //messure voltage at the is_resistor from chip 1
 }
 
 double Vis2 (void)
 {
-    return analogRead(BTN99x0_Input2);  
+    return analogRead(BTN99x0_Input2);      //messure voltage at the is_resistor from chip 2
 }
+
+
+// enable chips
 
 void enable(int sw)
 {
     if(sw ==1)
     {
-        digitalWrite(BTN99x0_Input1, HIGH);
+        digitalWrite(BTN99x0_Input1, HIGH); //high signal for the input signal form chip 1
     }
      if(sw ==2)
     {
-        digitalWrite(BTN99x0_Input2, HIGH);
+        digitalWrite(BTN99x0_Input2, HIGH); //high signal for the input signal form chip 2
     }
 }
 
@@ -199,11 +197,11 @@ void disable(int sw)
 {
     if(sw ==1)
     {
-        digitalWrite(BTN99x0_Input1, LOW);
+        digitalWrite(BTN99x0_Input1, LOW); //low signal for the input signal form chip 1
     }
      if(sw ==2)
     {
-        digitalWrite(BTN99x0_Input2, LOW);
+        digitalWrite(BTN99x0_Input2, LOW); //low signal for the input signal form chip 2
     }
 }
 

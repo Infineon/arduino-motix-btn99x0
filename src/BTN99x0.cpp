@@ -11,8 +11,11 @@
 double Iisoffset1;
 double Iisoffset2;
 
+using namespace btn99x0;  // namespace BTN99x0
 
-BTN99x0::BTN99x0::BTN99x0()                      //constructor
+
+
+BTN99x0::BTN99x0()                      //constructor
 {
     
     pinMode(BTN99x0_CurrentSense1, INPUT);
@@ -24,13 +27,13 @@ BTN99x0::BTN99x0::BTN99x0()                      //constructor
 }
 
 
-BTN99x0::BTN99x0::~BTN99x0()                //deconstructor
+BTN99x0::~BTN99x0()                //deconstructor
 {
 
 }
 
 
-void PWM(double sw, int duty )
+void BTN99x0::PWM(int sw, int duty )
 {
     duty=duty*255/100;                              // converts duty which is 0% - 100% duty for arduino 
     if(sw==1)
@@ -44,7 +47,7 @@ void PWM(double sw, int duty )
     }
 }  
 
-double loadcurrent (int sw, double Vis)
+double BTN99x0::loadcurrent (int sw, double Vis)
 {
     if(sw==1)
     {
@@ -57,7 +60,7 @@ double loadcurrent (int sw, double Vis)
     }
 }
 
-double temperature (int sw)
+double BTN99x0::temperature (int sw)
 {
     double Tcc;
     
@@ -79,7 +82,7 @@ double temperature (int sw)
 
 }
 
-void slewrate (int sw, int selected)
+void BTN99x0::slewrate (int sw, int selected)
 {
     int i;
     if(sw==1)
@@ -111,14 +114,14 @@ void slewrate (int sw, int selected)
     }
 }
 
-double Iis(double Vis)
+double BTN99x0::Iis(double Vis)
 {
     return Ris/Vis;
 }
 
 //should be determined at the beginning
 
-bool init1(void)
+bool BTN99x0::init1(void)
 {
     digitalWrite(BTN99x0_Input1, LOW);          //set the input pin form chip 1 to low
     delayMicroseconds(5);
@@ -127,7 +130,7 @@ bool init1(void)
     return(true);  
 }
 
-bool init2(void)
+bool BTN99x0::init2(void)
 {
     digitalWrite(BTN99x0_Input1, LOW);          //set the input pin form chip 2 to low
     delayMicroseconds(5);
@@ -136,7 +139,7 @@ bool init2(void)
     return(true);
 }
 
-double Iisoffset(int sw)
+double BTN99x0::Iisoffset(int sw)
 {
     static const bool marker1 = init1();     //only one time isoffset is determined
     static const bool marker2 = init2();     //only one time isoffset is determined
@@ -152,7 +155,7 @@ double Iisoffset(int sw)
 }
 
 
-double dk(double sw)
+double BTN99x0::dk(int sw)
 {
     int dk1= 40000;                         //typical values from dk
     int dk2= 50000;
@@ -168,7 +171,7 @@ double dk(double sw)
     }
 }
 
-double Vis1 (void)
+double BTN99x0::Vis1 (void)
 {
     return analogRead(BTN99x0_Input1);      //messure voltage at the is_resistor from chip 1
 }
@@ -181,7 +184,7 @@ double Vis2 (void)
 
 // enable chips
 
-void enable(int sw)
+void BTN99x0::enable(int sw)
 {
     if(sw ==1)
     {
@@ -193,7 +196,7 @@ void enable(int sw)
     }
 }
 
-void disable(int sw)
+void BTN99x0::disable(int sw)
 {
     if(sw ==1)
     {
@@ -209,7 +212,7 @@ void disable(int sw)
 //when Iis is higher then 2.5mA then is fault current
 
 
-void error(void)
+void BTN99x0::error(void)
 {
     if(Iis(Vis1())>faultcurrent)
     {

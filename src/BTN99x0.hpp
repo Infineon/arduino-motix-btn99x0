@@ -19,7 +19,7 @@
 
 //Bibliothekenzeug
 
-namespace BTN99x0
+namespace btn99x0
 {
     class BTN99x0
     {
@@ -33,8 +33,8 @@ namespace BTN99x0
             double Iis(double Vis);
             bool init1(void);
             bool init2(void);
-            double Iisoffset(double sw);
-            double dk(double sw);
+            double Iisoffset(int sw);
+            double dk(int sw);
             double Vis1 (void);
             double Vis2 (void);
             double Iisoffset1;

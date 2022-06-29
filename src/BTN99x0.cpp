@@ -12,7 +12,7 @@ double Iisoffset1;
 double Iisoffset2;
 
 using namespace btn99x0;  // namespace BTN99x0
-
+//
 
 
 BTN99x0::BTN99x0()                      //constructor

@@ -2,7 +2,7 @@
 #ifndef BTN99x0_PLATF_HPP
 #define BTN99x0_PLATF_HPP
 
-#define num_of_switches 2         //numeber of switches in the shield
+#define num_of_switches 2         //number of switches on the shield
 
 #if defined(ARDUINO_AVR_UNO)             
 

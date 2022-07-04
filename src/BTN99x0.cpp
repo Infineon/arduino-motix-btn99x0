@@ -27,6 +27,7 @@ BTN99x0::BTN99x0()                                               //constructor
     switches[BTN99x0_SWITCH_2].input=BTN99x0_Input2;
     switches[BTN99x0_SWITCH_1].dk=dk1;
     switches[BTN99x0_SWITCH_2].dk=dk2;
+    init();
 }
 
 
@@ -34,7 +35,6 @@ BTN99x0::~BTN99x0()                                              //deconstructor
 {
 
 }
-
 
 void BTN99x0::PWM(btn99x0_switch_t sw, int duty )
 {
@@ -44,7 +44,7 @@ void BTN99x0::PWM(btn99x0_switch_t sw, int duty )
 
 double BTN99x0::loadcurrent (btn99x0_switch_t sw)
 {
-    return switches[sw].dk*(Iis(Vis(sw))-Iisoffset_function(sw)); //calculated load current
+    return switches[sw].dk*(Iis(Vis(sw))-switches[sw].Iisoffset); //calculated load current
 }
 
 double BTN99x0::temperature (btn99x0_switch_t sw)
@@ -79,35 +79,22 @@ double BTN99x0::Iis(double Vis)
 
 //should be determined at the beginning
 
-bool BTN99x0::init1(btn99x0_switch_t sw)
+bool BTN99x0::init(void)
 {
+    int i;
+    btn99x0_switch_t sw;
+    for(i=0; i<num_of_switches;i++)
+    {
+    sw = static_cast<btn99x0_switch_t>(i);                       //typecast sw in enum type
     digitalWrite(switches[sw].inhibit, LOW);                     //Inhibit pin has to be low, that Iis offset can be measured
     delayMicroseconds(5);          
     digitalWrite(switches[sw].input, LOW);                        //set the input pin to low
     delayMicroseconds(5);
-    Iisoffset[BTN99x0_SWITCH_1] =Iis(Vis(BTN99x0_SWITCH_1));      //messuere Isoffset
+    switches[sw].Iisoffset =Iis(Vis(sw));                                   //messuere Isoffset
     delayMicroseconds(5);                       
     digitalWrite(switches[sw].inhibit, HIGH);                     //set the inhibit pin to high
+    }
     return(true);  
-}
-
-bool BTN99x0::init2(btn99x0_switch_t sw)
-{
-    digitalWrite(switches[sw].inhibit, LOW);                       //Inhibit pin has to be low, that Iis offset can be measured
-    delayMicroseconds(5);         
-    digitalWrite(switches[sw].input, LOW);                          //set the input pin form chip 2 to low
-    delayMicroseconds(5);
-    Iisoffset[BTN99x0_SWITCH_2] =Iis(Vis(BTN99x0_SWITCH_1));        //messuere Isoffset from chip 2
-    delayMicroseconds(5);                   
-    digitalWrite(switches[sw].inhibit, HIGH);                       //set the inhibit pin form chip 2 to high
-    return(true);
-}
-
-double BTN99x0::Iisoffset_function(btn99x0_switch_t sw)
-{
-    static const bool marker1 = init1(BTN99x0_SWITCH_1);            //only one time isoffset is determined
-    static const bool marker2 = init2(BTN99x0_SWITCH_2);            //only one time isoffset is determined
-    return Iisoffset[sw];
 }
 
 double BTN99x0::Vis(btn99x0_switch_t sw)
@@ -117,14 +104,14 @@ double BTN99x0::Vis(btn99x0_switch_t sw)
 
 // enable chips
 
-void BTN99x0::enable_function(btn99x0_switch_t sw)
+void BTN99x0::enable(btn99x0_switch_t sw)
 {
     digitalWrite(switches[sw].inhibit, HIGH);                       //set Inhibit pin to high
 }
 
 // disable chips
 
-void BTN99x0::disable_function(btn99x0_switch_t sw)
+void BTN99x0::disable(btn99x0_switch_t sw)
 {
     digitalWrite(switches[sw].inhibit, LOW);                        //set Inhibit pin to low
 }
@@ -141,7 +128,7 @@ void BTN99x0::error(void)
         temp = static_cast<btn99x0_switch_t>(i);                    //typecast sw in enum type
         if(Iis(Vis(temp))>faultcurrent)
         {
-            disable_function(temp);                                 //disable chip
+            disable(temp);                                           //disable chip
             PWM(temp,0);                                            //disable inputsignal from the chip 
         }
     }

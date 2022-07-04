@@ -31,15 +31,15 @@ namespace btn99x0
             double Iisoffset_function(btn99x0_switch_t sw); //Is offset function
             double Vis (btn99x0_switch_t sw);           //determine Volatge at "Ris"
          
-            double Iisoffset[num_of_switches];          // //determine Isoffset from the switches                  
+                     // //determine Isoffset from the switches                  
           
-            void disable_function(btn99x0_switch_t sw); //disable switches
-            void enable_function(btn99x0_switch_t sw);  //enable switches
+            void disable(btn99x0_switch_t sw); //disable switches
+            void enable(btn99x0_switch_t sw);  //enable switches
             void error(void);                           //error handling from the switches
 
         private:
-            bool init1(btn99x0_switch_t sw);                           //initalize "Isoffset from chip 1"
-            bool init2(btn99x0_switch_t sw);                           //initalize "Isoffset from chip 2"
+            bool init(void);                           //initalize "Isoffset from chip 1"
+          //  double Iisoffset[num_of_switches];
             
             static constexpr uint16_t Ris =2000;
             static constexpr float faultcurrent =0.0025;
@@ -50,6 +50,8 @@ namespace btn99x0
                 uint16_t input;
                 uint16_t inhibit;
                 uint16_t dk;
+                double Iisoffset;
+
             }btn99x0_switch_obj_t;
 
           static constexpr uint16_t dk1 = 40000;                //typical value of dk1

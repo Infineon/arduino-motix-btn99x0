@@ -38,25 +38,22 @@ namespace btn99x0
             void error(void);                           //error handling from the switches
 
         private:
-            bool init1(void);                           //initalize "Isoffset from chip 1"
-            bool init2(void);
+            bool init1(btn99x0_switch_t sw);                           //initalize "Isoffset from chip 1"
+            bool init2(btn99x0_switch_t sw);                           //initalize "Isoffset from chip 2"
             
             static constexpr uint16_t Ris =2000;
             static constexpr float faultcurrent =0.0025;
             static constexpr float ktis =3.72e-6; 
             typedef struct
             {
-
+                uint16_t analog;
                 uint16_t input;
-
+                uint16_t inhibit;
+                uint16_t dk;
             }btn99x0_switch_obj_t;
 
-          static constexpr uint16_t dk1 = 40000;
-          static constexpr uint16_t dk2 = 50000;
-
-          btn99x0_switch_obj_t analog[num_of_switches]={BTN99x0_CurrentSense1,BTN99x0_CurrentSense2};
-          btn99x0_switch_obj_t inhibit[num_of_switches]={BTN99x0_INH1,BTN99x0_INH2};
-          btn99x0_switch_obj_t dk[num_of_switches]={dk1,dk2};
+          static constexpr uint16_t dk1 = 40000;                //typical value of dk1
+          static constexpr uint16_t dk2 = 50000;                //typical value of dk2     
           btn99x0_switch_obj_t switches[num_of_switches];
     };
 }

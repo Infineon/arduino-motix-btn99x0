@@ -119,9 +119,10 @@ void BTN99x0::disable(btn99x0_switch_t sw)
 //error function
 //when Iis is higher then 2.5mA then is fault current
 
-void BTN99x0::error(void)
+int16_t BTN99x0::error(void)
 {
-    int i;
+    int i=0;
+    int16_t error_return =0;                                        //to return which chip has an error
     btn99x0_switch_t temp;
     for(i=0; i<num_of_switches;i++)
     {
@@ -130,7 +131,9 @@ void BTN99x0::error(void)
         {
             disable(temp);                                           //disable chip
             PWM(temp,0);                                            //disable inputsignal from the chip 
+            error_return |=(1<<i);                                  //to return which chip has an error
         }
-    }
+   }
+    return error_return;
 }
 

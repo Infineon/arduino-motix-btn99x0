@@ -35,7 +35,7 @@ namespace btn99x0
           
             void disable(btn99x0_switch_t sw); //disable switches
             void enable(btn99x0_switch_t sw);  //enable switches
-            void error(void);                           //error handling from the switches
+            int16_t error(void);                           //error handling from the switches
 
         private:
             bool init(void);                           //initalize "Isoffset from chip 1"

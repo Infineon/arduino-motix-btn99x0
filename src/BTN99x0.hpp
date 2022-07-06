@@ -35,7 +35,7 @@ namespace btn99x0
           
             void disable(btn99x0_switch_t sw); //disable switches
             void enable(btn99x0_switch_t sw);  //enable switches
-            int16_t error(void);                           //error handling from the switches
+            int error(void);                           //error handling from the switches
 
         private:
             bool init(void);                           //initalize "Isoffset from chip 1"
@@ -57,6 +57,7 @@ namespace btn99x0
           static constexpr uint16_t dk1 = 40000;                //typical value of dk1
           static constexpr uint16_t dk2 = 50000;                //typical value of dk2     
           btn99x0_switch_obj_t switches[num_of_switches];
+          friend class btn99x0shield::BTN99x0shield;
     };
 }
 

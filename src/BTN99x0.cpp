@@ -27,6 +27,7 @@ BTN99x0::BTN99x0()                                               //constructor
     switches[BTN99x0_SWITCH_2].input=BTN99x0_Input2;
     switches[BTN99x0_SWITCH_1].dk=dk1;
     switches[BTN99x0_SWITCH_2].dk=dk2;
+    Serial.begin(9600);
     init();
 }
 
@@ -119,7 +120,7 @@ void BTN99x0::disable(btn99x0_switch_t sw)
 //error function
 //when Iis is higher then 2.5mA then is fault current
 
-int16_t BTN99x0::error(void)
+int BTN99x0::error(void)
 {
     int i=0;
     int16_t error_return =0;                                        //to return which chip has an error
@@ -129,11 +130,13 @@ int16_t BTN99x0::error(void)
         temp = static_cast<btn99x0_switch_t>(i);                    //typecast sw in enum type
         if(Iis(Vis(temp))>faultcurrent)
         {
-            disable(temp);                                           //disable chip
+            disable(temp);                                          //disable chip
             PWM(temp,0);                                            //disable inputsignal from the chip 
-            error_return |=(1<<i);                                  //to return which chip has an error
+            error_return=1;
+            Serial.print("chip error:");                            //to return which chip has an error
+            Serial.print(i);
         }
    }
-    return error_return;
+   return error_return;
 }
 

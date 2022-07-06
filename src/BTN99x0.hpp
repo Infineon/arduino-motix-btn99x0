@@ -22,7 +22,7 @@ namespace btn99x0
 
             BTN99x0();                                  //constructor
             ~BTN99x0();                                 //deconstructor
-            void PWM(btn99x0_switch_t sw, int duty);    //PWM function
+            void PWM(btn99x0_switch_t sw, double duty);    //PWM function
             double loadcurrent (btn99x0_switch_t sw);   //loadcurrent function
             double temperature (btn99x0_switch_t sw);   //temperature function
             void slewrate (btn99x0_switch_t sw, int selected);  //slewrate selection function
@@ -44,6 +44,13 @@ namespace btn99x0
             static constexpr uint16_t Ris =2000;
             static constexpr float faultcurrent =0.0025;
             static constexpr float ktis =3.72e-6; 
+        
+
+          static constexpr uint16_t dk1 = 40000;                //typical value of dk1
+          static constexpr uint16_t dk2 = 50000;                //typical value of dk2     
+         
+        //  friend class btn99x0shield::BTN99x0shield;
+        protected:
             typedef struct
             {
                 uint16_t analog;
@@ -53,11 +60,9 @@ namespace btn99x0
                 double Iisoffset;
 
             }btn99x0_switch_obj_t;
+            
+            btn99x0_switch_obj_t switches[num_of_switches];
 
-          static constexpr uint16_t dk1 = 40000;                //typical value of dk1
-          static constexpr uint16_t dk2 = 50000;                //typical value of dk2     
-          btn99x0_switch_obj_t switches[num_of_switches];
-          friend class btn99x0shield::BTN99x0shield;
     };
 }
 

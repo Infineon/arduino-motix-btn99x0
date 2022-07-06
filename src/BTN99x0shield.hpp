@@ -13,8 +13,9 @@ namespace btn99x0shield
        ~BTN99x0shield();//deconstructor
        void brake();
        void freewheel();
-       void backward(int duty);
-       void forward(int duty);
+       //void backwardspeed(int duty);
+       //void forwardspeed(int duty);
+       void setspeed(int duty); 
        void error_shield();
 
        private:

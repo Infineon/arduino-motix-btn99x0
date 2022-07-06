@@ -37,10 +37,13 @@ BTN99x0::~BTN99x0()                                              //deconstructor
 
 }
 
-void BTN99x0::PWM(btn99x0_switch_t sw, int duty )
-{
+void BTN99x0::PWM(btn99x0_switch_t sw, double duty )
+{   if(duty<=100 & duty>=0)
+    {
     duty=duty*255/100;
-    analogWrite(switches[sw].input, duty);                        //PWM on input pin
+    analogWrite(switches[sw].input, duty);          //PWM on input pin
+    }else Serial.print("only a value between 0 and 100");
+                              
 }  
 
 double BTN99x0::loadcurrent (btn99x0_switch_t sw)

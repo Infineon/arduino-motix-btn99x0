@@ -4,7 +4,7 @@
 
 #define num_of_switches 2         //number of switches in the shield
 
-#if defined(ARDUINO_AVR_UNO) || defined(XMC1100_Boot_Kit) || defined(XMC4700_Relax_Kit)            
+#if defined(ARDUINO_AVR_UNO) || defined(XMC1100_Boot_Kit)        
 
 #define BTN99x0_CurrentSense1 A0
 #define BTN99x0_CurrentSense2 A1

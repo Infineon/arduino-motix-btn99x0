@@ -22,7 +22,8 @@ namespace btn99x0
 
             BTN99x0();                                  //constructor
             ~BTN99x0();                                 //deconstructor
-            void PWM(btn99x0_switch_t sw, double duty);    //PWM function
+            void PWM(btn99x0_switch_t sw, uint8_t duty);
+            void PWMpercentage(btn99x0_switch_t sw, uint8_t duty);    //PWM function
             double loadcurrent (btn99x0_switch_t sw);   //loadcurrent function
             double temperature (btn99x0_switch_t sw);   //temperature function
             void slewrate (btn99x0_switch_t sw, int selected);  //slewrate selection function
@@ -32,7 +33,7 @@ namespace btn99x0
             double Vis (btn99x0_switch_t sw);           //determine Volatge at "Ris"
          
                      // //determine Isoffset from the switches                  
-          
+            void disableall(void);
             void disable(btn99x0_switch_t sw); //disable switches
             void enable(btn99x0_switch_t sw);  //enable switches
             int error(void);                           //error handling from the switches
@@ -60,7 +61,7 @@ namespace btn99x0
                 double Iisoffset;
 
             }btn99x0_switch_obj_t;
-            
+
             btn99x0_switch_obj_t switches[num_of_switches];
 
     };

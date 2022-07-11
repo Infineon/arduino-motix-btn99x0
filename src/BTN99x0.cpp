@@ -28,6 +28,11 @@ BTN99x0::BTN99x0()                                               //constructor
     switches[BTN99x0_SWITCH_1].dk=dk1;
     switches[BTN99x0_SWITCH_2].dk=dk2;
     Serial.begin(9600);
+    for(int i=0; i<num_of_switches; i++)
+    {
+        enable(static_cast<btn99x0_switch_t>(i));
+    }
+    
     init();
 }
 
@@ -36,14 +41,17 @@ BTN99x0::~BTN99x0()                                              //deconstructor
 {
 
 }
+void BTN99x0::PWM(btn99x0_switch_t sw, uint8_t duty )
+{   
+    analogWrite(switches[sw].input, duty);          //PWM on input pin                             
+}  
 
-void BTN99x0::PWM(btn99x0_switch_t sw, double duty )
+void BTN99x0::PWMpercentage(btn99x0_switch_t sw, uint8_t duty )
 {   if(duty<=100 & duty>=0)
     {
     duty=duty*255/100;
     analogWrite(switches[sw].input, duty);          //PWM on input pin
-    }else Serial.print("only a value between 0 and 100");
-                              
+    };                              
 }  
 
 double BTN99x0::loadcurrent (btn99x0_switch_t sw)
@@ -114,6 +122,15 @@ void BTN99x0::enable(btn99x0_switch_t sw)
 }
 
 // disable chips
+
+void BTN99x0::disableall(void)
+{
+    int i=0;
+    for(i=0; i<num_of_switches; i++)
+    {
+        disable(static_cast<btn99x0_switch_t>(i));
+    }
+}
 
 void BTN99x0::disable(btn99x0_switch_t sw)
 {

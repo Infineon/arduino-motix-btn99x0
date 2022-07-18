@@ -47,15 +47,16 @@ uint8_t BTN99x0_shield_motorcontrol::error_shield_motor()
     uint8_t error_motor=0;
     if(error()==0)                                             //if in error() would be an error there would be no loadcurrent
     {
-        for(i=0; i<num_of_switches; i++)
+        for(i=0; i<num_of_switches; i++)                        //show for every switch on the shield, if there is an current
         {
             if(loadcurrent(sw)-switches[sw].Iisoffset==0)      //has to be testest, if a leackage current can be messured 
             {
-                error_motor=1;
+                error_motor=(1<<num_of_switches);
             };
         };
         
     };
+    error_motor=error();
     return error_motor;
    
 }

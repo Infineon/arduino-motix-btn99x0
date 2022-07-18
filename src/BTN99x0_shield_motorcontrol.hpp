@@ -9,12 +9,12 @@ namespace btn99x0_shield_motorcontrol
     {
         public:
 
-        BTN99x0_shield_motorcontrol();      //constructor
+        BTN99x0_shield_motorcontrol();     //constructor
        ~BTN99x0_shield_motorcontrol();      //deconstructor
-       void brake();                        //brakes the motor
-       void freewheel();                    //no force on the motor
+       void brake(void);                        //brakes the motor
+       void freewheel(void);                    //no force on the motor
        void setspeed(int16_t duty);             //set a speed for the motor with PWM
-       uint8_t error_shield_motor();                 //error handling 
+       uint8_t error_shield_motor(void);                 //error handling 
 
        private:
        static constexpr float faultcurrent_shield =0.0025;  //faultcurrent

@@ -12,7 +12,7 @@
 using namespace btn99x0_shield;                                         // namespace BTN99x0
 
 
-BTN99x0_shield::BTN99x0_shield()                                               //constructor
+BTN99x0_shield::BTN99x0_shield()                                               
 {
     pinMode(BTN99x0_CurrentSense1, INPUT);
     pinMode(BTN99x0_CurrentSense2, INPUT);
@@ -32,16 +32,16 @@ BTN99x0_shield::BTN99x0_shield()                                               /
 
 
 
-BTN99x0_shield::~BTN99x0_shield()                                              //deconstructor
+BTN99x0_shield::~BTN99x0_shield()                                      
 {
 
 }
-void BTN99x0_shield::PWM(switchesbtn99x0 sw, uint8_t duty )
+void BTN99x0_shield::pwm(btn99x0_switches_t sw, uint8_t duty )
 {   
     analogWrite(switches[sw].input, duty);          //PWM on input pin                             
 }  
 
-void BTN99x0_shield::PWMpercentage(switchesbtn99x0 sw, uint8_t duty )
+void BTN99x0_shield::pwmpercentage(btn99x0_switches_t sw, uint8_t duty )
 {   if((duty<=100) & (duty>=0))
     {
     duty=duty*255/100;
@@ -49,22 +49,22 @@ void BTN99x0_shield::PWMpercentage(switchesbtn99x0 sw, uint8_t duty )
     };                              
 }  
 
-double BTN99x0_shield::loadcurrent (switchesbtn99x0 sw)
+double BTN99x0_shield::loadcurrent (btn99x0_switches_t sw)
 {
-    return switches[sw].dk*(Iis(Vis(sw))-switches[sw].Iisoffset); //calculated load current
+    return switches[sw].dk*(calculate_current_at_ris(voltage_ris(sw))-switches[sw].Iisoffset); //calculated load current
 }
 
-double BTN99x0_shield::temperature (switchesbtn99x0 sw)
+double BTN99x0_shield::temperature (btn99x0_switches_t sw)
 {
     double Tcc;   
     digitalWrite(switches[sw].inhibit, LOW);                     //set inhibit pin to low, that temperature can be calculated
     delayMicroseconds(5);         
-    Tcc=Iis(Vis(sw))/ktis;                                       //calculate the temperature form chip 1 
+    Tcc=calculate_current_at_ris(voltage_ris(sw))/ktis;                                       //calculate the temperature form chip 1 
     digitalWrite(switches[sw].inhibit, HIGH);                    //set inhibit pin to high
     return Tcc;  
 }
 
-void BTN99x0_shield::slewrate (switchesbtn99x0 sw, uint8_t selected)
+void BTN99x0_shield::slewrate (btn99x0_switches_t sw, uint8_t selected)
 {
     uint8_t i;
     digitalWrite(switches[sw].inhibit, LOW);                    //set inhibit pin to low
@@ -79,9 +79,9 @@ void BTN99x0_shield::slewrate (switchesbtn99x0 sw, uint8_t selected)
     digitalWrite(switches[sw].inhibit, HIGH);                   // BTN99x0_INH1 on
 }
 
-double BTN99x0_shield::Iis(double Vis)
+double BTN99x0_shield::calculate_current_at_ris(double voltage_ris)
 {
-    return Vis/Ris;                                               //calculate current
+    return voltage_ris/Ris;                                               //calculate current
 }
 
 //should be determined at the beginning
@@ -89,64 +89,64 @@ double BTN99x0_shield::Iis(double Vis)
 void BTN99x0_shield::init(void)
 {
     uint8_t i;
-    switchesbtn99x0 sw;
+    btn99x0_switches_t sw;
 
     for(i=0; i<num_of_switches;i++)
     {
-    sw = static_cast<switchesbtn99x0>(i);                       //typecast sw in enum type
+    sw = static_cast<btn99x0_switches_t>(i);                       //typecast sw in enum type
     disable(sw);                     //Inhibit pin has to be low, that Iis offset can be measured
     delay(5);          
     digitalWrite(switches[sw].input, LOW);                        //set the input pin to low
     delay(5);
-    switches[sw].Iisoffset =Iis(Vis(sw));                                   //messuere Isoffset
+    switches[sw].Iisoffset =calculate_current_at_ris(voltage_ris(sw));                                   //messuere Isoffset
     delay(5);                       
     enable(sw);                     //set the inhibit pin to high
     }
 }
 
-double BTN99x0_shield::Vis(switchesbtn99x0 sw)
+double BTN99x0_shield::voltage_ris(btn99x0_switches_t sw)
 {
     return (analogRead(switches[sw].analog))*(5/1023.0);                          //measure voltage from "Ris"
 }
 
 // enable chips
 
-void BTN99x0_shield::enable(switchesbtn99x0 sw)
+void BTN99x0_shield::enable(btn99x0_switches_t sw)
 {
     digitalWrite(switches[sw].inhibit, HIGH);                       //set Inhibit pin to high
 }
 
 // disable chips
 
-void BTN99x0_shield::disableall(void)
+void BTN99x0_shield::disable_all(void)
 {
     uint8_t i=0;
     for(i=0; i<num_of_switches; i++)
     {
-        disable(static_cast<switchesbtn99x0>(i));
+        disable(static_cast<btn99x0_switches_t>(i));
     }
 }
 
-void BTN99x0_shield::disable(switchesbtn99x0 sw)
+void BTN99x0_shield::disable(btn99x0_switches_t sw)
 {
     digitalWrite(switches[sw].inhibit, LOW);                        //set Inhibit pin to low
 }
 
-//error function
+
 //when Iis is higher then 2.5mA then is fault current
 
 uint8_t BTN99x0_shield::error(void)
 {
     uint8_t i=0;
     int16_t error_return =0;                                        //to return which chip has an error
-    switchesbtn99x0 temp;
+    btn99x0_switches_t temp;
     for(i=0; i<num_of_switches;i++)
     {
-        temp = static_cast<switchesbtn99x0>(i);                    //typecast sw in enum type
-        if(Iis(Vis(temp))>faultcurrent)
+        temp = static_cast<btn99x0_switches_t>(i);                    //typecast sw in enum type
+        if(calculate_current_at_ris(voltage_ris(temp))>faultcurrent)
         {
             disable(temp);                                          //disable chip
-            PWM(temp,0);                                            //disable inputsignal from the chip 
+            pwm(temp,0);                                            //disable inputsignal from the chip 
             error_return=(1<<i);
         }
    }

@@ -15,19 +15,19 @@ namespace btn99x0_shield
     {
         public:
 
-            BTN99x0_shield();                                  //constructor
-            ~BTN99x0_shield();                                 //deconstructor
-            void PWM(switchesbtn99x0 sw, uint8_t duty);
-            void PWMpercentage(switchesbtn99x0 sw, uint8_t duty);    //PWM function
-            double loadcurrent (switchesbtn99x0 sw);   //loadcurrent function
-            double temperature (switchesbtn99x0 sw);   //temperature function
-            void slewrate (switchesbtn99x0 sw, uint8_t selected);  //slewrate selection function
-            double Iis(double Vis);                     //calculate Iis
-            double Vis (switchesbtn99x0 sw);           //determine Volatge at "Ris"         
-            void disableall(void);
-            void disable(switchesbtn99x0 sw); //disable switchesbtn99x0
-            void enable(switchesbtn99x0 sw);  //enable switchesbtn99x0
-            uint8_t error(void);                           //error handling from the switchesbtn99x0
+            BTN99x0_shield();                                  
+            ~BTN99x0_shield();                                 
+            void PWM(btn99x0_switches_t sw, uint8_t duty);
+            void PWMpercentage(btn99x0_switches_t sw, uint8_t duty);    
+            double loadcurrent (btn99x0_switches_t sw);   
+            double temperature (btn99x0_switches_t sw);
+            void slewrate (btn99x0_switches_t sw, uint8_t selected);  
+            double calculate_current_at_ris(double voltage_ris);                   
+            double voltage_ris (btn99x0_switches_t sw);           //determine Volatge at "Ris"         
+            void disable_all(void);
+            void disable(btn99x0_switches_t sw);                  //disable switchesbtn99x0
+            void enable(btn99x0_switches_t sw);                   //enable switchesbtn99x0
+            uint8_t error(void);                               //error handling from the switchesbtn99x0
             void init(void);
             
 

@@ -4,7 +4,7 @@
 
 #define num_of_switches 2         //number of switches in the shield
 
-#if defined(ARDUINO_AVR_UNO)             
+#if defined(ARDUINO_AVR_UNO)    
 
 #define BTN99x0_CurrentSense1 A0
 #define BTN99x0_CurrentSense2 A1

@@ -16,8 +16,6 @@ BTN99x0_shield_motorcontrol::~BTN99x0_shield_motorcontrol()
 
 void BTN99x0_shield_motorcontrol::setspeed(int16_t duty)
 { 
-    enable(BTN99x0_SWITCH_1);
-    enable(BTN99x0_SWITCH_2);
     if(duty>=0)
     {
     pwm(BTN99x0_SWITCH_1, duty);                                //switch 1 with duty cycle 
@@ -42,24 +40,24 @@ void BTN99x0_shield_motorcontrol::brake()
     pwm(BTN99x0_SWITCH_2, 0);
 };
 
-double BTN99x0_shield_motorcontrol::error_shield_motor()
+uint8_t BTN99x0_shield_motorcontrol::error_shield_motor()
 {
     uint8_t i =0;
     btn99x0_switches_t sw;
     uint8_t error_motor=0;
-    double temp;
     if(error()==0)                                             //if in error() would be an error there would be no loadcurrent
     {
         for(i=0; i<num_of_switches; i++)                        //shows for every switch on the shield, if there is an current
         {
-            sw = static_cast<btn99x0_switches_t>(i);
-            if(loadcurrent(sw)<=0)                              //until now, it does not work
+            if(loadcurrent(sw)-switches[sw].Iisoffset==0)      //has to be testest, if a leackage current can be messured 
             {
-                error_motor|=(1<<num_of_switches);
+                error_motor=(1<<num_of_switches);
             };
         };
         
     };
-    return error_motor;   
+    error_motor=error();
+    return error_motor;
+   
 }
 

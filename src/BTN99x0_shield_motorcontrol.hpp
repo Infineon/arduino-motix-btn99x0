@@ -14,7 +14,7 @@ namespace btn99x0_shield_motorcontrol
        void brake(void);                        //brakes the motor
        void freewheel(void);                    //no force on the motor
        void setspeed(int16_t duty);             //set a speed for the motor with PWM
-       uint8_t error_shield_motor(void);         //error handling 
+       double error_shield_motor(void);         //error handling 
 
        private:
        static constexpr float faultcurrent_shield =0.0025;  

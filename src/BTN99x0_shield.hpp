@@ -17,8 +17,8 @@ namespace btn99x0_shield
 
             BTN99x0_shield();                                  
             ~BTN99x0_shield();                                 
-            void PWM(btn99x0_switches_t sw, uint8_t duty);
-            void PWMpercentage(btn99x0_switches_t sw, uint8_t duty);    
+            void pwm(btn99x0_switches_t sw, uint8_t duty);
+            void pwmpercentage(btn99x0_switches_t sw, uint8_t duty);    
             double loadcurrent (btn99x0_switches_t sw);   
             double temperature (btn99x0_switches_t sw);
             void slewrate (btn99x0_switches_t sw, uint8_t selected);  
@@ -29,21 +29,19 @@ namespace btn99x0_shield
             void enable(btn99x0_switches_t sw);                   //enable switchesbtn99x0
             uint8_t error(void);                               //error handling from the switchesbtn99x0
             void init(void);
-            
-
-             
+                         
         private:
             
             static constexpr uint16_t Ris =2000;
-            static constexpr float faultcurrent =0.0025;
+            static constexpr float faultcurrent =0.00225;
             static constexpr float ktis =3.72e-6; 
         
 
-          static constexpr uint16_t dk1 = 40000;                //typical value of dk1
-          static constexpr uint16_t dk2 = 50000;                //typical value of dk2     
+          static constexpr uint16_t dk1 = 50000;                //typical value of dk1
+          static constexpr uint16_t dk2 = 40000;                //typical value of dk2     
          
         protected:
-        typedef struct
+         typedef struct
             {
                 uint16_t analog;
                 uint16_t input;

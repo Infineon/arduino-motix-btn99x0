@@ -42,7 +42,7 @@ void BTN99x0_shield_motorcontrol::brake()
     pwm(BTN99x0_SWITCH_2, 0);
 };
 
-double BTN99x0_shield_motorcontrol::error_shield_motor()
+int8_t BTN99x0_shield_motorcontrol::error_shield_motor()
 {
     uint8_t i =0;
     btn99x0_switches_t sw;

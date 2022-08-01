@@ -1,5 +1,5 @@
 /**
- * @file        99x0-arduinoboard.cpp
+ * @file        BTN99x0_shield.cpp
  * @copyright   Copyright (c) 2022 Infineon Technologies AG
  */
 
@@ -9,7 +9,7 @@
 #include "Arduino.h"
 #include "BTN99x0_shield_types.hpp"
 
-using namespace btn99x0_shield;                                         // namespace BTN99x0
+using namespace btn99x0_shield;                                         
 
 
 BTN99x0_shield::BTN99x0_shield()                                               
@@ -38,56 +38,96 @@ BTN99x0_shield::~BTN99x0_shield()
 }
 void BTN99x0_shield::pwm(btn99x0_switches_t sw, uint8_t duty )
 {   
-    analogWrite(switches[sw].input, duty);          //PWM on input pin                             
+    /*
+    PWM on input pin
+    */  
+    analogWrite(switches[sw].input, duty);                                     
 }  
 
 void BTN99x0_shield::pwmpercentage(btn99x0_switches_t sw, uint8_t duty )
 {   if((duty<=100) & (duty>=0))
     {
     duty=duty*255/100;
-    analogWrite(switches[sw].input, duty);          //PWM on input pin
+    /*
+    PWM on input pin
+    */  
+    analogWrite(switches[sw].input, duty);         
     };                              
 }  
 
 double BTN99x0_shield::loadcurrent (btn99x0_switches_t sw)
 {
-    return ((switches[sw].dk)*(calculate_current_at_ris(voltage_ris(sw))-switches[sw].Iisoffset)); //calculated load current
+    /*
+    calculate load current
+    */
+    return ((switches[sw].dk)*(calculate_current_at_ris(voltage_ris(sw))-switches[sw].Iisoffset)); 
 }
 
 double BTN99x0_shield::temperature (btn99x0_switches_t sw)
 {
-    double Tcc;   
-    digitalWrite(switches[sw].inhibit, LOW);                     //set inhibit pin to low, that temperature can be calculated
+    double Tcc;
+    /*
+    set inhibit pin to low, that temperature can be calculated
+    */   
+    disable(sw);
+    
     digitalWrite(switches[sw].input, HIGH);
-    delayMicroseconds(7);         
-    Tcc=(calculate_current_at_ris(voltage_ris(sw)))/ktis;                                       //calculate the temperature form chip 1 
-    digitalWrite(switches[sw].inhibit, HIGH);                    //set inhibit pin to high
+    delayMicroseconds(7);
+
+    /*
+    calculate the temperature form chip 1 
+    */
+
+    Tcc=(calculate_current_at_ris(voltage_ris(sw)))/ktis;
+
+    /*
+    set inhibit pin to high
+    */
+    enable(sw);                    
     return Tcc;  
 }
 
 void BTN99x0_shield::slewrate (btn99x0_switches_t sw, uint8_t selected)
 {
     uint8_t i;
-    digitalWrite(switches[sw].inhibit, LOW);                    //set inhibit pin to low
-    delayMicroseconds(5); 
-    for (i=0; i<=(selected+1); i++)                                  //pulses the pin
-    {
-        digitalWrite(switches[sw].input, HIGH);                 //Inuput Pin set to high
+
+    /*
+    set inhibit pin to low
+    */
+
+    disable(sw);                   
+    delayMicroseconds(5);
+
+    /*
+    pulses the input pin
+    */
+
+    for (i=0; i<=(selected+1); i++)
+    {                                 
+        digitalWrite(switches[sw].input, HIGH);                 
         delayMicroseconds(1);      
-        digitalWrite(switches[sw].input, LOW);                  //Inuput Pin set to low
+        digitalWrite(switches[sw].input, LOW);                 
     }
     delayMicroseconds(5);
-    digitalWrite(switches[sw].inhibit, HIGH);                   // BTN99x0_INH1 on
+    /*
+    set inhibit pin to high
+    */
+    enable(sw);                    
 }
 
 double BTN99x0_shield::calculate_current_at_ris(double voltage_ris)
 {
-    return voltage_ris/Ris;                                               //calculate current
+    /*
+    calculate the current 
+    */
+    return voltage_ris/Ris;                                               
 }
 
-//should be determined at the beginning
+    /*
+    init should be determined at the beginning
+    */
 
-void BTN99x0_shield::init(void)
+void BTN99x0_shield::init_btn99x0(void)
 {
     uint8_t i;
     btn99x0_switches_t sw;
@@ -95,29 +135,41 @@ void BTN99x0_shield::init(void)
     for(i=0; i<num_of_switches;i++)
     {
     sw = static_cast<btn99x0_switches_t>(i); 
-    enable(sw);                                     //chip has to be on before he is swit 
-    digitalWrite(switches[sw].input, LOW);                        //set the input pin to low         
+    /*
+    chip has to be enabled, before determine the Isoffset
+    */
+    enable(sw);                                     
+    digitalWrite(switches[sw].input, LOW);                          
     
     delayMicroseconds(50);
-    switches[sw].Iisoffset =calculate_current_at_ris(voltage_ris(sw));                                   //messuere Isoffset
-    delay(5);                       
-    enable(sw);                     //set the inhibit pin to high
+    /*
+    determine Isoffset
+    */
+    switches[sw].Iisoffset =calculate_current_at_ris(voltage_ris(sw));                                   
+    delayMicroseconds(5);
+    /*
+    set the inhibit pin to high
+    */                       
+   // enable(sw);                     
     }
 }
 
 double BTN99x0_shield::voltage_ris(btn99x0_switches_t sw)
 {
-    return (analogRead(switches[sw].analog))*(5/1023.0);                          //measure voltage from "Ris"
+    return (analogRead(switches[sw].analog))*(5/1023.0);                          
 }
 
-// enable chips
+
 
 void BTN99x0_shield::enable(btn99x0_switches_t sw)
 {
-    digitalWrite(switches[sw].inhibit, HIGH);                       //set Inhibit pin to high
+    /*
+    set Inhibit pin to high
+    */
+   digitalWrite(switches[sw].inhibit, HIGH);                       
 }
 
-// disable chips
+
 
 void BTN99x0_shield::disable_all(void)
 {
@@ -130,25 +182,31 @@ void BTN99x0_shield::disable_all(void)
 
 void BTN99x0_shield::disable(btn99x0_switches_t sw)
 {
-    digitalWrite(switches[sw].inhibit, LOW);                        //set Inhibit pin to low
+    /*
+    set Inhibit pin to low
+    */
+    digitalWrite(switches[sw].inhibit, LOW);                      
 }
 
 
-//when Iis is higher then 2.5mA then is fault current
+
 
 uint8_t BTN99x0_shield::error(void)
 {
     uint8_t i=0;
     int16_t error_return =0;                                        //to return which chip has an error
-    btn99x0_switches_t temp;
+    btn99x0_switches_t sw;
     for(i=0; i<num_of_switches;i++)
     {
-       // error_return=20;
-        temp = static_cast<btn99x0_switches_t>(i);                    //typecast sw in enum type
-        if(calculate_current_at_ris(voltage_ris(temp))>=faultcurrent)
+
+        sw = static_cast<btn99x0_switches_t>(i);                   
+        if(calculate_current_at_ris(voltage_ris(sw))>=faultcurrent)
         {
-            disable(temp);                                          //disable chip
-            pwm(temp,0);                                            //disable inputsignal from the chip 
+            /*
+            disable chip and disable input signal from the chip
+            */
+            disable(sw);                                          
+            pwm(sw,0);                                             
             error_return|=(1<<i);
         }
    }

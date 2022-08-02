@@ -10,6 +10,7 @@ enum btn99x0_error_t
 {
     BTN99x0_ERROR_SWITCH_1 = -1,                
     BTN99x0_ERROR_SWITCH_2 = -2,
-    BTN99x0_ERROR_NO_LOAD  = -3,
+    BTN99x0_ERROR_SWITCH_1_AND_2 = -3,
+    BTN99x0_ERROR_NO_LOAD  = -4,
 };
 #endif /*BTN99x0_TYPES_HPP*/

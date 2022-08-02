@@ -20,22 +20,21 @@ void setup()
 
     /*enable all pins and messure Isoffset*/
 
-    btn_chip.init_btn99x0();                              
+    btn_chip.init();                              
     delay(5000);
 }
 
 void loop()
 {
+  btn99x0_error_t temp= btn_chip.error_evaluation(); 
 
-    int temp=btn_chip.error();
-    for(int i=0; i<num_of_switches; i++)
-    {
-        /*mask to check if a bit is set or not*/
-
-        if((temp&(1<<i))==(1<<i))        
-        {
-            Serial.print("error chip:");
-            Serial.print(i+1);
-        };
-    };
+   switch (temp)
+  {
+    case BTN99x0_ERROR_SWITCH_1:Serial.println("Error Switch 1");
+    break;
+    case BTN99x0_ERROR_SWITCH_2:Serial.println("Error Switch 2");
+    break;
+    case BTN99x0_ERROR_SWITCH_1_AND_2:Serial.println("Error Switch 1 and 2");
+    break;
+   }
 }

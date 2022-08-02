@@ -17,7 +17,7 @@ void setup()
     Serial.println("Serial initialized");
     delay(1000);
 
-    btn_chip.init_btn99x0();
+    btn_chip.init();
     delay(1000);
 
     /*slew rate to set to 7*/

@@ -40,20 +40,12 @@ void BTN99x0_shield_motorcontrol::setspeed(int16_t duty)
     }
 };
 
-uint8_t BTN99x0_shield_motorcontrol::error_evaluation()
+ btn99x0_error_t BTN99x0_shield_motorcontrol::error_evaluation(void)
 {
-    uint8_t temp= error_shield_motor();
-    uint8_t error_code;
-    for(int i=0; i<=num_of_switches; i++)
-    {
-        /*mask to check if a bit is set or not*/
-
-        if((temp&(1<<i))==(1<<i))        
-        {
-            error_code=0;
-        };
-    }
     
+    btn99x0_error_t error_code= static_cast<btn99x0_error_t>(-(error_shield_motor()));
+    
+    return error_code; 
 }
 void BTN99x0_shield_motorcontrol::freewheel()
 {
@@ -76,7 +68,29 @@ void BTN99x0_shield_motorcontrol::brake()
 
  void BTN99x0_shield_motorcontrol::init(void)
 {
-    init_btn99x0();
+    uint8_t i;
+    btn99x0_switches_t sw;
+
+    for(i=0; i<num_of_switches;i++)
+    {
+    sw = static_cast<btn99x0_switches_t>(i); 
+    /*
+    chip has to be enabled, before determine the Isoffset
+    */
+    enable(sw);                                     
+    digitalWrite(switches[sw].input, LOW);                          
+    
+    delayMicroseconds(50);
+    /*
+    determine Isoffset
+    */
+    switches[sw].Iisoffset =calculate_current_at_ris(voltage_ris(sw));                                   
+    delayMicroseconds(5);
+
+    /*
+    set the inhibit pin to high
+    */                                           
+    }
 }
 
 void BTN99x0_shield_motorcontrol::slew_rate_motor(uint8_t selected)
@@ -93,7 +107,7 @@ uint8_t BTN99x0_shield_motorcontrol::error_shield_motor()
 {
     uint8_t i =0;
     btn99x0_switches_t sw;
-    uint8_t error_motor=0;
+    uint8_t error_motor=error();
     double temp =0;
     /*
     checks if there is an loadcurrent

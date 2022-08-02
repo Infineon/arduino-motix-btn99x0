@@ -127,7 +127,7 @@ double BTN99x0_shield::calculate_current_at_ris(double voltage_ris)
     init should be determined at the beginning
     */
 
-void BTN99x0_shield::init_btn99x0(void)
+void BTN99x0_shield::init(void)
 {
     uint8_t i;
     btn99x0_switches_t sw;
@@ -147,10 +147,10 @@ void BTN99x0_shield::init_btn99x0(void)
     */
     switches[sw].Iisoffset =calculate_current_at_ris(voltage_ris(sw));                                   
     delayMicroseconds(5);
+
     /*
     set the inhibit pin to high
-    */                       
-   // enable(sw);                     
+    */                                         
     }
 }
 
@@ -188,6 +188,11 @@ void BTN99x0_shield::disable(btn99x0_switches_t sw)
     digitalWrite(switches[sw].inhibit, LOW);                      
 }
 
+btn99x0_error_t BTN99x0_shield::error_evaluation(void)
+{
+    btn99x0_error_t error_code= static_cast<btn99x0_error_t>(-(error()));
+    return error_code; 
+}
 
 
 

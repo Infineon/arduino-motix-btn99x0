@@ -11,7 +11,7 @@ namespace btn99x0_shield_motorcontrol
 
         BTN99x0_shield_motorcontrol();     
        ~BTN99x0_shield_motorcontrol();
-       void error_evaluation(void);     
+       btn99x0_error_t error_evaluation(void);     
        void brake(void);                        
        void freewheel(void);                    //no force on the motor
        void setspeed(int16_t duty);             //set a speed for the motor with PWM

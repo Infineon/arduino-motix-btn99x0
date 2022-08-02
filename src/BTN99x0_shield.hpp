@@ -17,7 +17,7 @@ namespace btn99x0_shield
 
             BTN99x0_shield();                                  
             ~BTN99x0_shield();
-            void init_btn99x0(void);                                 
+            void init(void);                                 
             void pwm(btn99x0_switches_t sw, uint8_t duty);
             void pwmpercentage(btn99x0_switches_t sw, uint8_t duty);    
             double loadcurrent (btn99x0_switches_t sw);   
@@ -28,6 +28,7 @@ namespace btn99x0_shield
             void disable_all(void);
             void disable(btn99x0_switches_t sw);                  
             void enable(btn99x0_switches_t sw);
+            btn99x0_error_t error_evaluation(void);
             
             /*
             error handling from the switchesbtn99x0

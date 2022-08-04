@@ -33,7 +33,7 @@ namespace btn99x0_shield
             /*
             error handling from the switchesbtn99x0
             */                   
-            uint8_t error(void);                               
+            btn99x0_error_t btn99x0_error(void);                               
             
             
                          

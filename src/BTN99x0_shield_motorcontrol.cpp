@@ -40,13 +40,6 @@ void BTN99x0_shield_motorcontrol::setspeed(int16_t duty)
     }
 };
 
- btn99x0_error_t BTN99x0_shield_motorcontrol::error_evaluation(void)
-{
-    
-    btn99x0_error_t error_code= static_cast<btn99x0_error_t>(-(error_shield_motor()));
-    
-    return error_code; 
-}
 void BTN99x0_shield_motorcontrol::freewheel()
 {
     /*
@@ -103,27 +96,31 @@ void BTN99x0_shield_motorcontrol::slew_rate_motor(uint8_t selected)
     }
 }
 
-uint8_t BTN99x0_shield_motorcontrol::error_shield_motor()
+btn99x0_error_t BTN99x0_shield_motorcontrol::error_shield_motor(void)
 {
     uint8_t i =0;
     btn99x0_switches_t sw;
-    uint8_t error_motor=error();
-    double temp =0;
+    btn99x0_error_t error_code=btn99x0_error();
+    uint8_t error_no_load=0;
+    
+    double current =0;
     /*
     checks if there is an loadcurrent
     */
-    if(error()==0)                                             
+    if((static_cast<int>(error_code))==0)                                             
     {  
         do{    
             sw = static_cast<btn99x0_switches_t>(i);
-            temp=loadcurrent(sw);
-            if(temp<=0.01)                              
+            current=loadcurrent(sw);
+            if(current<=0.01)                              
             {
-                error_motor|=(1<<num_of_switches);
+                error_no_load|=(1<<num_of_switches);
             };
             i++;
-        }while(((error_motor==0) || (i<num_of_switches) || (temp<0.01))!=1);             
+        }while(((static_cast<int>(error_code)==0) || (i<num_of_switches) || (current<0.01)) !=1);
+        error_code= static_cast<btn99x0_error_t>(-(error_no_load));             
     };
-    return error_motor;   
+    
+    return error_code;   
 }
 

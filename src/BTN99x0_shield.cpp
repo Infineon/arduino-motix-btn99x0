@@ -146,11 +146,7 @@ void BTN99x0_shield::init(void)
     determine Isoffset
     */
     switches[sw].Iisoffset =calculate_current_at_ris(voltage_ris(sw));                                   
-    delayMicroseconds(5);
-
-    /*
-    set the inhibit pin to high
-    */                                         
+    delayMicroseconds(5);                                       
     }
 }
 
@@ -188,19 +184,20 @@ void BTN99x0_shield::disable(btn99x0_switches_t sw)
     digitalWrite(switches[sw].inhibit, LOW);                      
 }
 
-btn99x0_error_t BTN99x0_shield::error_evaluation(void)
+/*btn99x0_error_t BTN99x0_shield::error_evaluation(void)
 {
     btn99x0_error_t error_code= static_cast<btn99x0_error_t>(-(error()));
     return error_code; 
-}
+}*/
 
 
 
-uint8_t BTN99x0_shield::error(void)
+btn99x0_error_t BTN99x0_shield::btn99x0_error(void)
 {
     uint8_t i=0;
     int16_t error_return =0;                                        //to return which chip has an error
     btn99x0_switches_t sw;
+    btn99x0_error_t error_code;
     for(i=0; i<num_of_switches;i++)
     {
 
@@ -215,6 +212,7 @@ uint8_t BTN99x0_shield::error(void)
             error_return|=(1<<i);
         }
    }
-   return error_return;
+   error_code= static_cast<btn99x0_error_t>(-error_return);
+   return error_code;
 }
 

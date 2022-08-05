@@ -14,7 +14,7 @@ namespace btn99x0_shield_motorcontrol
        void brake(void);                        
        void freewheel(void);                    //no force on the motor
        void setspeed(int16_t duty);             //set a speed for the motor with PWM
-       btn99x0_error_t error_shield_motor(void);         //error handling 
+       btn99x0_error_t get_error_code(void);         //error handling 
        void slew_rate_motor(uint8_t selected);
        void init(void);
 

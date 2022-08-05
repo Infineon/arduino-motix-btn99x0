@@ -28,12 +28,11 @@ namespace btn99x0_shield
             void disable_all(void);
             void disable(btn99x0_switches_t sw);                  
             void enable(btn99x0_switches_t sw);
-            btn99x0_error_t error_evaluation(void);
             
             /*
             error handling from the switchesbtn99x0
             */                   
-            btn99x0_error_t btn99x0_error(void);                               
+            btn99x0_error_t get_error_code(void);                               
             
             
                          

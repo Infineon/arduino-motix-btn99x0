@@ -26,7 +26,7 @@ void setup()
 
 void loop()
 {
-  btn99x0_error_t temp= btn_chip.btn99x0_error(); 
+  btn99x0_error_t temp= btn_chip.get_error_code(); 
 
    switch (temp)
   {

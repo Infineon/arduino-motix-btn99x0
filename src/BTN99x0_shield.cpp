@@ -192,7 +192,7 @@ void BTN99x0_shield::disable(btn99x0_switches_t sw)
 
 
 
-btn99x0_error_t BTN99x0_shield::btn99x0_error(void)
+btn99x0_error_t BTN99x0_shield::get_error_code(void)
 {
     uint8_t i=0;
     int16_t error_return =0;                                        //to return which chip has an error

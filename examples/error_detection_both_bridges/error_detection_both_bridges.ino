@@ -15,6 +15,7 @@ void setup()
 {   
     delay(3000);
     btn_motor_control.init();
+   // btn_motor_control.temperature(BTN99x0_SWITCH_1);
     delay(2000);
     Serial.begin(9600);
     Serial.println("Serial initialized");
@@ -24,7 +25,7 @@ void setup()
 void loop()
 {
 
-   btn99x0_error_t temp=btn_motor_control.error_shield_motor();
+   btn99x0_error_t temp=btn_motor_control.get_error_code();
 
    switch (temp)
   {

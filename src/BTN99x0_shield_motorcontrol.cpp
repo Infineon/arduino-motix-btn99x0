@@ -96,11 +96,11 @@ void BTN99x0_shield_motorcontrol::slew_rate_motor(uint8_t selected)
     }
 }
 
-btn99x0_error_t BTN99x0_shield_motorcontrol::error_shield_motor(void)
+btn99x0_error_t BTN99x0_shield_motorcontrol::get_error_code(void)
 {
     uint8_t i =0;
     btn99x0_switches_t sw;
-    btn99x0_error_t error_code=btn99x0_error();
+    btn99x0_error_t error_code=get_error_code();
     uint8_t error_no_load=0;
     
     double current =0;

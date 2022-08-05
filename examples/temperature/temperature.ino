@@ -18,7 +18,7 @@ void setup()
 
     /*enable all pins and messure Isoffset*/
 
-    btn_chip.init_btn99x0();                               
+    btn_chip.init();                               
     delay(5000);
 }
 

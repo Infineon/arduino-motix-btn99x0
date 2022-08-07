@@ -61,29 +61,8 @@ void BTN99x0_shield_motorcontrol::brake()
 
  void BTN99x0_shield_motorcontrol::init(void)
 {
-    uint8_t i;
-    btn99x0_switches_t sw;
-
-    for(i=0; i<num_of_switches;i++)
-    {
-    sw = static_cast<btn99x0_switches_t>(i); 
-    /*
-    chip has to be enabled, before determine the Isoffset
-    */
-    enable(sw);                                     
-    digitalWrite(switches[sw].input, LOW);                          
-    
-    delayMicroseconds(50);
-    /*
-    determine Isoffset
-    */
-    switches[sw].Iisoffset =calculate_current_at_ris(voltage_ris(sw));                                   
-    delayMicroseconds(5);
-
-    /*
-    set the inhibit pin to high
-    */                                           
-    }
+    BTN99x0_shield temp;
+    temp.init();
 }
 
 void BTN99x0_shield_motorcontrol::slew_rate_motor(uint8_t selected)
@@ -96,8 +75,29 @@ void BTN99x0_shield_motorcontrol::slew_rate_motor(uint8_t selected)
     }
 }
 
+double BTN99x0_shield_motorcontrol::loadcurrent(void)
+{
+    /*
+        only the biggest loadcurrent is the "real" loadcurrent
+        The current get messuered in the HSS of the BTN99x0 chip
+        When the both half bridges are used as a H-Bridge/Full-Bridge, is only one HSS used
+    */
+    BTN99x0_shield temp;
+    double load[num_of_switches];
+    double maxload=0;
+    load[BTN99x0_SWITCH_1]=temp.loadcurrent(BTN99x0_SWITCH_1);
+    load[BTN99x0_SWITCH_2]=temp.loadcurrent(BTN99x0_SWITCH_2);
+    if(load[BTN99x0_SWITCH_1]>load[BTN99x0_SWITCH_2])
+    {
+        maxload=load[BTN99x0_SWITCH_1];
+    }
+    else maxload=load[BTN99x0_SWITCH_2];
+    return maxload; 
+}
+
 btn99x0_error_t BTN99x0_shield_motorcontrol::get_error_code(void)
 {
+    BTN99x0_shield_motorcontrol temp;
     uint8_t i =0;
     btn99x0_switches_t sw;
     btn99x0_error_t error_code=get_error_code();
@@ -107,17 +107,17 @@ btn99x0_error_t BTN99x0_shield_motorcontrol::get_error_code(void)
     /*
     checks if there is an loadcurrent
     */
-    if((static_cast<int>(error_code))==0)                                             
+    if((error_code)==BTN99x0_NO_ERROR)                                             
     {  
         do{    
             sw = static_cast<btn99x0_switches_t>(i);
-            current=loadcurrent(sw);
-            if(current<=0.01)                              
+            current=temp.loadcurrent();
+            if(current<=THRESHOLD_CURRENT)                              
             {
                 error_no_load|=(1<<num_of_switches);
             };
             i++;
-        }while(((static_cast<int>(error_code)==0) || (i<num_of_switches) || (current<0.01)) !=1);
+        }while(((static_cast<int>(error_code)==0) || (i<num_of_switches) || (current<THRESHOLD_CURRENT)) !=1);
         error_code= static_cast<btn99x0_error_t>(-(error_no_load));             
     };
     

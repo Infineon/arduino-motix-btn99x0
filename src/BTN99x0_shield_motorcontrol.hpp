@@ -1,6 +1,7 @@
-
-
+#include "BTN99x0.hpp"
 #include "BTN99x0_shield.hpp"
+#include "BTN99x0_shield_types.hpp"
+#include "platform.hpp"
 #include "Arduino.h"
 
 namespace btn99x0_shield_motorcontrol

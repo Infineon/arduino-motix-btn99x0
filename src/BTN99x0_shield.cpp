@@ -64,7 +64,7 @@ void BTN99x0_shield::slewrate (btn99x0_switches_t sw, uint8_t selected)
 double BTN99x0_shield::current_at_ris(btn99x0_switches_t sw)
 {
     BTN99x0 temp;
-    temp.calculate_current_at_ris(sw);                                                 
+    return temp.calculate_current_at_ris(sw);                                                 
 }
 
 /*

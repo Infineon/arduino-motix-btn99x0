@@ -1,5 +1,7 @@
+#include "BTN99x0.hpp"
 #include "BTN99x0_shield.hpp"
 #include "BTN99x0_shield_motorcontrol.hpp"
+#include "BTN99x0_shield_types.hpp"
 #include "platform.hpp"
 #include "Arduino.h"
 
@@ -99,7 +101,7 @@ btn99x0_error_t BTN99x0_shield_motorcontrol::get_error_code(void)
 {
     BTN99x0_shield_motorcontrol temp;
     uint8_t i =0;
-    btn99x0_switches_t sw;
+   
     btn99x0_error_t error_code=get_error_code();
     uint8_t error_no_load=0;
     
@@ -110,7 +112,7 @@ btn99x0_error_t BTN99x0_shield_motorcontrol::get_error_code(void)
     if((error_code)==BTN99x0_NO_ERROR)                                             
     {  
         do{    
-            sw = static_cast<btn99x0_switches_t>(i);
+            
             current=temp.loadcurrent();
             if(current<=THRESHOLD_CURRENT)                              
             {

@@ -29,6 +29,8 @@ void loop()
 
    switch (temp)
   {
+    case BTN99x0_NO_ERROR: Serial.println("No Error");
+    break;
     case BTN99x0_ERROR_SWITCH_1:Serial.println("Error Switch 1");
     break;
     case BTN99x0_ERROR_SWITCH_2:Serial.println("Error Switch 2");

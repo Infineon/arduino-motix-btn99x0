@@ -9,7 +9,7 @@
 
 using namespace btn99x0_shield;
 
-BTN99x0_shield btn_chip = BTN99x0_shield();
+BTN99x0_shield btn_shield = BTN99x0_shield();
 
 
 void setup()
@@ -20,16 +20,18 @@ void setup()
 
     /*enable all pins and messure Isoffset*/
 
-    btn_chip.init();                              
+    btn_shield.init();                              
     delay(5000);
 }
 
 void loop()
 {
-  btn99x0_error_t temp= btn_chip.get_error_code(); 
+  btn99x0_error_t temp= btn_shield.get_error_code(); 
 
    switch (temp)
   {
+    case BTN99x0_NO_ERROR: Serial.println("No Error");
+    break;
     case BTN99x0_ERROR_SWITCH_1:Serial.println("Error Switch 1");
     break;
     case BTN99x0_ERROR_SWITCH_2:Serial.println("Error Switch 2");

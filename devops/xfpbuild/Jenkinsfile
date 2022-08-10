@@ -336,7 +336,7 @@ pipeline {
 												for i in "${examples[@]}"
 												do
 													echo "Board: $a, Example: $i";
-													${toolsA2}/${cliPath}/arduino-cli compile --config-file ${toolsA2}/.arduino15/arduino-cli.yaml --verbose --fqbn $a --libraries=./ examples/$i
+													#${toolsA2}/${cliPath}/arduino-cli compile --config-file ${toolsA2}/.arduino15/arduino-cli.yaml --verbose --fqbn $a --libraries=./ examples/$i
 													echo "===================="
 												done
 											done

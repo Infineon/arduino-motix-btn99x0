@@ -338,9 +338,10 @@ pipeline {
 
 												for i in $(find "./examples/" -name '*.ino');
 												do
-													#if [ -f "${i}" ] ; then
+													if [ -f "${i}" ] ; then
 														echo "      Example: $i";
-													#fi
+														${toolsA2}/${cliPath}/arduino-cli compile --config-file ${toolsA2}/.arduino15/arduino-cli.yaml --verbose --fqbn $a --libraries=./ $i
+													fi
 												done;
 
 											done;

@@ -49,6 +49,7 @@ pipeline {
 		booleanParam(name: 'MTB',         defaultValue: false,                     description: 'should we do a ModusToolbox compilation?')
 		booleanParam(name: 'RASPBERRYPI', defaultValue: false,                     description: 'should we do a RaspberryPI compilation?')
 		booleanParam(name: 'WICED',       defaultValue: false,                     description: 'should we do a WiCED compilation?')
+		booleanParam(name: 'ARDUINOALL',  defaultValue: false,                     description: 'should we complile on all boards (true) or only on Arduino UNI (false)?')
 
 		booleanParam(name: 'ALLHARDWARE', defaultValue: false,                     description: 'should we do a compilation for all availabe or default hardware platforms?')
 	}
@@ -114,6 +115,7 @@ pipeline {
 							echo "DOCS_SOURCE          :" ${DOCS_SOURCE}
 							echo "DOCS_TARGET          :" ${DOCS_TARGET}
 							echo "BOOLEAN ARDUINO      :" ${ARDUINO}
+							echo "BOOLEAN ARDUINOALL   :" ${ARDUINOALL}
 							echo "BOOLEAN PLATFORMIO   :" ${PLATFORMIO}
 							echo "BOOLEAN MTB          :" ${MTB}
 							echo "BOOLEAN RASPBERRYPI  :" ${RASPBERRYPI}
@@ -329,6 +331,9 @@ pipeline {
 											cd ./
 											#export fqbn=(arduino:avr:uno Infineon:arm:XMC1100_Boot_Kit Infineon:arm:XMC4700_Relax_Kit)
 											export fqbn=(arduino:avr:uno)
+
+echo $ARDUINOALL
+
 
 											for a in "${fqbn[@]}"
 											do

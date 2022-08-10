@@ -328,13 +328,22 @@ pipeline {
 										script: '''
 											cd ./
 											export lib=`ls -1 ./`
-											export examples=(`ls -1 ./examples/`)
+											export examples=(`ls -1R ./examples/`)
 											#export fqbn=(arduino:avr:uno Infineon:arm:XMC1100_Boot_Kit Infineon:arm:XMC4700_Relax_Kit)
 											export fqbn=(arduino:avr:uno)
 
-											for i in $(find "./examples/" -name '*.ino');
-											do	
-												echo $i
+
+											for a in "${fqbn[@]}"
+											do
+												echo "Board: $a;
+
+												for i in $(find "./examples/" -name '*.ino');
+												do
+													if [ -f "${i}" ] ; then
+														echo "      Example: $i";
+													fi
+												done;
+
 											done;
 
 											for a in "${fqbn[@]}"

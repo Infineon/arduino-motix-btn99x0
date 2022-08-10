@@ -327,18 +327,18 @@ pipeline {
 									def result = sh(
 										script: '''
 											cd ./
-											#export lib=`ls -1 ./`
-											#export examples=(`ls -1 ./examples/`)
 											#export fqbn=(arduino:avr:uno Infineon:arm:XMC1100_Boot_Kit Infineon:arm:XMC4700_Relax_Kit)
 											export fqbn=(arduino:avr:uno)
 
 											for a in "${fqbn[@]}"
 											do
+												echo "================================================================================"
 												echo "Board: $a"
 
 												for i in $(find "./examples/" -name '*.ino');
 												do
 													if [ -f "${i}" ] ; then
+														echo "--------------------------------------------------------------------------------"
 														echo "      Example: $i";
 														${toolsA2}/${cliPath}/arduino-cli compile --config-file ${toolsA2}/.arduino15/arduino-cli.yaml --verbose --fqbn $a --libraries=./ $i
 													fi
@@ -346,23 +346,6 @@ pipeline {
 
 											done;
 
-											#for a in "${fqbn[@]}"
-											#do
-											#	for i in "${examples[@]}"
-											#	do
-											#		echo "Board: $a, Example: $i";
-											#		if [ -f "${i}/${i}.ino" ] ; then
-											#			echo $i
-											#			#${toolsA2}/${cliPath}/arduino-cli compile --config-file ${toolsA2}/.arduino15/arduino-cli.yaml --verbose --fqbn $a --libraries=./ examples/$i
-											#		else
-											#			for a in "${examples/${i}[@]}"
-											#			do
-											#				echo "     Example: $i/$a";
-											#			done
-											#		fi
-											#		echo "===================="
-											#	done
-											#done
 										''',
 										returnStdout: true
 									).trim()

@@ -332,7 +332,8 @@ pipeline {
 											#export fqbn=(arduino:avr:uno Infineon:arm:XMC1100_Boot_Kit Infineon:arm:XMC4700_Relax_Kit)
 											export fqbn=(arduino:avr:uno)
 
-echo $ARDUINOALL
+echo ${ARDUINOALL}
+echo ${env.ARDUINOALL}
 
 
 											for a in "${fqbn[@]}"

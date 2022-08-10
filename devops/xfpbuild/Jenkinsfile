@@ -64,6 +64,7 @@ pipeline {
 		DOCS_SOURCE      = "${env.WORKSPACE}/docs/doxygen/build"
 		ROOT_URL         = "https://${params.SERVER}.vih.infineon.com"
 		SONARINSTANCE    = "${params.SONARINSTANCE}"
+		ARDUINOALL       = "${params.ARDUINOALL}"
 
 		cliPath          = "arduinoCLI/${-> inoVER}"
 		boardPath        = "arduinoBoardPackage/${-> inoVER}"

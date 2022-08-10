@@ -1,7 +1,7 @@
 /*
  * ##################################################################################
  *
- * XFP internal build pipeline
+ * XFP internal build pipeline tweaked for arduino only use
  * should run fast (<10min) with following parts
  * - unit test and report
  * - SonarQube report
@@ -190,7 +190,7 @@ pipeline {
 				stage('INO') {
 					agent {
 						node {
-							label 'epelinux2'
+							label 'epelinux1'
 						}
 					}
 					when {
@@ -297,8 +297,8 @@ pipeline {
 									def result = sh(
 										script: '''
 											cd ./
-											export PATH=/opt/python/3.9/linux/RHEL60/bin:$PATH
-											export PYTHONPATH=/opt/python/3.9/linux//RHEL60//../pyperl/python/lib/python3.9/site-packages:/home/xfpjenki/tools/python3
+											export PATH=/opt/python/3.9/linux/RHEL70/bin:$PATH
+											export PYTHONPATH=/opt/python/3.9/linux//RHEL70/../pyperl/python/lib/python3.9/site-packages:/home/xfpjenki/tools/python3
 											rm -rf ./build/Arduino
 											mkdir -p ./build/Arduino
 											${toolsA1}/python3/bin/xfp-dev arduino lib-pack --path=./build/Arduino
@@ -327,19 +327,16 @@ pipeline {
 									def result = sh(
 										script: '''
 											cd ./
-											export lib=`ls -1 ./build/Arduino/`
-											export examples=(`ls -1 ./build/Arduino/${lib}/examples/`)
-
+											export lib=`ls -1 ./`
+											export examples=(`ls -1 ./examples/`)
 											#export fqbn=(arduino:avr:uno Infineon:arm:XMC1100_Boot_Kit Infineon:arm:XMC4700_Relax_Kit)
 											export fqbn=(arduino:avr:uno)
-
-											echo $examples
 											for a in "${fqbn[@]}"
 											do
 												for i in "${examples[@]}"
 												do
 													echo "Board: $a, Example: $i";
-													${toolsA2}/${cliPath}/arduino-cli compile --config-file ${toolsA2}/.arduino15/arduino-cli.yaml --verbose --fqbn $a --libraries=./build/Arduino/${lib} build/Arduino/${lib}/examples/$i
+													${toolsA2}/${cliPath}/arduino-cli compile --config-file ${toolsA2}/.arduino15/arduino-cli.yaml --verbose --fqbn $a --libraries=./ examples/$i
 													echo "===================="
 												done
 											done

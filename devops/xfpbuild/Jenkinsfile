@@ -330,12 +330,11 @@ pipeline {
 									def result = sh(
 										script: '''
 											cd ./
-											#export fqbn=(arduino:avr:uno Infineon:arm:XMC1100_Boot_Kit Infineon:arm:XMC4700_Relax_Kit)
-											export fqbn=(arduino:avr:uno)
-
-echo ${ARDUINOALL}
-echo ${env.ARDUINOALL}
-
+											if ${ARDUINOALL} ; then
+												export fqbn=(arduino:avr:uno Infineon:arm:XMC1100_Boot_Kit Infineon:arm:XMC4700_Relax_Kit)
+											else
+												export fqbn=(arduino:avr:uno)
+											fi
 
 											for a in "${fqbn[@]}"
 											do

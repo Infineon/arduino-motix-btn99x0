@@ -7,7 +7,7 @@
 #include "BTN99x0_shield.hpp"
 
 using namespace btn99x0;
-BTN99x0 one_chip= BTN99x0();
+BTN99x0 SW_1= BTN99x0(BTN99x0_SWITCH_1);
  
 void setup()
 {   
@@ -17,7 +17,7 @@ void setup()
     Serial.println("Serial initialized");
     delay(1000);
 
-    one_chip.init();
+    SW_1.init();
     delay(1000);
          
 
@@ -27,19 +27,19 @@ void loop()
 {
     /*pwm to 50% */
 
-    one_chip.pwm(BTN99x0_SWITCH_1,127);
-    Serial.println(one_chip.loadcurrent(BTN99x0_SWITCH_1));
+    SW_1.pwm(127);
+    Serial.println(SW_1.loadcurrent());
     delay(1000);
 
     /*
     disable chip for 1 sec
     */
-    one_chip.disable(BTN99x0_SWITCH_1);
+    SW_1.disable();
     delay(1000);
     /*
     enable chip
     */
-    one_chip.enable(BTN99x0_SWITCH_1);
+    SW_1.enable();
 
      
 }

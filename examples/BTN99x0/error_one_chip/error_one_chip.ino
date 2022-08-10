@@ -9,7 +9,7 @@
 
 using namespace btn99x0;
 
-BTN99x0 one_chip = BTN99x0();
+BTN99x0 SW_1= BTN99x0(BTN99x0_SWITCH_1);
 
 
 void setup()
@@ -20,13 +20,13 @@ void setup()
 
     /*enable all pins and messure Isoffset*/
 
-    one_chip.init();                              
+    SW_1.init();                              
     delay(5000);
 }
 
 void loop()
 {
-  btn99x0_error_t temp= one_chip.get_error_code(BTN99x0_SWITCH_1); 
+  btn99x0_error_t temp= SW_1.get_error_code(); 
 
    switch (temp)
     {

@@ -4,10 +4,10 @@
  * @copyright Copyright (c) 2022 Infineon Technologies AG
  */
 
-#include "BTN99x0_shield.hpp"
+#include "BTN99x0.hpp"
 
 using namespace btn99x0;
-BTN99x0 one_chip= BTN99x0();
+BTN99x0 SW_2= BTN99x0(BTN99x0_SWITCH_2);
 
 
 void setup()
@@ -18,12 +18,12 @@ void setup()
 
     /*enable all pins and messure Isoffset*/
 
-    one_chip.init();                               
+    SW_2.init();                               
     delay(5000);
 }
 
 void loop()
 {
     Serial.print("Temperatur:");
-    Serial.println(one_chip.temperature(BTN99x0_SWITCH_1));
+    Serial.println(SW_2.temperature());
 }

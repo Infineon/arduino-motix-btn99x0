@@ -14,24 +14,26 @@ namespace btn99x0
     class BTN99x0
     {
         public:
-
-            BTN99x0();                                  
+           
+            BTN99x0(btn99x0_switches_t name= BTN99x0_SWITCH_1);                             
             ~BTN99x0();
+            btn99x0_switches_t horst;
             void init(void);                                 
-            void pwm(btn99x0_switches_t sw, uint8_t duty);
-            void pwmpercentage(btn99x0_switches_t sw, uint8_t duty);    
-            double loadcurrent (btn99x0_switches_t sw);   
-            double temperature (btn99x0_switches_t sw);
-            void slewrate (btn99x0_switches_t sw, uint8_t selected);  
+            void pwm(uint8_t duty);
+            void pwmpercentage(uint8_t duty);    
+            double loadcurrent ();   
+            double temperature ();
+            void slewrate (uint8_t selected);  
             double calculate_current_at_ris(double voltage_ris);                   
-            double voltage_ris (btn99x0_switches_t sw);                
-            void disable(btn99x0_switches_t sw);                  
-            void enable(btn99x0_switches_t sw);
+            double voltage_ris ();                
+            void disable();                  
+            void enable();
             btn99x0_error_t error_code;
+            uint16_t dk=40000;
             /*
             error handling from the switchesbtn99x0
             */                   
-            btn99x0_error_t get_error_code(btn99x0_switches_t sw);                               
+            btn99x0_error_t get_error_code();                               
             
             
                          
@@ -42,21 +44,18 @@ namespace btn99x0
             static constexpr float ktis =3.72e-6; 
         
 
-            static constexpr uint16_t dk1 = 50000;                //typical value of dk1
-            static constexpr uint16_t dk2 = 40000;                //typical value of dk2     
+            //static constexpr uint16_t dk1 = 30000;                //typical value of dk1
+           // static constexpr uint16_t dk2 = 40000;                //typical value of dk2     
          
         protected:
 
-        typedef struct
-            {
+        
                 uint16_t analog;
                 uint16_t input;
                 uint16_t inhibit;
-                uint16_t dk;
+               
                 double Iisoffset;
 
-            }btn99x0_switch_obj_t;
-            btn99x0_switch_obj_t switches[num_of_switches];  
     };
 }
 

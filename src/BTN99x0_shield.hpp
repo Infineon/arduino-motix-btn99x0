@@ -16,19 +16,23 @@ namespace btn99x0_shield
     {
         public:
 
-            BTN99x0_shield();                                  
+            BTN99x0_shield(btn99x0_switches_t horst= BTN99x0_SWITCH_1);                                  
             ~BTN99x0_shield();
+            BTN99x0 temp ;
+            BTN99x0 chips[num_of_switches]={BTN99x0(BTN99x0_SWITCH_1),BTN99x0(BTN99x0_SWITCH_2)};
             void init(void);                                 
-            void pwm(btn99x0_switches_t sw, uint8_t duty);
-            void pwmpercentage(btn99x0_switches_t sw, uint8_t duty);    
-            double loadcurrent (btn99x0_switches_t sw);   
-            double temperature (btn99x0_switches_t sw);
-            void slewrate (btn99x0_switches_t sw, uint8_t selected);  
-            double current_at_ris(btn99x0_switches_t sw);                   
-            double voltage_ris (btn99x0_switches_t sw);                 
+            void pwm(uint8_t duty);
+            void pwmpercentage(uint8_t duty);    
+            double loadcurrent ();   
+            double temperature ();
+            void slewrate (uint8_t selected);  
+            double current_at_ris();                   
+          //  double voltage_ris ();                 
             void disable_all(void);
-            void disable(btn99x0_switches_t sw);                  
-            void enable(btn99x0_switches_t sw);
+            void disable();                  
+            void enable();
+            void enable_all(void);
+            uint16_t dk=40000;
             
             /*
             error handling from the switchesbtn99x0

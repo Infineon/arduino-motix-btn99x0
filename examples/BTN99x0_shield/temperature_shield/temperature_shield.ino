@@ -7,7 +7,7 @@
 #include "BTN99x0_shield.hpp"
 
 using namespace btn99x0_shield;
-BTN99x0_shield btn_shield= BTN99x0_shield();
+BTN99x0_shield SW_1= BTN99x0_shield(BTN99x0_SWITCH_1);
 
 
 void setup()
@@ -18,12 +18,12 @@ void setup()
 
     /*enable all pins and messure Isoffset*/
 
-    btn_shield.init();                               
+    SW_1.init();                               
     delay(5000);
 }
 
 void loop()
 {
     Serial.print("Temperatur:");
-    Serial.println(btn_shield.temperature(BTN99x0_SWITCH_1));
+    Serial.println(SW_1.temperature());
 }

@@ -1,7 +1,7 @@
 /*
  * ##################################################################################
  *
- * XFP internal build pipeline
+ * XFP internal build pipeline tweaked for arduino only use
  * should run fast (<10min) with following parts
  * - unit test and report
  * - SonarQube report
@@ -49,6 +49,7 @@ pipeline {
 		booleanParam(name: 'MTB',         defaultValue: false,                     description: 'should we do a ModusToolbox compilation?')
 		booleanParam(name: 'RASPBERRYPI', defaultValue: false,                     description: 'should we do a RaspberryPI compilation?')
 		booleanParam(name: 'WICED',       defaultValue: false,                     description: 'should we do a WiCED compilation?')
+		booleanParam(name: 'ARDUINOALL',  defaultValue: false,                     description: 'should we complile on all boards (true) or only on Arduino UNI (false)?')
 
 		booleanParam(name: 'ALLHARDWARE', defaultValue: false,                     description: 'should we do a compilation for all availabe or default hardware platforms?')
 	}
@@ -63,6 +64,7 @@ pipeline {
 		DOCS_SOURCE      = "${env.WORKSPACE}/docs/doxygen/build"
 		ROOT_URL         = "https://${params.SERVER}.vih.infineon.com"
 		SONARINSTANCE    = "${params.SONARINSTANCE}"
+		ARDUINOALL       = "${params.ARDUINOALL}"
 
 		cliPath          = "arduinoCLI/${-> inoVER}"
 		boardPath        = "arduinoBoardPackage/${-> inoVER}"
@@ -114,6 +116,7 @@ pipeline {
 							echo "DOCS_SOURCE          :" ${DOCS_SOURCE}
 							echo "DOCS_TARGET          :" ${DOCS_TARGET}
 							echo "BOOLEAN ARDUINO      :" ${ARDUINO}
+							echo "BOOLEAN ARDUINOALL   :" ${ARDUINOALL}
 							echo "BOOLEAN PLATFORMIO   :" ${PLATFORMIO}
 							echo "BOOLEAN MTB          :" ${MTB}
 							echo "BOOLEAN RASPBERRYPI  :" ${RASPBERRYPI}
@@ -190,7 +193,7 @@ pipeline {
 				stage('INO') {
 					agent {
 						node {
-							label 'epelinux2'
+							label 'epelinux1'
 						}
 					}
 					when {
@@ -297,8 +300,8 @@ pipeline {
 									def result = sh(
 										script: '''
 											cd ./
-											export PATH=/opt/python/3.9/linux/RHEL60/bin:$PATH
-											export PYTHONPATH=/opt/python/3.9/linux//RHEL60//../pyperl/python/lib/python3.9/site-packages:/home/xfpjenki/tools/python3
+											export PATH=/opt/python/3.9/linux/RHEL70/bin:$PATH
+											export PYTHONPATH=/opt/python/3.9/linux//RHEL70/../pyperl/python/lib/python3.9/site-packages:/home/xfpjenki/tools/python3
 											rm -rf ./build/Arduino
 											mkdir -p ./build/Arduino
 											${toolsA1}/python3/bin/xfp-dev arduino lib-pack --path=./build/Arduino
@@ -327,22 +330,28 @@ pipeline {
 									def result = sh(
 										script: '''
 											cd ./
-											export lib=`ls -1 ./build/Arduino/`
-											export examples=(`ls -1 ./build/Arduino/${lib}/examples/`)
+											if ${ARDUINOALL} ; then
+												export fqbn=(arduino:avr:uno Infineon:arm:XMC1100_Boot_Kit Infineon:arm:XMC4700_Relax_Kit)
+											else
+												export fqbn=(arduino:avr:uno)
+											fi
 
-											#export fqbn=(arduino:avr:uno Infineon:arm:XMC1100_Boot_Kit Infineon:arm:XMC4700_Relax_Kit)
-											export fqbn=(arduino:avr:uno)
-
-											echo $examples
 											for a in "${fqbn[@]}"
 											do
-												for i in "${examples[@]}"
+												echo "================================================================================"
+												echo "Board: $a"
+
+												for i in $(find "./examples/" -name '*.ino');
 												do
-													echo "Board: $a, Example: $i";
-													${toolsA2}/${cliPath}/arduino-cli compile --config-file ${toolsA2}/.arduino15/arduino-cli.yaml --verbose --fqbn $a --libraries=./build/Arduino/${lib} build/Arduino/${lib}/examples/$i
-													echo "===================="
-												done
-											done
+													if [ -f "${i}" ] ; then
+														echo "--------------------------------------------------------------------------------"
+														echo "      Example: $i";
+														${toolsA2}/${cliPath}/arduino-cli compile --config-file ${toolsA2}/.arduino15/arduino-cli.yaml --verbose --fqbn $a --libraries=./ $i
+													fi
+												done;
+
+											done;
+
 										''',
 										returnStdout: true
 									).trim()

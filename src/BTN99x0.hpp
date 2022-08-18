@@ -6,56 +6,55 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "Arduino.h"
-#include "platform.hpp"
-#include "BTN99x0_shield_types.hpp"
+#include "BTN99x0_platform.hpp"
+#include "BTN99x0_types.hpp"
 
 namespace btn99x0
 {
     class BTN99x0
     {
         public:
-           
-            BTN99x0(btn99x0_switches_t name= BTN99x0_SWITCH_1);                             
+                       
+            BTN99x0(btn99x0_ic_variant_t ic_variant, btn99x0_pins_t io_pins, btn99x0_hw_conf_t hw_conf);   
+
             ~BTN99x0();
-            btn99x0_switches_t horst;
-            void init(void);                                 
-            void pwm(uint8_t duty);
-            void pwmpercentage(uint8_t duty);    
-            double loadcurrent ();   
-            double temperature ();
-            void slewrate (uint8_t selected);  
-            double calculate_current_at_ris(double voltage_ris);                   
-            double voltage_ris ();                
+
+            // which functions do not require experimental paremeters 
+            void begin();
             void disable();                  
             void enable();
-            btn99x0_error_t error_code;
-            uint16_t dk=40000;
-            /*
-            error handling from the switchesbtn99x0
-            */                   
+            void pwm(uint8_t duty);
+            void pwm_in_percentage(uint8_t duty_in_pct);  
+            void set_slew_rate(uint8_t slew_rate_level);  
             btn99x0_error_t get_error_code();                               
+                       
+            // Which functions require experimental parameters
+            void set_ktis(float ktis_amps_per_kelvin);
+            void set_dk(uint16_t dk);
+            double get_load_current_in_amps();   
+            double get_temperature_in_kelvin();
             
             
-                         
+            
         private:
             
-            static constexpr uint16_t Ris =2000;
-            static constexpr float faultcurrent =0.00225;
-            static constexpr float ktis =3.72e-6; 
+            static constexpr float fault_current_amps = 0.00225;
+            
         
+            static const btn99x0_ic_experimental_const_t btn9970lv_typical_exp_const;
+            
+            static const btn99x0_ic_experimental_const_t btn9990lv_typical_exp_const;
 
-            //static constexpr uint16_t dk1 = 30000;                //typical value of dk1
-           // static constexpr uint16_t dk2 = 40000;                //typical value of dk2     
-         
-        protected:
+            static constexpr uint8_t i2c_variants_num = 2;
+            static const btn99x0_ic_experimental_const_t btn99x0_typical_exp_const[i2c_variants_num];
 
-        
-                uint16_t analog;
-                uint16_t input;
-                uint16_t inhibit;
-               
-                double Iisoffset;
+            btn99x0_pins_t io_pins;
+            btn99x0_ic_experimental_const_t exp_const;
+            btn99x0_hw_conf_t hw_conf;
 
+            double calculate_current_at_sense_resistor_in_amps();
+            void calculate_sense_resistor_offset_current();                      
+                                            
     };
 }
 

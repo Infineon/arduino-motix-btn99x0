@@ -36,8 +36,8 @@ void loop()
 {
     /*pwm to 50% for both chips*/
 
-    sw1.pwm(127);
-    sw2.pwm(127);            
+    sw1.set_pwm(127);
+    sw2.set_pwm(127);            
 
     Serial.println(sw1.get_load_current_in_amps());
     Serial.println(sw2.get_load_current_in_amps()); 

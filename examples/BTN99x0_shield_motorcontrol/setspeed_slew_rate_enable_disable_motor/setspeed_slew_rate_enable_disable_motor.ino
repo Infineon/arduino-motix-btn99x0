@@ -17,7 +17,7 @@ void setup()
     delay(2000);
     Serial.begin(9600);
     Serial.println("Serial initialized");
-    btn_motor_control.slew_rate_motor(7);
+    btn_motor_control.set_slew_rate(7);
 }
 
 void loop()

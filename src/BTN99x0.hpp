@@ -23,8 +23,8 @@ namespace btn99x0
             void begin();
             void disable();                  
             void enable();
-            void pwm(uint8_t duty);
-            void pwm_in_percentage(uint8_t duty_in_pct);  
+            void set_pwm(uint8_t duty);
+            void set_pwm_in_percentage(uint8_t duty_in_pct);  
             void set_slew_rate(uint8_t slew_rate_level);  
             btn99x0_error_t get_error_code();                               
                        

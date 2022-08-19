@@ -30,8 +30,8 @@ void BTN99x0_motorcontrol::set_speed(int16_t duty)
      switch 1 with duty cycle 
      switch 2 is off
      */
-     sw1.pwm(duty);                                
-     sw2.pwm(0);                                   
+     sw1.set_pwm(duty);                                
+     sw2.set_pwm(0);                                   
      }else
      {
      duty=-duty;
@@ -39,8 +39,8 @@ void BTN99x0_motorcontrol::set_speed(int16_t duty)
      switch 1 is off 
      switch 2 with duty cycle
      */    
-     sw1.pwm(0);                                   
-     sw2.pwm(duty);
+     sw1.set_pwm(0);                                   
+     sw2.set_pwm(duty);
 
     }
  };
@@ -60,11 +60,11 @@ void BTN99x0_motorcontrol::set_speed(int16_t duty)
      /*
      set both input chips to low
      */
-     sw1.pwm(0);                                  
-     sw2.pwm(0);
+     sw1.set_pwm(0);                                  
+     sw2.set_pwm(0);
  };
 
- void BTN99x0_motorcontrol::slew_rate_motor(uint8_t selected)
+ void BTN99x0_motorcontrol::set_slew_rate(uint8_t selected)
  {
      sw1.set_slew_rate(selected);
      sw2.set_slew_rate(selected);

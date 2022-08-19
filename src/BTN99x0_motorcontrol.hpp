@@ -14,7 +14,7 @@ namespace btn99x0_motorcontrol
             void brake(void);                        
             void freewheel(void);                    //no force on the motor
             void set_speed(int16_t duty);             //set a speed for the motor with PWM
-            void slew_rate_motor(uint8_t selected);
+            void set_slew_rate(uint8_t selected);
            
 
         private:

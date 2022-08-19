@@ -80,7 +80,7 @@ void loop()
 {
     /*pwm to 50% */
 
-    sw1.pwm(127); 
+    sw1.set_pwm(127); 
     /*
     set dk to a different vallue as 50k when its neede
     */

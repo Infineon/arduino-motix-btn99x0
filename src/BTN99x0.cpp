@@ -69,7 +69,7 @@ void BTN99x0::disable()
     digitalWrite(io_pins.inhibit, LOW);                      
 }
 
-void BTN99x0::pwm(uint8_t duty)
+void BTN99x0::set_pwm(uint8_t duty)
 {   
     /*
     PWM on input pin
@@ -77,7 +77,7 @@ void BTN99x0::pwm(uint8_t duty)
     analogWrite(io_pins.input, duty);                                     
 }  
 
-void BTN99x0::pwm_in_percentage(uint8_t duty_in_pct)
+void BTN99x0::set_pwm_in_percentage(uint8_t duty_in_pct)
 {   
     if((duty_in_pct <= 100) & (duty_in_pct >= 0))
     {
@@ -124,7 +124,7 @@ btn99x0_error_t BTN99x0::get_error_code()
         disable chip and disable input_pin signal from the chip
         */
         disable();                                          
-        pwm(0);
+        set_pwm(0);
         
         error_code = BTN99x0_FAULT_CURRENT_ERROR;
     }

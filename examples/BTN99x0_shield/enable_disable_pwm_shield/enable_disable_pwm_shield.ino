@@ -30,7 +30,7 @@ void loop()
         chip 1 pwm to 50%
         chip 2 disabled 
         */
-        sw1.pwm(127);
+        sw1.set_pwm(127);
         sw2.disable();
         delay(1000); 
 
@@ -40,7 +40,7 @@ void loop()
         */
         sw1.disable();
         sw2.enable();
-        sw2.pwm_in_percentage(50);
+        sw2.set_pwm_in_percentage(50);
         delay(1000);
 
         /*

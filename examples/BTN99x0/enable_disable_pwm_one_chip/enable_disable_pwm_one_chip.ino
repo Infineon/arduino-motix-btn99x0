@@ -69,7 +69,7 @@ void setup()
 void loop()
 {
     /*pwm to 50% */
-    sw1.pwm(127);
+    sw1.set_pwm(127);
     
     Serial.println(sw1.get_load_current_in_amps());
     delay(1000);

@@ -157,7 +157,7 @@ pipeline {
 									cd ./
 									export PATH=/opt/sofit/cppcheck/1.76.1/bin:$PATH
 									mkdir -p build
-									/opt/sofit/cppcheck/1.76.1/bin/cppcheck -v --enable=all --xml-version=2 -I src 2> build/cppcheck-report.xml
+									/opt/sofit/cppcheck/1.76.1/bin/cppcheck -v --enable=all --xml-version=2 src 2> build/cppcheck-report.xml
 								''',
 								returnStdout: true
 							).trim()

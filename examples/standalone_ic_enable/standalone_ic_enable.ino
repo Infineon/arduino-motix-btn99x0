@@ -2,13 +2,16 @@
 /**
  * @details This example is useful to learn how to use the
  *          half bridge class constructor for usage of BTN99x0
- *          standalone ic or non-officialy supported breakout
- *          or evaluation BTN99x0 shields.
+ *          standalone ic or non-officialy supported or custom 
+ *          developed BTN99x0 breakout board and shields.
  * 
  *          Once the HalfBridge instance is created, a very 
  *          basic usage example is provided by initializing
- *          the device, setting the output to 50% duty and 
- *          enabling it afterwards.
+ *          the device, setting the output to 50% duty, and 
+ *          finally enabling its output.
+ * 
+ *          During the loop, the diagnosis function is 
+ *          periodically called to check if there is any failure. 
  */
 #include "BTN99x0.hpp"
 
@@ -77,7 +80,7 @@ void loop()
 {
     /* Diagnose every second and report in case of error */
     delay(1000);
-    
+
     btn99x0_error_t ret = half_bridge.get_error_code();
     if(ret != BTN99x0_NO_ERROR)
     {

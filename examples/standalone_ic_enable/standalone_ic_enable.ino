@@ -69,6 +69,7 @@ void setup()
     half_bridge.set_pwm(127);
     delay(100);
   
+    /* Enable bridge output */
     half_bridge.enable();
 }
 
@@ -76,6 +77,7 @@ void loop()
 {
     /* Diagnose every second and report in case of error */
     delay(1000);
+    
     btn99x0_error_t ret = half_bridge.get_error_code();
     if(ret != BTN99x0_NO_ERROR)
     {

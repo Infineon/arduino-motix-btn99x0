@@ -5,8 +5,7 @@
  */
 #include "BTN99x0_motorcontrol.hpp"
 
-using namespace btn99x0_motorcontrol;
-using namespace btn99x0_shield;
+using namespace btn99x0;
 
 btn99xx_novalith_shield shield;
 BTN99x0_motorcontrol btn_motor_control(shield);

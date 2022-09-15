@@ -3,6 +3,9 @@
 
 #include <stdint.h>
 
+namespace btn99x0
+{
+
 #define THRESHOLD_CURRENT 0.005
 
 typedef struct 
@@ -52,4 +55,7 @@ enum btn99x0_error_t
     BTN99x0_NO_ERROR = 0,
     BTN99x0_FAULT_CURRENT_ERROR = -1
 };
+
+}
+
 #endif /*BTN99x0_TYPES_HPP*/

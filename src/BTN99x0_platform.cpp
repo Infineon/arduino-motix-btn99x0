@@ -1,6 +1,8 @@
 
 #include "BTN99x0_platform.hpp"
 
+using namespace btn99x0;
+
 #if defined(ARDUINO_AVR_UNO) || defined(XMC1100_Boot_Kit)
 
 btn99x0_pins_t sw1_io_pins_default = 

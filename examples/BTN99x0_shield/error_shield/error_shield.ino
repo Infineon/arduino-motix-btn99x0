@@ -7,7 +7,7 @@
 
 #include "btn99xx_novalith_shield.hpp"
 
-using namespace btn99x0_shield;
+using namespace btn99x0;
 
 btn99xx_novalith_shield btn_shield;
     BTN99x0 sw1 = btn_shield.get_switch(BTN99x0_SWITCH_1);

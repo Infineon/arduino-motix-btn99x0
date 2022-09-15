@@ -1,8 +1,7 @@
 
 #include "btn99xx_novalith_shield.hpp"
 
-using namespace btn99x0_shield;
-namespace btn99x0_motorcontrol
+namespace btn99x0
 {
     class BTN99x0_motorcontrol
     {

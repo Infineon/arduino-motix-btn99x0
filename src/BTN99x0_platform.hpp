@@ -5,6 +5,8 @@
 #include "Arduino.h"
 #include "BTN99x0_types.hpp"
 
+using namespace btn99x0;
+
 #if defined(ARDUINO_AVR_UNO) || defined(XMC1100_Boot_Kit) 
 
 #define BTN99x0_CurrentSense1 A1
@@ -27,7 +29,4 @@ extern btn99x0_pins_t sw2_io_pins_default;
     #warning "Default platform undefined. Specify your own pinout connectivity and platform hardware configuration in the sketch" 
 #endif //ARDUINO_AVR_UNO || XMC1100_Boot_Kit
 
-
-
- 
 #endif //BTN99x0_PLATFORM_HPP

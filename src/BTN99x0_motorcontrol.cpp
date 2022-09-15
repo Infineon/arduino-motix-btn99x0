@@ -1,6 +1,6 @@
 #include "BTN99x0_motorcontrol.hpp"
 
-using namespace btn99x0_motorcontrol;
+using namespace btn99x0;
 
 BTN99x0_motorcontrol::BTN99x0_motorcontrol(btn99xx_novalith_shield & shield)
 :

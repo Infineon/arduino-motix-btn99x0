@@ -12,10 +12,8 @@
 #include "BTN99x0_platform.hpp"
 #include "BTN99x0_types.hpp"
 
-using namespace btn99x0_shield;                                         
+                                     
 using namespace btn99x0;
-
-
 
 btn99xx_novalith_shield::btn99xx_novalith_shield(btn99x0_pins_t sw1_io_pins, btn99x0_pins_t sw2_io_pins)
 : 

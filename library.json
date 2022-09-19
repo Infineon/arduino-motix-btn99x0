@@ -1,0 +1,17 @@
+{  
+    "name": "DC Motor Control Shield with BTN9970LV and BTN9970LV",
+    "keywords": "Motor Control Shield, BTN9970, BTN9990",
+    "description": "Arduino library for the Infineon DC Motor Control Shield with BTN9970LV and BTN9990LV",
+    "repository":{  
+       "type":"git",
+       "url":"https://github.com/Infineon/arduino-btn99x0",
+       "branch":"master"
+    },
+    "version":"1.0.0",
+    "license":"MIT",
+    "frameworks":"arduino",
+    "platforms":[  
+       "infineonxmc",
+       "atmelavr"
+    ]
+ }

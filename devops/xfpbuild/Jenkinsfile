@@ -157,7 +157,7 @@ pipeline {
 									cd ./
 									export PATH=/opt/sofit/cppcheck/1.76.1/bin:$PATH
 									mkdir -p build
-									/opt/sofit/cppcheck/1.76.1/bin/cppcheck -v --enable=all --xml-version=2 -I src test 2> build/cppcheck-report.xml
+									/opt/sofit/cppcheck/1.76.1/bin/cppcheck -v --enable=all --xml-version=2 src 2> build/cppcheck-report.xml
 								''',
 								returnStdout: true
 							).trim()
@@ -362,83 +362,6 @@ pipeline {
 
 					}
 
-				}
-
-
-				/*-----------------------------------------------------------------------------
-				 * ModusToolbox Build
-				 *-----------------------------------------------------------------------------
-				 */
-				stage('MTB') {
-
-					when {
-						beforeAgent true
-						expression { params.MTB }
-					}
-
-					stages('ModusToolbox') {
-
-						stage('Trigger MTB') {
-							steps {
-								script {
-									def result = sh(
-										script: '''
-											SERVER=pssswgov-jenkins.icp.infineon.com
-											JOB_NAME=PSSDevOps/job/MTB%20Code%20Example%20validator/job/master
-											COOKIEJAR="$(mktemp)"
-											crumb=$(curl --cookie-jar "$COOKIEJAR" "https://$SERVER/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb)")
-											curl -v --cookie "$COOKIEJAR" -H $crumb -X POST "https://$SERVER/job/$JOB_NAME/buildWithParameters?CE_REPO=git@devops-git.aus.cypress.com:wpp/ce/mtb/mtb-example-psoc6-multi-half-bridge.git&CE_BRANCH=${BRANCH_NAME}"
-										''',
-										returnStdout: true
-									).trim()
-									echo "$result"
-								}
-
-							}
-						}
-
-					}
-
-				}
-
-				// /*-----------------------------------------------------------------------------
-				//  * PlatformIO build
-				//  *-----------------------------------------------------------------------------
-				//  */
-				stage('PIO') {
-					agent {
-						node {
-							label 'epelinux3'
-						}
-					}
-
-					when {
-						beforeAgent true
-						expression { params.PLATFORMIO }
-					}
-
-					stages('PlatformIO') {
-
-						stage('Trigger PIO') {
-							steps {
-								echo "PlatformIO"
-								/*
-								sh ("export DOXY_BIN_PATH=/usr/local/bin/;cd ${env.WORKSPACE}/docs;/usr/bin/make pdf")
-								build(
-									job: 'dev/doxy_maker_pdf',
-									propagate: true,
-									parameters: [
-										[
-											$class: 'StringParameterValue',
-											name: 'WORKSPACE',
-											value: "${env.WORKSPACE}"
-										],
-									]
-								)
-								*/
-							}
-						}
-					}
 				}
 
 				/*-----------------------------------------------------------------------------

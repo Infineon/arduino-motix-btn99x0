@@ -5,12 +5,13 @@
  * 
  */
 
-#include "BTN99x0_shield.hpp"
+#include "btn99xx_novalith_shield.hpp"
 
 using namespace btn99x0_shield;
 
-BTN99x0_shield SW_1 = BTN99x0_shield(BTN99x0_SWITCH_1);
-BTN99x0_shield SW_2 = BTN99x0_shield(BTN99x0_SWITCH_2);
+btn99xx_novalith_shield btn_shield;
+    BTN99x0 sw1 = btn_shield.get_switch(BTN99x0_SWITCH_1);
+    BTN99x0 sw2 = btn_shield.get_switch(BTN99x0_SWITCH_2);
 
 void setup()
 {   
@@ -19,10 +20,8 @@ void setup()
     Serial.println("Serial initialized");
 
     /*enable all pins and messure Isoffset*/
-
-    SW_1.init();
-    SW_2.init();                              
-    delay(5000);
+    btn_shield.begin();                            
+    
 }
 
 void loop()
@@ -30,17 +29,16 @@ void loop()
   /*
   Only one statement is needed. The user get in "get_error_code" both error messages from the chip
   */
-  btn99x0_error_t temp= SW_1.get_error_code();
+  btn99x0_error_t error_code= sw1.get_error_code();
 
-   switch (temp)
+  if(error_code==BTN99x0_FAULT_CURRENT_ERROR)
   {
-    case BTN99x0_NO_ERROR: Serial.println("No Error");
-    break;
-    case BTN99x0_ERROR_SWITCH_1:Serial.println("Error Switch 1");
-    break;
-    case BTN99x0_ERROR_SWITCH_2:Serial.println("Error Switch 2");
-    break;
-    case BTN99x0_ERROR_SWITCH_1_AND_2:Serial.println("Error Switch 1 and 2");
-    break;
-   }
+    Serial.print("Error Switch 1");
+  }
+  error_code= sw2.get_error_code();
+  
+  if(error_code==BTN99x0_FAULT_CURRENT_ERROR)
+  {
+    Serial.print("Error Switch 2");
+  }
 }

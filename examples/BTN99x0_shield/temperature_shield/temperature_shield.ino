@@ -4,10 +4,13 @@
  * @copyright Copyright (c) 2022 Infineon Technologies AG
  */
 
-#include "BTN99x0_shield.hpp"
+#include "btn99xx_novalith_shield.hpp"
 
 using namespace btn99x0_shield;
-BTN99x0_shield SW_1= BTN99x0_shield(BTN99x0_SWITCH_1);
+
+btn99xx_novalith_shield btn_shield;
+    BTN99x0 sw1 = btn_shield.get_switch(BTN99x0_SWITCH_1);
+    BTN99x0 sw2 = btn_shield.get_switch(BTN99x0_SWITCH_2);
 
 
 void setup()
@@ -18,12 +21,12 @@ void setup()
 
     /*enable all pins and messure Isoffset*/
 
-    SW_1.init();                               
+    btn_shield.begin();                              
     delay(5000);
 }
 
 void loop()
 {
     Serial.print("Temperatur:");
-    Serial.println(SW_1.temperature());
+    Serial.println(sw1.get_temperature_in_kelvin());
 }

@@ -23,8 +23,16 @@ const btn99x0_ic_experimental_const_t BTN99x0::btn9990lv_typical_exp_const =
 
 const btn99x0_ic_experimental_const_t BTN99x0::btn99x0_typical_exp_const[i2c_variants_num] = 
 {
-    btn9970lv_typical_exp_const,
-    btn9990lv_typical_exp_const
+    {
+        3.72e-6,
+        40000,
+        0
+    }, /**< btn9970lv */
+    {
+        3.72e-6,
+        50000,
+        0
+    } /**< btn9990lv */
 };
 
 //Given an ic variant the typical values of ktis and dk are choosen

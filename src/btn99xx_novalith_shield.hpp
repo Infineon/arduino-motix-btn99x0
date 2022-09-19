@@ -6,9 +6,7 @@
 #include "BTN99x0.hpp"
 #include "BTN99x0_types.hpp"
 
-using namespace btn99x0;
-
-namespace btn99x0_shield
+namespace btn99x0
 {
     class btn99xx_novalith_shield
     {

@@ -384,6 +384,7 @@ pipeline {
 								script {
 									def result = sh(
 										script: '''
+											export PATH=/opt/python/3.9/linux/RHEL60/bin:/opt/doxygen/1.8.14/bin:/opt/python/anaconda/4.2.0/py3.5.2:$PATH
 											doxygen --version
 											sphinx-build --version
 										''',

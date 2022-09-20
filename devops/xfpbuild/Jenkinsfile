@@ -377,6 +377,24 @@ pipeline {
 
 					stages {
 
+						stage('Enviroment check') {
+							steps {
+								echo "Enviroment check"
+								echo "NODE_NAME = ${env.NODE_NAME}"
+								script {
+									def result = sh(
+										script: '''
+											doxygen --version
+											sphinx-build --version
+										''',
+										returnStdout: true
+									).trim()
+									echo "$result"
+								}
+							} // end doxygen
+						} // end stage
+
+
 						stage('doxygen') {
 							steps {
 								echo "doxygen"
@@ -403,7 +421,7 @@ pipeline {
 									).trim()
 									echo "$result"
 								}
-							} // end doxygen
+							} // end environment check
 						} // end stage
 
 						stage('Sphinx') {

@@ -1,5 +1,5 @@
 
-#include "BTN99x0_platform.hpp"
+#include "btn99x0_platform.hpp"
 
 using namespace btn99x0;
 

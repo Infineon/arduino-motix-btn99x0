@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "Arduino.h"
-#include "BTN99x0_platform.hpp"
+#include "btn99x0_platform.hpp"
 #include "btn99x0_types.hpp"
 
 namespace btn99x0

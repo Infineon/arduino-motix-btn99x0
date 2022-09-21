@@ -377,6 +377,25 @@ pipeline {
 
 					stages {
 
+						stage('Enviroment check') {
+							steps {
+								echo "Enviroment check"
+								echo "NODE_NAME = ${env.NODE_NAME}"
+								script {
+									def result = sh(
+										script: '''
+											export PATH=/opt/python/3.9/linux/RHEL60/bin:/opt/doxygen/1.8.14/bin:/opt/python/anaconda/4.2.0/py3.5.2:$PATH
+											doxygen --version
+											sphinx-build --version
+										''',
+										returnStdout: true
+									).trim()
+									echo "$result"
+								}
+							} // end doxygen
+						} // end stage
+
+
 						stage('doxygen') {
 							steps {
 								echo "doxygen"
@@ -403,32 +422,32 @@ pipeline {
 									).trim()
 									echo "$result"
 								}
-							} // end doxygen
+							} // end environment check
 						} // end stage
 
-						stage('Sphinx') {
-							when { expression { return fileExists ('./docs/index.rst') } }
-							steps {
-								echo "ReadTheDocs"
-								// Sphinx runs only if the index.rst exists and it
-								// 1. removes the documentation directory below the target directory
-								// 2. copies the new Sphinx documentation into new documentation directory
-								script {
-									def result = sh(
-										script: '''
-											export PATH=/opt/python/3.9/linux/RHEL60/bin:$PATH
-											cd docs
-											sphinx-build ./ ./documentation
-											mkdir -p ${DOCS_TARGET}
-											rm -rf ${DOCS_TARGET}/documentation
-											cp -R ./documentation ${DOCS_TARGET}/.
-										''',
-										returnStdout: true
-									).trim()
-									echo "$result"
-								}
-							} // end ReadTheDocs
-						} // end sphinx
+						// stage('Sphinx') {
+						// 	when { expression { return fileExists ('./docs/index.rst') } }
+						// 	steps {
+						// 		echo "ReadTheDocs"
+						// 		// Sphinx runs only if the index.rst exists and it
+						// 		// 1. removes the documentation directory below the target directory
+						// 		// 2. copies the new Sphinx documentation into new documentation directory
+						// 		script {
+						// 			def result = sh(
+						// 				script: '''
+						// 					export PATH=/opt/python/3.9/linux/RHEL60/bin:$PATH
+						// 					cd docs
+						// 					sphinx-build ./ ./documentation
+						// 					mkdir -p ${DOCS_TARGET}
+						// 					rm -rf ${DOCS_TARGET}/documentation
+						// 					cp -R ./documentation ${DOCS_TARGET}/.
+						// 				''',
+						// 				returnStdout: true
+						// 			).trim()
+						// 			echo "$result"
+						// 		}
+						// 	} // end ReadTheDocs
+						// } // end sphinx
 
 					 } // end stages
 

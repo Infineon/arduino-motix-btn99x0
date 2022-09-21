@@ -1,0 +1,5 @@
+.vscode/
+
+build/
+docs/documentation/
+docs/exhale-auto-docs/

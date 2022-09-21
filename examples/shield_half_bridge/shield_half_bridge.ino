@@ -3,7 +3,7 @@
 using namespace btn99x0;
 
 #define ON_PERIOD_IN_MS 2000
-#define OFF_PERIOR_IN_MS 2000
+#define OFF_PERIOD_IN_MS 2000
 
 btn99xx_novalith_shield btn_shield;
 BTN99x0 half_bridge = btn_shield.get_switch(BTN99x0_SWITCH_1);
@@ -41,7 +41,7 @@ void loop()
     delay(ON_PERIOD_IN_MS);
 
     half_bridge.disable();
-    delay(OFF_PERIOR_IN_MS);
+    delay(OFF_PERIOD_IN_MS);
 
     diagnose_and_fail_safe(half_bridge);
 }

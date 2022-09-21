@@ -22,8 +22,8 @@ using namespace btn99x0;
 #define ACD_RESOLUTION_STEPS 1023
 #define ACD_VOLTAGE_RANGE_VOLTS 5.0
 
-extern btn99x0_pins_t sw1_io_pins_default;
-extern btn99x0_pins_t sw2_io_pins_default;
+extern io_pins_t sw1_io_pins_default;
+extern io_pins_t sw2_io_pins_default;
 
 #else
     #warning "Default platform undefined. Specify your own pinout connectivity and platform hardware configuration in the sketch" 

@@ -5,14 +5,14 @@ using namespace btn99x0;
 
 #if defined(ARDUINO_AVR_UNO) || defined(XMC1100_Boot_Kit)
 
-btn99x0_pins_t sw1_io_pins_default = 
+io_pins_t sw1_io_pins_default = 
 {
     BTN99x0_CurrentSense1,
     BTN99x0_Input1,
     BTN99x0_INH1
 };
 
-btn99x0_pins_t sw2_io_pins_default = 
+io_pins_t sw2_io_pins_default = 
 {
     BTN99x0_CurrentSense2,
     BTN99x0_Input2,

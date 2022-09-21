@@ -13,7 +13,7 @@
  *          During the loop, the diagnosis function is 
  *          periodically called to check if there is any failure. 
  */
-#include "BTN99x0.hpp"
+#include "btn99x0_half_bridge.hpp"
 
 using namespace btn99x0;
 
@@ -37,16 +37,16 @@ using namespace btn99x0;
  * - The pin assignment for its 3 signals
  * - The ADC diagnostic pin hardware configuration
  */
-btn99x0_ic_variant_t ic_variant = BTN99X0_IC_VARIANT_BT9970LV;
+ic_variant_t ic_variant = BTN99X0_IC_VARIANT_BT9970LV;
 
-btn99x0_pins_t io_pins = 
+io_pins_t io_pins = 
 {
     .analog = A1,
     .input = 10,
     .inhibit = 3
 };
 
-btn99x0_hw_conf_t hw_conf = 
+hw_conf_t hw_conf = 
 {
     .sense_current_resistor_ohms = 2000,
     .adc_voltage_range_volts = ACD_VOLTAGE_RANGE_VOLTS,
@@ -57,7 +57,7 @@ btn99x0_hw_conf_t hw_conf =
  * With all the required parameters we can create the
  * half bridge instance of our BTN99x0 device 
  */
-BTN99x0 half_bridge(ic_variant, io_pins, hw_conf);
+HalfBridge half_bridge(ic_variant, io_pins, hw_conf);
 
 void setup()
 {   
@@ -81,7 +81,7 @@ void loop()
     /* Diagnose every second and report in case of error */
     delay(1000);
 
-    btn99x0_error_t ret = half_bridge.get_error_code();
+    error_t ret = half_bridge.get_error_code();
     if(ret != BTN99x0_NO_ERROR)
     {
         Serial.print("Detected error: ");

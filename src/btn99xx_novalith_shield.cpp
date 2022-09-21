@@ -1,24 +1,13 @@
-/**
- * @file        BTN99x0_shield.cpp
- * @copyright   Copyright (c) 2022 Infineon Technologies AG
- */
 
-// #include "BTN99x0_shield.hpp"
-// #include "BTN99x0.hpp"
-// #include <stdlib.h>
-// #include <stdint.h>
-// #include "Arduino.h"
 #include "btn99xx_novalith_shield.hpp"
-#include "BTN99x0_platform.hpp"
-#include "BTN99x0_types.hpp"
-
+#include "btn99x0_platform.hpp"
                                      
 using namespace btn99x0;
 
-btn99xx_novalith_shield::btn99xx_novalith_shield(btn99x0_pins_t sw1_io_pins, btn99x0_pins_t sw2_io_pins)
+btn99xx_novalith_shield::btn99xx_novalith_shield(io_pins_t sw1_io_pins, io_pins_t sw2_io_pins)
 : 
-sw1(BTN99x0(BTN99X0_IC_VARIANT_BT9970LV, sw1_io_pins, {ISENSE_RESISTOR_SW1_OHMS, ACD_VOLTAGE_RANGE_VOLTS, ACD_RESOLUTION_STEPS})),
-sw2(BTN99x0(BTN99X0_IC_VARIANT_BT9990LV, sw2_io_pins, {ISENSE_RESISTOR_SW2_OHMS, ACD_VOLTAGE_RANGE_VOLTS, ACD_RESOLUTION_STEPS}))
+sw1(HalfBridge(BTN99X0_IC_VARIANT_BT9970LV, sw1_io_pins, {ISENSE_RESISTOR_SW1_OHMS, ACD_VOLTAGE_RANGE_VOLTS, ACD_RESOLUTION_STEPS})),
+sw2(HalfBridge(BTN99X0_IC_VARIANT_BT9990LV, sw2_io_pins, {ISENSE_RESISTOR_SW2_OHMS, ACD_VOLTAGE_RANGE_VOLTS, ACD_RESOLUTION_STEPS}))
 {
     switches[0] = &sw1;
     switches[1] = &sw2;
@@ -26,8 +15,8 @@ sw2(BTN99x0(BTN99X0_IC_VARIANT_BT9990LV, sw2_io_pins, {ISENSE_RESISTOR_SW2_OHMS,
 
 btn99xx_novalith_shield::~btn99xx_novalith_shield()
 {
-    sw1.~BTN99x0();
-    sw2.~BTN99x0();
+    sw1.~HalfBridge();
+    sw2.~HalfBridge();
 }
 
 void btn99xx_novalith_shield::begin(void)
@@ -36,7 +25,7 @@ void btn99xx_novalith_shield::begin(void)
     sw2.begin();
 }  
 
-BTN99x0 & btn99xx_novalith_shield::get_switch(btn99x0_switches_t sw)
+HalfBridge & btn99xx_novalith_shield::get_switch(switches_t sw)
 {
     return *switches[sw];   
 }

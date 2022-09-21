@@ -3,7 +3,7 @@
 #define BTN99x0_PLATFORM_HPP
 
 #include "Arduino.h"
-#include "BTN99x0_types.hpp"
+#include "btn99x0_types.hpp"
 
 using namespace btn99x0;
 

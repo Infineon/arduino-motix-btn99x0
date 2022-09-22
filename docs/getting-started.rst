@@ -51,4 +51,26 @@ Software Installation
 Hardware Setup
 """"""""""""""
 
-The shield can be used with all platforms that support the Arduino form factor. But please be aware that all these platforms have to have the same pin functionalities as the Arduino. Otherwise the full functionality of the shield can not be assured
+The shield can be used with all platforms that support the Arduino form factor. But please be aware that all these platforms have to have the same pin functionalities as the Arduino. Otherwise the full functionality of the shield can not be assured.
+
+To connect the shield you just have to assure that the notch of the Arduino Uno and the shield are above each other. Then you can plug the shield on top of the Arduino.
+
+.. image:: ../../img/arduino-marked.png
+    :height: 200
+
+.. image:: ../../img/btn99x0-marked.png
+    :height: 200
+
+The pin headers can also be used to figure out the right orientation. There is only one way to properly connect them.
+
+As soon as the shield is connected to the Arduino you can connect a USB cable to the Arduino to power up the microcontroller. Make sure that no code or the example code of this repository is flashed to the microcontroller. Otherwise it can happen that the board is already activating one of the switches.
+
+.. image:: ../../img/arduino-btn99x0-stack.png
+    :height: 200
+
+Ready To Go!
+""""""""""""
+
+Now you can upload the provided example code to your Arduino compatible board. For this, navigate in your Arduino IDE to *File* -> *Examples* -> *Arduino-BTN99x0* -> **.
+
+For a specific description and overview of all examples please refer to :ref:`Arduino examples <arduino-examples>`.

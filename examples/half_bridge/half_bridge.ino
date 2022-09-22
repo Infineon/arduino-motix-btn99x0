@@ -20,7 +20,9 @@ using namespace btn99x0;
 /**
  * The following defines might be already 
  * set if the target board is one of the 
- * supported by default for this library 
+ * supported by default for this library.
+ * For example, for the XMC1100 Boot Kit
+ * or the Arduino UNO board: 
  */
 #ifndef ACD_RESOLUTION_STEPS
 #define ACD_RESOLUTION_STEPS  1023

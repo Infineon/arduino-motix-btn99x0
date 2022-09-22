@@ -2,7 +2,7 @@
  * @details TODO:explain here the connection to the motor load!
  * 
  */
-#include "BTN99x0_motorcontrol.hpp"
+#include "btn99x0_motor_control.hpp"
 
 using namespace btn99x0;
 
@@ -12,7 +12,7 @@ using namespace btn99x0;
 #define BREAKING_PERIOD_IN_MS 2000
 
 DCShield shield;
-BTN99x0_motorcontrol btn_motor_control(shield);
+MotorControl btn_motor_control(shield);
 
 void setup()
 {   

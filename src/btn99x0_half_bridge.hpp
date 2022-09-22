@@ -1,9 +1,8 @@
-
 #ifndef BTN99X0_HALF_BRIDGE_HPP
 #define BTN99X0_HALF_BRIDGE_HPP
 
-#include <stdlib.h>
-#include <unistd.h>
+// #include <stdlib.h>
+// #include <unistd.h>
 #include "Arduino.h"
 #include "btn99x0_types.hpp"
 

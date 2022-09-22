@@ -15,10 +15,11 @@ EXAMPLES_PATH=../examples
 #           BTN99x0_shield_motorcontrol/forward_backward_freewheel_motor/forward_backward_freewheel_motor.ino \
 #           BTN99x0_shield_motorcontrol/setspeed_slew_rate_enable_disable_motor/setspeed_slew_rate_enable_disable_motor.ino )
 
-EXAMPLES=(standalone_ic_enable)
+EXAMPLES=(half_bridge \
+          shield_half_bridge)
 
 BOARDS=(Infineon:arm:XMC1100_Boot_Kit \
-       )
+        arduino:avr:uno)
 
 for BOARD in ${BOARDS[@]}; do
     for EXAMPLE in ${EXAMPLES[@]}; do \

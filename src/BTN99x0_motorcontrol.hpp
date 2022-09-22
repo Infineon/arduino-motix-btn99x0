@@ -18,7 +18,7 @@ namespace btn99x0
 
         private:
             static constexpr uint8_t switch_num = 2;
-            BTN99x0 sw1;
-            BTN99x0 sw2;   
+            HalfBridge sw1;
+            HalfBridge sw2;   
     };
 }

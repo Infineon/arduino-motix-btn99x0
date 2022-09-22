@@ -6,10 +6,10 @@ using namespace btn99x0;
 #define OFF_PERIOD_IN_MS 2000
 
 btn99xx_novalith_shield btn_shield;
-BTN99x0 half_bridge = btn_shield.get_switch(BTN99x0_SWITCH_1);
+HalfBridge half_bridge = btn_shield.get_switch(BTN99x0_SWITCH_1);
 
 /* Diagnose and fail safe snippet below */
-void diagnose_and_fail_safe(BTN99x0 & half_bridge);
+void diagnose_and_fail_safe(HalfBridge & half_bridge);
  
 void setup()
 {   
@@ -46,11 +46,15 @@ void loop()
     diagnose_and_fail_safe(half_bridge);
 }
 
-void diagnose_and_fail_safe(BTN99x0 & half_bridge)
+void diagnose_and_fail_safe(HalfBridge & half_bridge)
 {
-    btn99x0_error_t error_code = half_bridge.get_error_code();
+    error_t error_code = half_bridge.get_error_code();
     if(BTN99x0_NO_ERROR != error_code)
     {
+        /* Disable output and set signal to 0 */
+        half_bridge.disable();                                          
+        half_bridge.set_pwm(0);
+        
         Serial.print("Error:");
         Serial.println(error_code);
         return;

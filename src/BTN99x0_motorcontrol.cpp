@@ -5,7 +5,7 @@ using namespace btn99x0;
 BTN99x0_motorcontrol::BTN99x0_motorcontrol(btn99xx_novalith_shield & shield)
 :
    sw1(shield.get_switch(BTN99x0_SWITCH_1)),
-    sw2(shield.get_switch(BTN99x0_SWITCH_2))
+sw2(shield.get_switch(BTN99x0_SWITCH_2))
 {
  
 }

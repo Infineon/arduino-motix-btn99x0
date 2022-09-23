@@ -14,10 +14,10 @@ typedef struct
 } io_pins_t;
 
 /** 
-    * These are operation constant that take a 
-    * typical value from the datasheet, but need to be 
-    * fine tuned based on experimental measures.
-    */
+ * These are operation constant that take a 
+ * typical value from the datasheet, but need to be 
+ * fine tuned based on experimental measures.
+ */
 typedef struct 
 {
     float ktis_amps_per_kelvin;         /**< Temperature coefficient for temperature sense uA/K */

@@ -22,7 +22,7 @@ void setup()
     * Set the slew rate for X value
     * TODO: slew rate as enum 
     */
-    half_bridge.set_slew_rate(7);
+    half_bridge.set_slew_rate(SLEW_RATE_LEVEL_7);
 
     /**
      * Set the dk experimental value to 

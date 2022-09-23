@@ -61,7 +61,7 @@ void HalfBridge::set_pwm_in_percentage(uint8_t duty_in_pct)
     };                              
 }  
 
-void HalfBridge::set_slew_rate(uint8_t slew_rate_level)
+void HalfBridge::set_slew_rate(slew_rate_level_t sr_level)
 {
     disable();                   
     delayMicroseconds(5);
@@ -69,7 +69,7 @@ void HalfBridge::set_slew_rate(uint8_t slew_rate_level)
     /*
     pulses the input_pin pin
     */
-    for (uint8_t i = 0; i <= (slew_rate_level + 1); i++)
+    for (uint8_t i = 0; i <= ((uint8_t)sr_level + 1); i++)
     {                                 
         digitalWrite(io_pins.input, HIGH);                 
         delayMicroseconds(1);      

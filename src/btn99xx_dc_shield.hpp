@@ -18,12 +18,6 @@ namespace btn99x0
                 HALF_BRIDGE_2
             } half_bridge_id_t;
 
-            constexpr static uint16_t isense_r_ohms = 2000;
-
-            const static io_pins_t hb1_io_pins_default;
-            const static io_pins_t hb2_io_pins_default;
-            const static hw_conf_t hw_conf_default;
-
             DCShield(io_pins_t hb1_io_pins = hb1_io_pins_default, io_pins_t hb2_io_pins = hb2_io_pins_default, hw_conf_t shield_platf_conf = hw_conf_default);
             ~DCShield();
             HalfBridge & get_half_bridge(half_bridge_id_t half_bridge_id);
@@ -32,6 +26,11 @@ namespace btn99x0
 
         private:
            
+            constexpr static uint16_t isense_r_ohms = 2000;
+
+            const static io_pins_t hb1_io_pins_default;
+            const static io_pins_t hb2_io_pins_default;
+            const static hw_conf_t hw_conf_default;
 
             HalfBridge hb1;
             HalfBridge hb2;                  

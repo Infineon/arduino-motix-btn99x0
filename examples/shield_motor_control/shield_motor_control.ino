@@ -24,7 +24,6 @@ void setup()
     btn_motor_control.begin();
     delay(2000);
 
-    /* TODO: change slew rate for enum */
     btn_motor_control.set_slew_rate(SLEW_RATE_LEVEL_7);
 }
 

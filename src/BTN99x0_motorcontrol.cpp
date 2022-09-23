@@ -2,10 +2,10 @@
 
 using namespace btn99x0;
 
-BTN99x0_motorcontrol::BTN99x0_motorcontrol(btn99xx_novalith_shield & shield)
+BTN99x0_motorcontrol::BTN99x0_motorcontrol(DCShield & shield)
 :
-   sw1(shield.get_switch(BTN99x0_SWITCH_1)),
-sw2(shield.get_switch(BTN99x0_SWITCH_2))
+sw1(shield.get_half_bridge(DCShield::HALF_BRIDGE_1)),
+sw2(shield.get_half_bridge(DCShield::HALF_BRIDGE_2))
 {
  
 }

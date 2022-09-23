@@ -1,12 +1,12 @@
-#include "btn99xx_novalith_shield.hpp"
+#include "btn99xx_dc_shield.hpp"
 
 using namespace btn99x0;
 
 #define ON_PERIOD_IN_MS 2000
 #define OFF_PERIOD_IN_MS 2000
 
-btn99xx_novalith_shield btn_shield;
-HalfBridge half_bridge = btn_shield.get_switch(BTN99x0_SWITCH_1);
+DCShield btn_shield;
+HalfBridge half_bridge = btn_shield.get_half_bridge(DCShield::HALF_BRIDGE_1);
 
 /* Diagnose and fail safe snippet below */
 void diagnose_and_fail_safe(HalfBridge & half_bridge);
@@ -49,7 +49,7 @@ void loop()
 void diagnose_and_fail_safe(HalfBridge & half_bridge)
 {
     error_t error_code = half_bridge.get_error_code();
-    if(BTN99x0_NO_ERROR != error_code)
+    if(NO_ERROR != error_code)
     {
         /* Disable output and set signal to 0 */
         half_bridge.disable();                                          

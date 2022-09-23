@@ -1,5 +1,5 @@
 
-#include "btn99xx_novalith_shield.hpp"
+#include "btn99xx_dc_shield.hpp"
 
 namespace btn99x0
 {
@@ -7,7 +7,7 @@ namespace btn99x0
     {
         public:
 
-            BTN99x0_motorcontrol(btn99xx_novalith_shield & shield);     
+            BTN99x0_motorcontrol(DCShield & shield);     
             ~BTN99x0_motorcontrol();  
             void begin();
             void brake(void);                        

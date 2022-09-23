@@ -11,7 +11,7 @@ using namespace btn99x0;
 #define FREEWHEEL_PERIOD_IN_MS 1000
 #define BREAKING_PERIOD_IN_MS 2000
 
-btn99xx_novalith_shield shield;
+DCShield shield;
 BTN99x0_motorcontrol btn_motor_control(shield);
 
 void setup()

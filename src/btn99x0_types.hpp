@@ -38,20 +38,14 @@ typedef struct
 
 typedef enum
 {
-    BTN99X0_IC_VARIANT_BT9970LV = 0,
-    BTN99X0_IC_VARIANT_BT9990LV = 1
+    IC_VARIANT_BT9970LV = 0,
+    IC_VARIANT_BT9990LV = 1
 } ic_variant_t;
 
 typedef enum 
 {
-    BTN99x0_SWITCH_1 = 0,                
-    BTN99x0_SWITCH_2 = 1,
-} switches_t;
-
-typedef enum 
-{
-    BTN99x0_NO_ERROR = 0,
-    BTN99x0_FAULT_CURRENT_ERROR = -1
+    NO_ERROR = 0,
+    FAULT_CURRENT_ERROR = -1
 } error_t;
 
 }

@@ -1,12 +1,10 @@
-// headerfile
 
-#ifndef BTN99x0_hpp
-#define BTN99x0_hpp
+#ifndef BTN99X0_HALF_BRIDGE_HPP
+#define BTN99X0_HALF_BRIDGE_HPP
 
 #include <stdlib.h>
 #include <unistd.h>
 #include "Arduino.h"
-#include "btn99x0_platform.hpp"
 #include "btn99x0_types.hpp"
 
 namespace btn99x0
@@ -48,11 +46,8 @@ namespace btn99x0
 
             double calculate_current_at_sense_resistor_in_amps();
             void calculate_sense_resistor_offset_current();    
-            ic_experimental_const_t get_typical_experimental_constants(ic_variant_t ic_variant);                  
-                                            
+            ic_experimental_const_t get_typical_experimental_constants(ic_variant_t ic_variant);                         
     };
 }
 
-
-
-#endif 
+#endif /* BTN99X0_HALF_BRIDGE_HPP */

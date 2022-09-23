@@ -35,7 +35,7 @@ HalfBridge::~HalfBridge()
 void HalfBridge::begin()
 {
     delay(100);
-    calculate_current_at_sense_resistor_in_amps();
+    calculate_sense_resistor_offset_current();
 }
 void HalfBridge::enable()
 {

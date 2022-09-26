@@ -51,10 +51,10 @@ void MotorControl::brake()
     hb2.set_pwm(0);
 }
 
-void MotorControl::set_slew_rate(uint8_t selected)
+void MotorControl::set_slew_rate(slew_rate_level_t sr_level)
 {
-    hb1.set_slew_rate(selected);
-    hb2.set_slew_rate(selected);
+    hb1.set_slew_rate(sr_level);
+    hb2.set_slew_rate(sr_level);
 }
 
 

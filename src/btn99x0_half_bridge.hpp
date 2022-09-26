@@ -21,7 +21,7 @@ namespace btn99x0
             /* Configuration */
             void set_pwm(uint8_t duty);
             void set_pwm_in_percentage(uint8_t duty_in_pct);  
-            void set_slew_rate(uint8_t slew_rate_level);  
+            void set_slew_rate(slew_rate_level_t sr_level);  
             /* Experimental value setting */
             void set_ktis(float ktis_amps_per_kelvin);
             void set_dk(uint16_t dk);

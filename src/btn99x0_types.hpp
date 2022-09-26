@@ -42,6 +42,18 @@ typedef enum
     IC_VARIANT_BT9990LV = 1
 } ic_variant_t;
 
+typedef enum
+{
+    SLEW_RATE_LEVEL_0 = 0,
+    SLEW_RATE_LEVEL_1 = 1,
+    SLEW_RATE_LEVEL_2 = 2,
+    SLEW_RATE_LEVEL_3 = 3,
+    SLEW_RATE_LEVEL_4 = 4,
+    SLEW_RATE_LEVEL_5 = 5,
+    SLEW_RATE_LEVEL_6 = 6,
+    SLEW_RATE_LEVEL_7 = 7
+} slew_rate_level_t;
+
 typedef enum 
 {
     NO_ERROR = 0,

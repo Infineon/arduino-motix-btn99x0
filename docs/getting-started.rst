@@ -24,7 +24,7 @@ Any Arduino compatible board with Arduino Uno form-factor, like XMC1100 Boot Kit
 DC-SHIELD_BTN9970LV
 """""""""""""""""""""""""""""""""""
 
-.. image:: ../../img/BTN9970_shield.jpg
+.. image:: ../../img/btn99x0_shield.jpg
     :height: 200
 
 Required Software
@@ -58,7 +58,7 @@ To connect the shield you just have to assure that the notch of the Arduino Uno 
 .. image:: ../../img/arduino-marked.png
     :height: 200
 
-.. image:: ../../img/btn99x0-marked.png
+.. image:: ../../img/btn99x0_shield.png
     :height: 200
 
 The pin headers can also be used to figure out the right orientation. There is only one way to properly connect them.
@@ -67,6 +67,8 @@ As soon as the shield is connected to the Arduino you can connect a USB cable to
 
 .. image:: ../../img/arduino-btn99x0-stack.png
     :height: 200
+
+Now you can attach the power supply to the X1 connector.Now you have to attach your load to the desired output channel in the X2 conncetor.
 
 Ready To Go!
 """"""""""""

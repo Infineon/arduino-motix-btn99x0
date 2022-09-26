@@ -6,10 +6,10 @@ Supported Products
 
 This library can support the following Infineon Products
 
-.. image:: img/btn99x0_shield.jpg
+.. image:: img/btn99x0_shield.png
     :width: 150
 
-.. image:: img/btn99x0_chip.jpg
+.. image:: img/btn99x0_chip.png
     :width: 150
 
 Shields for Arduino

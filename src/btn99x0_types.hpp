@@ -1,5 +1,13 @@
-#ifndef BTN99X0_TYPES_HPP
-#define BTN99X0_TYPES_HPP
+/** 
+ * @file        btn99x0_types.h
+ * @brief       BTN99x0 types
+ * @copyright   Copyright (c) 2022 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef BTN99X0_TYPES_HPP_
+#define BTN99X0_TYPES_HPP_
 
 #include <stdint.h>
 
@@ -62,4 +70,4 @@ typedef enum
 
 }
 
-#endif /*BTN99X0_TYPES_HPP*/
+#endif /* BTN99X0_TYPES_HPP_ */

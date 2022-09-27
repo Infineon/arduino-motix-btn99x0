@@ -1,3 +1,11 @@
+/** 
+ * @file        btn99x0_motor_control.cpp
+ * @brief       BTN99x0 Motor Control API
+ * @copyright   Copyright (c) 2022 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+
 #include "btn99x0_motor_control.hpp"
 
 using namespace btn99x0;

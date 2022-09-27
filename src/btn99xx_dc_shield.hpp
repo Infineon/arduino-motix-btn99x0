@@ -1,7 +1,13 @@
-// headerfile
+/** 
+ * @file        btn99x0_dc_shield.hpp
+ * @brief       BTN99x0 DC Shield API
+ * @copyright   Copyright (c) 2022 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
 
-#ifndef BTN99X0_DC_SHIELD_HPP
-#define BTN99X0_DC_SHIELD_HPP
+#ifndef BTN99X0_DC_SHIELD_HPP_
+#define BTN99X0_DC_SHIELD_HPP_
 
 #include "btn99x0_half_bridge.hpp"
 #include "btn99x0_types.hpp"
@@ -37,4 +43,4 @@ namespace btn99x0
     };
 }
 
-#endif /* BTN99X0_DC_SHIELD_HPP */
+#endif /* BTN99X0_DC_SHIELD_HPP_ */

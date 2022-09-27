@@ -1,3 +1,14 @@
+/** 
+ * @file        btn99x0_motor_control.hpp
+ * @brief       BTN99x0 Motor Control API
+ * @copyright   Copyright (c) 2022 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef BTN99X0_MOTOR_CONTROL_HPP_
+#define BTN99X0_MOTOR_CONTROL_HPP_
+
 #include "btn99xx_dc_shield.hpp"
 
 namespace btn99x0
@@ -20,3 +31,5 @@ namespace btn99x0
             HalfBridge hb2;   
     };
 }
+
+#endif /* BTN99X0_MOTOR_CONTROL_HPP_ */

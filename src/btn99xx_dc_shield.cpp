@@ -1,3 +1,11 @@
+/** 
+ * @file        btn99x0_dc_shield.cpp
+ * @brief       BTN99x0 DC Shield API
+ * @copyright   Copyright (c) 2022 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+
 #include "btn99xx_dc_shield.hpp"
                                      
 using namespace btn99x0;

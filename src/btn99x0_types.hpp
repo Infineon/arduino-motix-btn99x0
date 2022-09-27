@@ -11,14 +11,22 @@
 
 #include <stdint.h>
 
+/**
+ * @addtogroup btn99x0_types
+ * @{
+ */
+
 namespace btn99x0
 {
 
+/** 
+ * @brief Half-bridge device pins
+ */
 typedef struct 
 {
-    uint16_t analog;
-    uint16_t input;
-    uint16_t inhibit;
+    uint16_t analog;        /**< Current sense device analog output pin */
+    uint16_t input;         /**< Input pin. Controls the output signal value */
+    uint16_t inhibit;       /**< Inhibit pin- Controls the output enablement/disablement */
 } io_pins_t;
 
 /** 
@@ -75,5 +83,7 @@ typedef enum
 } error_t;
 
 }
+
+/** @} */
 
 #endif /* BTN99X0_TYPES_HPP_ */

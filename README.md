@@ -1,4 +1,4 @@
-#Arduino BTN99x0 
+# Arduino BTN99x0 
 
 [![build-check](https://github.com/Infineon/arduino-BTN99x0/actions/workflows/build-check.yml/badge.svg?branch=master)](https://github.com/Infineon/arduino-BTN99x0/actions/workflows/build-check.yml)
 

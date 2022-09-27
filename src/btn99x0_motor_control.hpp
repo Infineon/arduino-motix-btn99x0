@@ -11,6 +11,11 @@
 
 #include "btn99xx_dc_shield.hpp"
 
+/**
+ * @addtogroup btn99x0_motorcontrol
+ * @{
+ */
+
 namespace btn99x0
 {
     class MotorControl
@@ -27,9 +32,11 @@ namespace btn99x0
            
         private:
 
-            HalfBridge hb1;
-            HalfBridge hb2;   
+            HalfBridge hb1;     /**< Half-bridge 1 */
+            HalfBridge hb2;     /**< Half-bridge 2 */
     };
 }
+
+/** @} */
 
 #endif /* BTN99X0_MOTOR_CONTROL_HPP_ */

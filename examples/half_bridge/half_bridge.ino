@@ -39,7 +39,7 @@ using namespace btn99x0;
  * - The pin assignment for its 3 signals
  * - The ADC diagnostic pin hardware configuration
  */
-ic_variant_t ic_variant = IC_VARIANT_BT9970LV;
+ic_variant_t ic_variant = IC_VARIANT_BTN9970LV;
 
 io_pins_t io_pins = 
 {

@@ -263,11 +263,11 @@ ic_experimental_const_t HalfBridge::get_typical_experimental_constants(ic_varian
 {
     switch(ic_variant)
     {
-        case IC_VARIANT_BT9970LV:
+        case IC_VARIANT_BTN9970LV:
             return btn9970lv_typical_exp_const;
         break;
 
-        case IC_VARIANT_BT9990LV:
+        case IC_VARIANT_BTN9990LV:
             return btn9990lv_typical_exp_const;
         break;
     }

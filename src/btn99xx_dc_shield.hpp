@@ -29,7 +29,7 @@ namespace btn99x0
             typedef enum 
             {
                 HALF_BRIDGE_1,      /**< Half-bridge identifier 1 */
-                HALF_BRIDGE_2       /**< Half-bridge identifier 1 */
+                HALF_BRIDGE_2       /**< Half-bridge identifier 2 */
             } half_bridge_id_t;
 
             DCShield(io_pins_t hb1_io_pins = hb1_io_pins_default, io_pins_t hb2_io_pins = hb2_io_pins_default, hw_conf_t shield_platf_conf = hw_conf_default);

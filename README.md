@@ -8,9 +8,9 @@ Arduino library of Infineon's [BTN99X0]() motor control shield.
 
 <table>
     <tr>
-        <td><img src="docs/img/btn99x0_shield" width="200"></td>
-        <td><img src="docs/img/btn99x0_chip" width="200"></td>
-        <td><img src="docs/img/btn99x0_chip" width="200"></td>
+        <td><img src="docs/img/btn99x0_shield.png" width="200"></td>
+        <td><img src="docs/img/btn99x0_chip.png" width="200"></td>
+        <td><img src="docs/img/btn99x0_chip.png" width="200"></td>
     </tr>
     <tr>
         <td style="test-align : center"><a href="https://arduino-BTN99x0.readthedocs.io/en/latest/hw-platforms.html">BTN9970/BTN9990 Motor control shield</a></td>

@@ -371,7 +371,7 @@ pipeline {
 				stage('docu') {
 					agent {
 						node {
-							label 'epelinux2'
+							label 'epelinux3'
 						}
 					}
 
@@ -425,11 +425,11 @@ pipeline {
 							} // end environment check
 						} // end stage
 
-						 stage('Sphinx') {
+						stage('Sphinx') {
 							when { expression { return fileExists ('./docs/index.rst') } }
 							steps {
 								echo "ReadTheDocs"
-						 		// Sphinx runs only if the index.rst exists and it
+								// Sphinx runs only if the index.rst exists and it
 								// 1. removes the documentation directory below the target directory
 								// 2. copies the new Sphinx documentation into new documentation directory
 								script {
@@ -441,13 +441,13 @@ pipeline {
 											mkdir -p ${DOCS_TARGET}
 											rm -rf ${DOCS_TARGET}/documentation
 											cp -R ./documentation ${DOCS_TARGET}/.
-						 				''',
+										''',
 										returnStdout: true
 									).trim()
 									echo "$result"
 								}
-						 	} // end ReadTheDocs
-						 } // end sphinx
+							} // end ReadTheDocs
+						} // end sphinx
 
 					 } // end stages
 

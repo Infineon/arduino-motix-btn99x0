@@ -371,11 +371,30 @@ pipeline {
 				stage('docu') {
 					agent {
 						node {
-							label 'epelinux2'
+							label 'epelinux3'
 						}
 					}
 
 					stages {
+
+						stage('Enviroment check') {
+							steps {
+								echo "Enviroment check"
+								echo "NODE_NAME = ${env.NODE_NAME}"
+								script {
+									def result = sh(
+										script: '''
+											export PATH=/opt/python/3.9/linux/RHEL60/bin:/opt/doxygen/1.8.14/bin:/opt/python/anaconda/4.2.0/py3.5.2:$PATH
+											doxygen --version
+											sphinx-build --version
+										''',
+										returnStdout: true
+									).trim()
+									echo "$result"
+								}
+							} // end doxygen
+						} // end stage
+
 
 						stage('doxygen') {
 							steps {
@@ -403,7 +422,7 @@ pipeline {
 									).trim()
 									echo "$result"
 								}
-							} // end doxygen
+							} // end environment check
 						} // end stage
 
 						stage('Sphinx') {
@@ -547,7 +566,3 @@ pipeline {
 					</table>
 					</body>
 				''')
-		}
-	}
-
-}

@@ -14,7 +14,7 @@ This library can support the following Infineon Products
 
 Shields for Arduino
 """""""""""""""""""
-* `BTN9970 / BTN9990 Motor control shield<https://www.infineon.com/cms/en/product/evaluation-boards/dc-shield_btn9970lv/>`_
+* `BTN9970 / BTN9990 Motor control shield <https://www.infineon.com/cms/en/product/evaluation-boards/dc-shield_btn9970lv/>`_
 
 Pinout Diagram
 ^^^^^^^^^^^^^^
@@ -25,8 +25,8 @@ Pinout Diagram
 
 Chip only
 """""""""
-* `BTN9970<https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9970lv/>
-* `BTN9990<https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9990lv/>
+* `BTN9970 <https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9970lv/>`_
+* `BTN9990 <https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9990lv/>`_
 
 Supported MCU Platforms
 -----------------------

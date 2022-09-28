@@ -27,7 +27,7 @@ Download the desired .zip library version from the repository `releases`_ sectio
 
 .. _releases: https://github.com/Infineon/arduino-btn99x0/releases
 
-.. image:: ../../img/gh-master-zip.png
+.. image:: img/gh-master-zip.png
     :width: 200
 
 .. warning::

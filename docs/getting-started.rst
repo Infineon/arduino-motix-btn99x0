@@ -18,13 +18,13 @@ Microcontroller
 """""""""""""""
 Any Arduino compatible board with Arduino Uno form-factor, like XMC1100 Boot Kit 
 
-.. image:: ../../img/XMC1100.jpg
+.. image:: img/XMC1100.jpg
     :height: 200
 
 DC-SHIELD_BTN9970LV
 """""""""""""""""""""""""""""""""""
 
-.. image:: ../../img/btn99x0_shield.jpg
+.. image:: btn99x0_shield.jpg
     :height: 200
 
 Required Software
@@ -46,7 +46,7 @@ Software Installation
 
 2. **Include the XMC boards in the IDE (if a XMC is used)**. The official Arduino boards are already available in the Arduino IDE, but other third party boards as the Infineon XMC MCU based ones need to be explicitly included. Follow the instructions in the `link <https://github.com/Infineon/XMC-for-Arduino#installation-instructions>`__ to add the XMC board family to the Arduino IDE.
 
-3. **Install the library**. In the Arduino IDE, go to the menu *Sketch > Include library > Library Manager*. Type **high-side-switch-ino** and install the library.
+3. **Install the library**. In the Arduino IDE, go to the menu *Sketch > Include library > Library Manager*. Type *Arduino-BTN99x0** and install the library.
 
 Hardware Setup
 """"""""""""""
@@ -55,17 +55,17 @@ The shield can be used with all platforms that support the Arduino form factor. 
 
 To connect the shield you just have to assure that the notch of the Arduino Uno and the shield are above each other. Then you can plug the shield on top of the Arduino.
 
-.. image:: ../../img/arduino-marked.png
+.. image:: img/arduino-marked.png
     :height: 200
 
-.. image:: ../../img/btn99x0_shield.png
+.. image:: img/btn99x0_shield.png
     :height: 200
 
 The pin headers can also be used to figure out the right orientation. There is only one way to properly connect them.
 
 As soon as the shield is connected to the Arduino you can connect a USB cable to the Arduino to power up the microcontroller. Make sure that no code or the example code of this repository is flashed to the microcontroller. Otherwise it can happen that the board is already activating one of the switches.
 
-.. image:: ../../img/arduino-btn99x0-stack.png
+.. image:: img/arduino-btn99x0-stack.png
     :height: 200
 
 Now you can attach the power supply to the X1 connector.Now you have to attach your load to the desired output channel in the X2 conncetor.

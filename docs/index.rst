@@ -2,6 +2,11 @@
 Home
 ****
 
+Welcome to the Infineon DC motor control shield BTN99x0 Arduino library docs!
+
+.. image:: img/arduino-logo.png
+    :height: 200
+
 .. toctree::
    :maxdepth: 3
    :caption: Wiki Sections
@@ -21,3 +26,8 @@ Home
    API List    <exhale-auto-docs/api_list.rst>
    Full API    <exhale-auto-docs/unabridged_api.rst>
    File List   <exhale-auto-docs/file_view_hierarchy.rst>
+
+License
+=======
+
+Find the license for this library `here <https://github.com/Infineon/arduino btn99x0/blob/master/LICENSE>`_.

@@ -63,14 +63,14 @@ void MotorControl::set_speed(int16_t speed)
 
     if(speed >= 0)
     {
-        hb1.set_pwm(speed);                                
+        hb1.set_pwm((uint8_t)speed);                                
         hb2.set_pwm(0);                                   
     }
     else
     {
         speed = -speed;
         hb1.set_pwm(0);                                   
-        hb2.set_pwm(speed);
+        hb2.set_pwm((uint8_t)speed);
     }
 }
 

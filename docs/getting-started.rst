@@ -57,7 +57,6 @@ To connect the shield you just have to assure that the notch of the Arduino Uno 
 
 .. image:: img/arduino-marked.png
     :height: 200
-
 .. image:: img/btn99x0_shield.png
     :height: 250
 

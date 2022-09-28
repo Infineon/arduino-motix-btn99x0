@@ -23,7 +23,6 @@ hb2(shield.get_half_bridge(DCShield::HALF_BRIDGE_2))
  
 }
 
-
 /**
  * @brief       BTN99x0 Motor Control Destructor
  * @pre         None
@@ -34,7 +33,8 @@ MotorControl::~MotorControl()
 }
 
 /**
- * @brief       Begins the half-bridges used for motor controlling
+ * @brief       Initializes the motor controller
+ * @details     Initialites both half-bridges
  * @pre         None
  */
 void MotorControl::begin()
@@ -45,6 +45,10 @@ void MotorControl::begin()
 
 /**
  * @brief       Sets the motor speed
+ * @details     Enables the half-bridges outputs and provides
+ *              a PWM with the given duty cycle to half-bridge 
+ *              1 if the speed is positive, or to half-bridge 
+ *              2 if the speed is negative
  * @param[in]   duty Duty cycle for speed control. Valid range
  *                   between -255 and 255. 
  *                   Use positive duty values for forward rotation
@@ -70,7 +74,8 @@ void MotorControl::set_speed(int16_t duty)
 }
 
 /**
- * @brief       Disable the half-bridges allow the motor freewheeling 
+ * @brief       Sets the motor in freewheeling mode
+ * @details     Sets the inhibit pin of both half-bridges to low
  * @pre         None
  */
 void MotorControl::freewheel()
@@ -80,7 +85,8 @@ void MotorControl::freewheel()
 }
 
 /**
- * @brief       Stops the motor by disabling the half-bridges inputs
+ * @brief       Stops the motor
+ * @details     Sets the input pin of both half-bridges to low
  * @pre         None
  */
 void MotorControl::brake()
@@ -91,6 +97,7 @@ void MotorControl::brake()
 
 /**
  * @brief       Sets slew rate level
+ * @details     Sets the slew rate level of both half-bridges
  * @param[in]   sr_level Slew rate level 
  * @pre         None
  */

@@ -56,7 +56,7 @@ HalfBridge::~HalfBridge()
 }
 
 /**
- * @brief       Begins the device
+ * @brief       Initializes the device
  * @details     Calculates the offset current on the current
  *              sense ADC input port
  * @pre         None
@@ -78,7 +78,7 @@ void HalfBridge::enable()
 }
 
 /**
- * @brief       Disables the device output
+ * @brief       Disables the device output setting it to high impedance
  * @details     Set the inhibit pin low
  * @pre         None
  */
@@ -201,7 +201,7 @@ double HalfBridge::get_load_current_in_amps()
 }
 
 /**     
- * @brief       Gets the device temperate in kelvin
+ * @brief       Gets the device temperature in kelvin
  * @return      Temperature in kelvin
  * @pre         begin()
  */

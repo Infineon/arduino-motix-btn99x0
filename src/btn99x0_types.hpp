@@ -60,6 +60,10 @@ typedef enum
 
 /**
  * @enum Slew rate level
+ * 
+ * @details Find the dynamic characteristics of the different
+ *          slew rates level in section 4.2 - table 7, in page
+ *          13 of the BTN99x0 devices datasheet Rev. 1.0.
  */
 typedef enum
 {

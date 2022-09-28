@@ -49,27 +49,28 @@ void MotorControl::begin()
  *              a PWM with the given duty cycle to half-bridge 
  *              1 if the speed is positive, or to half-bridge 
  *              2 if the speed is negative
- * @param[in]   duty Duty cycle for speed control. Valid range
- *                   between -255 and 255. 
- *                   Use positive duty values for forward rotation
- *                   and negative for backward rotation
+ * @param[in]   speed Motor speed. Valid range is between -255 and 255. 
+ *                    Use positive duty values for forward rotation
+ *                    and negative for backward rotation
+ * @note        If speed values out of range are provided these 
+ *              will be set the maximum or minimum allowed
  * @pre         None
  */
-void MotorControl::set_speed(int16_t duty)
+void MotorControl::set_speed(int16_t speed)
 {
     hb1.enable();
     hb2.enable();
 
-    if(duty >= 0)
+    if(speed >= 0)
     {
-        hb1.set_pwm(duty);                                
+        hb1.set_pwm(speed);                                
         hb2.set_pwm(0);                                   
     }
     else
     {
-        duty = -duty;
+        speed = -speed;
         hb1.set_pwm(0);                                   
-        hb2.set_pwm(duty);
+        hb2.set_pwm(speed);
     }
 }
 

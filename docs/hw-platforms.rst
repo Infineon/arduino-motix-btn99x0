@@ -25,8 +25,8 @@ Pinout Diagram
 
 Chip only
 """""""""
-* `BTN9970<https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9970lv/>`_
-* `BTN9990<https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9990lv/>`_
+* `BTN9970 <https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9970lv/>`_
+* `BTN9990 <https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9990lv/>`_
 
 Supported MCU Platforms
 -----------------------

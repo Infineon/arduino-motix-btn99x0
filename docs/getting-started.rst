@@ -24,7 +24,7 @@ Any Arduino compatible board with Arduino Uno form-factor, like XMC1100 Boot Kit
 DC-SHIELD_BTN9970LV
 """""""""""""""""""""""""""""""""""
 
-.. image:: btn99x0_shield.png
+.. image:: img/btn99x0_shield.png
     :height: 200
 
 Required Software

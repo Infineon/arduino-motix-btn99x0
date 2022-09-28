@@ -1,10 +1,12 @@
+.. _hw-platforms:
+
 Hardware Platforms
 ==================
 
 Supported Products
 -----------------------
 
-This library can support the following Infineon Products
+This library can support the following Infineon products:
 
 .. image:: img/btn99x0_shield.png
     :width: 150
@@ -25,14 +27,14 @@ Pinout Diagram
 
 Chip only
 """""""""
-* `BTN9970 <https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9970lv/>`_
-* `BTN9990 <https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9990lv/>`_
+* `BTN9970LV <https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9970lv/>`_
+* `BTN9990LV <https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9990lv/>`_
 
 Supported MCU Platforms
 -----------------------
 
 In principle, the library is supported by any Arduino compatible MCU platform.
-Its Arduino core needs to implement the `Arduino reference language <https://www.arduino.cc/reference/en/>`_ 
+Its Arduino core needs to implement the `Arduino reference language <https://www.arduino.cc/reference/en/>`_.
 
 
 Verified MCU Boards

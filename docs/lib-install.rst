@@ -19,7 +19,7 @@ These installation processes are conveniently described on the official `Arduino
 
 * **Arduino IDE Library Manager**
 
-Library name: ``Arduino-BTN99x0-ino``
+Library name: ``arduino-BTN99x0``
 
 * **Arduino IDE Manual Installation**
 

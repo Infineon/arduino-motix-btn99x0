@@ -30,4 +30,4 @@ Welcome to the Infineon DC motor control shield BTN99x0 Arduino library docs!
 License
 =======
 
-Find the license for this library `here <https://github.com/Infineon/arduino btn99x0/blob/master/LICENSE>`_.
+Find the license for this library `here <https://github.com/Infineon/Arduino-btn99x0/blob/master/LICENSE>`_.

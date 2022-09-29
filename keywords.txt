@@ -29,7 +29,7 @@ set_ktis
 set_dk
 get_load_current_in_amps
 get_temperature_in_kelvin
-get_error_code
+get_diagnosis
 disable_all
 enable_all
 

@@ -6,7 +6,7 @@ Getting Started
 Overview
 --------
 
-This getting started guide helps you to properly connect the `DC Motor Control Shield with BTN9970LV and BTN9990LV <https://www.infineon.com/cms/en/product/evaluation-boards/dc-shield_btn9970lv>``__with the right platform and teaches you how to install the required software to use the Infineon 
+This getting started guide helps you to properly connect the `DC Motor Control Shield with BTN9970LV and BTN9990LV <https://www.infineon.com/cms/en/product/evaluation-boards/dc-shield_btn9970lv>`__ with the right platform and teaches you how to install the required software to use the Infineon 
 BTN99x0 chips.
 
 .. _`DC Motor Control Shield with BTN9970LV and BTN9990LV`: https://www.infineon.com/cms/en/product/evaluation-boards/dc-shield_btn9970lv/
@@ -73,6 +73,6 @@ Now you can attach the power supply to the X1 connector.Now you have to attach y
 Ready To Go!
 """"""""""""
 
-Now you can upload the provided example code to your Arduino compatible board. For this, navigate in your Arduino IDE to *File* -> *Examples* -> *Arduino-BTN99x0* -> *shield_motor_control*.
+Now you can upload the provided example code to your Arduino compatible board. For this, navigate in your Arduino IDE to *File* -> *Examples* -> *Arduino BTN99x0* -> *shield_motor_control*.
 
 For a specific description and overview of all examples please refer to :ref:`Arduino examples <arduino-examples>`.

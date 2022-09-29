@@ -6,7 +6,7 @@ Getting Started
 Overview
 --------
 
-This getting started guide helps you to properly connect the _`DC Motor Control Shield with BTN9970LV and BTN9990LV`: https://www.infineon.com/cms/en/product/evaluation-boards/dc-shield_btn9970lv/ with the right platform and teaches you how to install the required software to use the Infineon 
+This getting started guide helps you to properly connect the `DC Motor Control Shield with BTN9970LV and BTN9990LV <https://www.infineon.com/cms/en/product/evaluation-boards/dc-shield_btn9970lv>`with the right platform and teaches you how to install the required software to use the Infineon 
 BTN99x0 chips.
 
 .. _`DC Motor Control Shield with BTN9970LV and BTN9990LV`: https://www.infineon.com/cms/en/product/evaluation-boards/dc-shield_btn9970lv/
@@ -65,7 +65,7 @@ The pin headers can also be used to figure out the right orientation. There is o
 
 As soon as the shield is connected to the Arduino you can connect a USB cable to the Arduino to power up the microcontroller. Make sure that either no code or the example code of this repository is flashed to the microcontroller. Otherwise it can happen that the board is already activating one of the switches.
 
-.. image:: img/Arduino-BTN99x0-stack.PNG
+.. image:: img/arduino-btn99x0-stack.PNG
     :height: 200
 
 Now you can attach the power supply to the X1 connector.Now you have to attach your load to the desired output channel in the X2 conncetor.The DC brush motor need to be connected between the outputs OUT1 and OUT2 of both half bridges of BTN9970 and BTN9990.

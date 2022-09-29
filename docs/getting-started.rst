@@ -6,7 +6,7 @@ Getting Started
 Overview
 --------
 
-This getting started guide helps you to properly connect the `DC Motor Control Shield with BTN9970LV and BTN9990LV <https://www.infineon.com/cms/en/product/evaluation-boards/dc-shield_btn9970lv>`with the right platform and teaches you how to install the required software to use the Infineon 
+This getting started guide helps you to properly connect the `DC Motor Control Shield with BTN9970LV and BTN9990LV <https://www.infineon.com/cms/en/product/evaluation-boards/dc-shield_btn9970lv>``__with the right platform and teaches you how to install the required software to use the Infineon 
 BTN99x0 chips.
 
 .. _`DC Motor Control Shield with BTN9970LV and BTN9990LV`: https://www.infineon.com/cms/en/product/evaluation-boards/dc-shield_btn9970lv/

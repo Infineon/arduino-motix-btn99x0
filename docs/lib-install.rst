@@ -19,13 +19,13 @@ These installation processes are conveniently described on the official `Arduino
 
 * **Arduino IDE Library Manager**
 
-Library name: ``Arduino-BTN99x0-ino``
+Library name: ``Arduino BTN99x0``
 
 * **Arduino IDE Manual Installation**
 
 Download the desired .zip library version from the repository `releases`_ section. 
 
-.. _releases: https://github.com/Infineon/arduino-btn99x0/releases
+.. _releases: https://github.com/Infineon/Arduino-BTN99x0/releases
 
 .. image:: img/gh-master-zip.png
     :width: 200
@@ -33,9 +33,3 @@ Download the desired .zip library version from the repository `releases`_ sectio
 .. warning::
     As a general recommendation, downloading directly from the master branch should be avoided. 
     Even though it should not, it could contain incomplete or faulty code.
-
-* **PlatformIO**
-
-Refer to the section :ref:`PlatformIO <arduino-platformio>` and the `official website`_.
-
-.. _official website: https://docs.platformio.org/en/latest/librarymanager/quickstart.html

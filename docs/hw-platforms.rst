@@ -1,10 +1,12 @@
+.. _hw-platforms:
+
 Hardware Platforms
 ==================
 
 Supported Products
 -----------------------
 
-This library can support the following Infineon Products
+This library can support the following Infineon products:
 
 .. image:: img/btn99x0_shield.png
     :width: 150
@@ -32,7 +34,7 @@ Supported MCU Platforms
 -----------------------
 
 In principle, the library is supported by any Arduino compatible MCU platform.
-Its Arduino core needs to implement the `Arduino reference language <https://www.arduino.cc/reference/en/>`_ 
+Its Arduino core needs to implement the `Arduino reference language <https://www.arduino.cc/reference/en/>`_.
 
 
 Verified MCU Boards
@@ -46,4 +48,4 @@ The library examples have been built and successfully executed on the following 
     * - `XMC1100 Boot Kit <https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc11_boot_001>`_
     * - `Arduino Uno Rev3 <https://store.arduino.cc/arduino-uno-rev3>`_
 
-Find out which boards are build checked under continuous integration `here <https://github.com/Infineon/arduino-BTN99x0/blob/master/.github/workflows/build-check.yml>`_.
+Find out which boards are build checked under continuous integration `here <https://github.com/Infineon/Arduino-BTN99x0/blob/master/.github/workflows/build-check.yml>`_.

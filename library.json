@@ -1,5 +1,5 @@
 {  
-    "name": "DC Motor Control Shield with BTN9970LV and BTN9970LV",
+    "name": "Arduino BTN99x0",
     "keywords": "Motor Control Shield, BTN9970, BTN9990",
     "description": "Arduino library for the Infineon DC Motor Control Shield with BTN9970LV and BTN9990LV",
     "repository":{  

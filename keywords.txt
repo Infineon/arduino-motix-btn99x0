@@ -1,0 +1,61 @@
+#################################################
+# Syntax Coloring Map For Arduino BTN99x0
+#################################################
+
+################################################
+# Datatypes (KEYWORD1)
+################################################
+io_pins_t KEYWORD1
+ic_experimental_const_t KEYWORD1
+ic_variant_t KEYWORD1
+slew_rate_level_t KEYWORD1
+error_t KEYWORD1
+half_bridge_id_t KEYWORD1
+
+################################################
+# Methods and Functions (KEYWORD2)
+################################################
+
+begin KEYWORD2
+brake KEYWORD2
+freewheel KEYWORD2
+set_speed KEYWORD2
+set_slew_rate KEYWORD2
+disable KEYWORD2
+enable KEYWORD2
+set_pwm
+set_pwm_in_percentage
+set_ktis
+set_dk
+get_load_current_in_amps
+get_temperature_in_kelvin
+get_diagnosis
+disable_all
+enable_all
+
+
+##################################################
+#Instances (KEYWORD2)
+##################################################
+
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+BTN99X0_DC_SHIELD_HB1_ISENSE_ADC LITERAL1
+BTN99X0_DC_SHIELD_HB1_INHIBIT LITERAL1
+BTN99x0_DC_SHIELD_HB1_INPUT LITERAL1
+BTN99x0_DC_SHIELD_HB2_ISENSE_ADC LITERAL1
+BTN99X0_DC_SHIELD_HB2_INHIBIT LITERAL1
+BTN99x0_DC_SHIELD_HB2_INPUT LITERAL1
+ACD_RESOLUTION_STEPS LITERAL1
+ACD_VOLTAGE_RANGE_VOLTS LITERAL1
+BTN99X0_DC_SHIELD_HB1_ISENSE_ADC LITERAL1
+BTN99X0_DC_SHIELD_HB1_INHIBIT LITERAL1
+BTN99x0_DC_SHIELD_HB1_INPUT LITERAL1
+BTN99x0_DC_SHIELD_HB2_ISENSE_ADC LITERAL1
+BTN99X0_DC_SHIELD_HB2_INHIBIT LITERAL1
+BTN99x0_DC_SHIELD_HB2_INPUT LITERAL1
+ACD_RESOLUTION_STEPS LITERAL1
+ACD_VOLTAGE_RANGE_VOLTS LITERAL1

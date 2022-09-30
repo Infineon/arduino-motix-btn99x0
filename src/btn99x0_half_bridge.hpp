@@ -1,8 +1,21 @@
-#ifndef BTN99X0_HALF_BRIDGE_HPP
-#define BTN99X0_HALF_BRIDGE_HPP
+/** 
+ * @file        btn99x0_half_bridge.hpp
+ * @brief       BTN99x0 Half Bridge API
+ * @copyright   Copyright (c) 2022 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef BTN99X0_HALF_BRIDGE_HPP_
+#define BTN99X0_HALF_BRIDGE_HPP_
 
 #include "Arduino.h"
 #include "btn99x0_types.hpp"
+
+/**
+ * @addtogroup btn99x0_hb
+ * @{
+ */
 
 namespace btn99x0
 {
@@ -29,13 +42,13 @@ namespace btn99x0
             /* Diagnosis */
             double get_load_current_in_amps();   
             double get_temperature_in_kelvin();
-            error_t get_error_code();                               
+            error_t get_diagnosis();                               
             
         private:
             
-            static constexpr float fault_current_amps = 0.00225;
-            static const ic_experimental_const_t btn9970lv_typical_exp_const;
-            static const ic_experimental_const_t btn9990lv_typical_exp_const;
+            static constexpr float fault_current_amps = 0.00225;                /**< Fault current threshold in amperes */
+            static const ic_experimental_const_t btn9970lv_typical_exp_const;   /**< BTN9970LV typical experimental constants */
+            static const ic_experimental_const_t btn9990lv_typical_exp_const;   /**< BTN9990LV typical experimental constants */
 
             io_pins_t io_pins;
             ic_experimental_const_t exp_const;
@@ -47,4 +60,6 @@ namespace btn99x0
     };
 }
 
-#endif /* BTN99X0_HALF_BRIDGE_HPP */
+/** @} */
+
+#endif /* BTN99X0_HALF_BRIDGE_HPP_ */

@@ -1,7 +1,22 @@
+/** 
+ * @file        btn99x0_dc_shield.cpp
+ * @brief       BTN99x0 DC Shield API
+ * @copyright   Copyright (c) 2022 Infineon Technologies AG
+ * 
+ * SPDX-License-Identifier: MIT
+ */
+
 #include "btn99xx_dc_shield.hpp"
                                      
 using namespace btn99x0;
 
+/**
+ * @brief Preprocessor board pinout configuration
+ * 
+ * @details Default supported boards:
+ *          - Arduino AVR Uno 
+ *          - XMC1100 Boot Kit
+ */
 #if defined(ARDUINO_AVR_UNO) || defined(XMC1100_Boot_Kit)
 
     #define BTN99X0_DC_SHIELD_HB1_ISENSE_ADC A1
@@ -53,20 +68,41 @@ const hw_conf_t DCShield::hw_conf_default =
     ACD_RESOLUTION_STEPS
 };
 
+/**
+ * @brief       BTN99x0 DC Shield Constructor
+ * @details     Constructs the half-bridge shield instances for the given
+ *              arguments and the parameters set by the shield
+ * @param[in]   ic_variant  IC product variant
+ * @param[in]   hb1_io_pins Half-bridge 1 IO pins (inhibit, input and current sense)
+ * @param[in]   hb2_io_pins Half-bridge 2 IO pins (inhibit, input and current sense)
+ * @param[in]   shield_platf_conf Hardware configuration and experimental parameters       
+ * @pre         None
+ */
 DCShield::DCShield(io_pins_t hb1_io_pins, io_pins_t hb2_io_pins, hw_conf_t shield_platf_conf)
 : 
-hb1(HalfBridge(IC_VARIANT_BT9970LV, hb1_io_pins, shield_platf_conf)),
-hb2(HalfBridge(IC_VARIANT_BT9990LV, hb2_io_pins, shield_platf_conf))
+hb1(HalfBridge(IC_VARIANT_BTN9970LV, hb1_io_pins, shield_platf_conf)),
+hb2(HalfBridge(IC_VARIANT_BTN9990LV, hb2_io_pins, shield_platf_conf))
 {
 
 }
 
+/**
+ * @brief       BTN99x0 DC Shield Destructor
+ * @details     Destructs the half-bridge shield instances
+ * @pre         None
+ */
 DCShield::~DCShield()
 {
     hb1.~HalfBridge();
     hb2.~HalfBridge();
 }
 
+/**
+ * @brief       Gets the reference of the half-bridge instance given its identifier
+ * @param[in]   half_bridge_id Half-bridge identifier
+ * @return      half-bridge shield instance
+ * @pre         None
+ */
 HalfBridge & DCShield::get_half_bridge(half_bridge_id_t half_bridge_id)
 {
     switch(half_bridge_id)
@@ -81,12 +117,20 @@ HalfBridge & DCShield::get_half_bridge(half_bridge_id_t half_bridge_id)
     } 
 }
 
+/**
+ * @brief       Disables all the half-bridges on the shield
+ * @pre         None
+ */
 void DCShield::disable_all(void)
 {
     hb1.disable();
     hb2.disable();
 }
 
+/**
+ * @brief       Enables all the half-bridges on the shield
+ * @pre         None
+ */
 void DCShield::enable_all(void)
 {
     hb1.enable();

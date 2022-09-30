@@ -39,7 +39,7 @@ using namespace btn99x0;
  * - The pin assignment for its 3 signals
  * - The ADC diagnostic pin hardware configuration
  */
-ic_variant_t ic_variant = IC_VARIANT_BT9970LV;
+ic_variant_t ic_variant = IC_VARIANT_BTN9970LV;
 
 io_pins_t io_pins = 
 {
@@ -83,7 +83,7 @@ void loop()
     /* Diagnose every second and report in case of error */
     delay(1000);
 
-    error_t ret = half_bridge.get_error_code();
+    error_t ret = half_bridge.get_diagnosis();
     if(ret != NO_ERROR)
     {
         Serial.print("Detected error: ");

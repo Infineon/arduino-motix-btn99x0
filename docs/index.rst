@@ -8,10 +8,10 @@ Welcome to the Infineon DC motor control shield BTN99x0 Arduino library docs!
     :height: 200
 
 .. image:: img/btn99x0_chip.png
-    :height: 200
+    :height: 150
 
 .. image:: img/btn99x0_shield.png
-    :height: 200
+    :height: 150
 
 .. toctree::
    :maxdepth: 3

@@ -25,7 +25,7 @@ Library name: ``Arduino BTN99x0``
 
 Download the desired .zip library version from the repository `releases`_ section. 
 
-.. _releases: https://github.com/Infineon/arduino-btn99x0/releases
+.. _releases: https://github.com/Infineon/arduino-motix-btn99x0/releases
 
 .. image:: img/gh-master-zip.png
     :width: 200

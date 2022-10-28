@@ -11,19 +11,19 @@ The Arduino library API is implemented via 3 different classes:
 * **MotorControl**. This class provides motor controlling functionality using the DC Motor Control
   Shield and abstracting the half-bridge API.
 
-HalfBridge Arduino API
+HalfBridge API
 ---------------------------
 
 .. doxygenclass:: btn99x0::HalfBridge
    :members:
 
-DCShield Arduino API
+DCShield API
 ---------------------------
 
 .. doxygenclass:: btn99x0::DCShield
    :members:
 
-MotorControl Arduino API
+MotorControl API
 ---------------------------
 
 .. doxygenclass:: btn99x0::MotorControl

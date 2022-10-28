@@ -43,7 +43,7 @@ other installation alternatives here: [Arduino library installation](https://ard
 ### More Information
 
 * <a href="https://arduino-BTN99x0.readthedocs.io/en/latest/examples.html">Examples</a><br>
-* <a href="https://arduino-BTN99x0.readthedocs.io/en/latest/exhale-auto-docs/api_list.html">Arduino API</a><br>
+* <a href="https://arduino-BTN99x0.readthedocs.io/en/latest/api_ref.html">Arduino API</a><br>
 
 ### License
 

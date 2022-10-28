@@ -137,5 +137,5 @@ html_static_path = ['_templates']
 breathe_projects = {
 	"Arduino MOTIX™ BTN99x0": "build/xml/"
 }
-breathe_default_project = "Arduino MOTIX ™BTN99x0"
+breathe_default_project = "Arduino MOTIX™ BTN99x0"
 breathe_default_members = ('members', 'undoc-members')

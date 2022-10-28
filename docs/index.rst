@@ -23,15 +23,7 @@ Welcome to the Infineon DC motor control shield BTN99x0 Arduino library docs!
    Hardware Platforms <hw-platforms.rst>
    Library Installation <lib-install.rst>
    Examples <examples.rst>
-
-.. toctree::
-   :maxdepth: 5
-   :caption: API Reference
-   :hidden:
-
-   API List    <exhale-auto-docs/api_list.rst>
-   Full API    <exhale-auto-docs/unabridged_api.rst>
-   File List   <exhale-auto-docs/file_view_hierarchy.rst>
+   API Reference <api-ref.rst>
 
 License
 =======

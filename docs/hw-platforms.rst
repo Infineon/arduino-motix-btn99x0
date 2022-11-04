@@ -116,4 +116,4 @@ The library examples have been built and successfully executed on the following 
     * - `XMC1100 Boot Kit <https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc11_boot_001>`_
     * - `Arduino Uno Rev3 <https://store.arduino.cc/arduino-uno-rev3>`_
 
-Find out which boards are build checked under continuous integration `here <https://github.com/Infineon/arduino-btn99x0/blob/master/.github/workflows/build-check.yml>`_.
+Find out which boards are build checked under continuous integration `here <https://github.com/Infineon/arduino-motix-btn99x0/blob/master/.github/workflows/build-check.yml>`_.

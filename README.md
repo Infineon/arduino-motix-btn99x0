@@ -1,6 +1,6 @@
 # Arduino BTN99x0 
 
-[![build-check](https://github.com/Infineon/arduino-BTN99x0/actions/workflows/build-check.yml/badge.svg?branch=master)](https://github.com/Infineon/arduino-BTN99x0/actions/workflows/build-check.yml)
+[![build-check](https://github.com/Infineon/arduino-motix-btn99x0/actions/workflows/build-check.yml/badge.svg?branch=master)](https://github.com/Infineon/arduino-motix-btn99x0/actions/workflows/build-check.yml)
 
 Arduino library of Infineon's **BTN99X0 DC motor control shield**
 

@@ -5,7 +5,13 @@ Home
 Welcome to the Infineon DC motor control shield BTN99x0 Arduino library docs!
 
 .. image:: img/arduino-logo.png
-    :height: 200
+    :height: 75
+
+.. image:: img/btn99x0_chip.png
+    :height: 75
+
+.. image:: img/btn99x0_shield.png
+    :height: 100
 
 .. toctree::
    :maxdepth: 3
@@ -30,4 +36,4 @@ Welcome to the Infineon DC motor control shield BTN99x0 Arduino library docs!
 License
 =======
 
-Find the license for this library `here <https://github.com/Infineon/arduino-btn99x0/blob/master/LICENSE>`_.
+Find the license for this library `here <https://github.com/Infineon/arduino-motix-btn99x0/blob/master/LICENSE>`_.

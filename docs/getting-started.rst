@@ -47,7 +47,7 @@ Software Installation
 
 2. **Include the XMC boards in the IDE (if a XMC is used)**. The official Arduino boards are already available in the Arduino IDE, but other third party boards as the Infineon XMC MCU based ones need to be explicitly included. Follow the instructions in the `link <https://github.com/Infineon/XMC-for-Arduino#installation-instructions>`__ to add the XMC board family to the Arduino IDE.
 
-3. **Install the library**. In the Arduino IDE, go to the menu *Sketch > Include library > Library Manager*. Type *Arduino BTN99x0** and install the library.
+3. **Install the library**. In the Arduino IDE, go to the menu *Sketch > Include library > Library Manager*. Type *MOTIX BTN99x0** and install the library.
 
 Hardware Setup
 """"""""""""""
@@ -68,11 +68,11 @@ As soon as the shield is connected to the Arduino you can connect a USB cable to
 .. image:: img/arduino-btn99x0-stack.PNG
     :height: 200
 
-Now you can attach the power supply to the X1 connector.Now you have to attach your load to the desired output channel in the X2 conncetor.The DC brush motor need to be connected between the outputs OUT1 and OUT2 of both half bridges of BTN9970 and BTN9990.
+Now you can attach the power supply to the X1 connector.Now you have to attach your load to the desired output channel in the X2 connec                                                                                                                                                                                                                                                                tor.The DC brush motor need to be connected between the outputs OUT1 and OUT2 of both half bridges of BTN9970 and BTN9990.
 
 Ready To Go!
 """"""""""""
 
-Now you can upload the provided example code to your Arduino compatible board. For this, navigate in your Arduino IDE to *File* -> *Examples* -> *Arduino BTN99x0* -> *shield_motor_control*.
+Now you can upload the provided example code to your Arduino compatible board. For this, navigate in your Arduino IDE to *File* -> *Examples* -> *MOTIX BTN99x0* -> *shield_motor_control*.
 
 For a specific description and overview of all examples please refer to :ref:`Arduino examples <arduino-examples>`.

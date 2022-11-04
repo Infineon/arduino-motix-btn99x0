@@ -28,7 +28,7 @@ Check in this [link](https://arduino-BTN99x0.readthedocs.io/en/latest/hw-platfor
 
 ### More Information
 
-The complete documentation of the library as well as detailed information about the arduino-BTN99x0 can be found in the [Wiki](https://arduino-BTN99x0.readthedocs.io/en/latest/index.html).
+The complete documentation of the library as well as detailed information about the MOTIX BTN99x0 can be found in the [Wiki](https://arduino-BTN99x0.readthedocs.io/en/latest/index.html).
 
 ### Getting Started
 
@@ -36,14 +36,14 @@ Find a getting started tutorial based on the  BTN9970/BTN9990 motor control shie
 
 ### Library Installation
 
-Look for ```Arduino BTN99X0``` in the Arduino library manager.
+Look for ```MOTIX BTN99x0``` in the Arduino library manager.
 
 other installation alternatives here: [Arduino library installation](https://arduino-BTN99x0.readthedocs.io/en/latest/lib-install.html) 
 
 ### More Information
 
 * <a href="https://arduino-BTN99x0.readthedocs.io/en/latest/examples.html">Examples</a><br>
-* <a href="https://arduino-BTN99x0.readthedocs.io/en/latest/exhale-auto-docs/api_list.html">Arduino API</a><br>
+* <a href="https://arduino-BTN99x0.readthedocs.io/en/latest/api_ref.html">Arduino API</a><br>
 
 ### License
 

@@ -21,7 +21,7 @@ read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 
 # -- Project information -----------------------------------------------------
 
-project = 'Arduino BTN99x0'
+project = 'Arduino MOTIX™ BTN99x0'
 copyright = '2022 Infineon Technologies AG'
 author = 'Infineon Technologies AG'
 
@@ -135,7 +135,7 @@ html_static_path = ['_templates']
 # -- Breathe configuration -------------------------------------------------
 
 breathe_projects = {
-	"Arduino BTN99x0": "build/xml/"
+	"Arduino MOTIX™ BTN99x0": "build/xml/"
 }
-breathe_default_project = "Arduino BTN99x0"
+breathe_default_project = "Arduino MOTIX™ BTN99x0"
 breathe_default_members = ('members', 'undoc-members')

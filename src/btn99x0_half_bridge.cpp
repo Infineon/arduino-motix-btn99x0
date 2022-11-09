@@ -126,7 +126,7 @@ void HalfBridge::set_pwm_in_percentage(uint8_t duty_in_pct)
  *              Find more information in the section "4.4.2 Adjustable
  *              slew rate" in page 23 of the BTN99x0 datasheet (Rev. 1.0)
  * @param[in]   re_level Slew rate level
- * @pre         begin() and disable() if the half bridge has been previously enabled.
+ * @pre         begin() and disable() if the half bridge has been previously enabled
  * @warning     The current operation requires the device to be in slew rate selection 
  *              mode, meaning the INH pin to be set to low.
  *              The function operates the INPUT pin, any 
@@ -216,7 +216,7 @@ double HalfBridge::get_load_current_in_amps()
 
 /**     
  * @brief       Gets the device temperature in kelvin
- * @pre         begin() and disable() if the half bridge has been previously enabled.
+ * @pre         begin() and disable() if the half bridge has been previously enabled
  * @warning     The current operation requires the device to be in slew rate selection 
  *              mode, meaning the INH pin to be set to low.
  *              The function operates the INPUT pin, any 

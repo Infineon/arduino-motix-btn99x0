@@ -100,7 +100,11 @@ void MotorControl::brake()
  * @brief       Sets slew rate level
  * @details     Sets the slew rate level of both half-bridges
  * @param[in]   sr_level Slew rate level 
- * @pre         None
+  * @pre        begin() and freewheel() if the motor has been previously enabled
+ * @warning     The current operation requires the device to be in slew rate selection 
+ *              mode, meaning the INH pins to be set to low.
+ *              The function operates the INPUT pins, any 
+ *              PWM values previously configured will be overwritten
  */
 void MotorControl::set_slew_rate(slew_rate_level_t sr_level)
 {

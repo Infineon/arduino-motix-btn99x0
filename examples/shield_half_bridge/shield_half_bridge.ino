@@ -4,6 +4,7 @@ using namespace btn99x0;
 
 #define ON_PERIOD_IN_MS 2000
 #define OFF_PERIOD_IN_MS 2000
+#define WAIT_AFTER_DIAGNOSIS_IN_MS 500
 
 DCShield btn_shield;
 HalfBridge half_bridge = btn_shield.get_half_bridge(DCShield::HALF_BRIDGE_1);
@@ -27,19 +28,42 @@ void setup()
      * TODO: how to measure this dk experimentally?
      */
     half_bridge.set_dk(50000);
-
-    half_bridge.set_pwm_in_percentage(50);
 }
 
 void loop()
 {
+    half_bridge.set_pwm_in_percentage(50);
+
     half_bridge.enable();
     delay(ON_PERIOD_IN_MS);
+
+    Serial.print("Load current (A): ");
+    Serial.println(half_bridge.get_load_current_in_amps());
 
     half_bridge.disable();
     delay(OFF_PERIOD_IN_MS);
 
+    /**
+     * Setting the slew rate requires the half 
+     * bridge to be disabled
+     */
+    half_bridge.set_slew_rate(SLEW_RATE_LEVEL_5);
+
+    /** 
+     * Setting the slew rate will overwrite the 
+     * configured PWM value. Set again to 50% duty
+     * cycle
+     */
+    half_bridge.set_pwm(128);
+
+    half_bridge.enable();
+    delay(ON_PERIOD_IN_MS);
+
+    Serial.print("Load current (A): ");
+    Serial.println(half_bridge.get_load_current_in_amps());
+
     diagnose_and_fail_safe(half_bridge);
+    delay(WAIT_AFTER_DIAGNOSIS_IN_MS);
 }
 
 void diagnose_and_fail_safe(HalfBridge & half_bridge)
@@ -56,9 +80,12 @@ void diagnose_and_fail_safe(HalfBridge & half_bridge)
         return;
     }
 
-    Serial.print("Load current (A): ");
-    Serial.println(half_bridge.get_load_current_in_amps());
-
+    /**
+     * In order to read the IC temperature the half bridge 
+     * has to be disabled. Calling this function will also 
+     * overwrite any configured PWM value.
+     * */
+    half_bridge.disable();
     Serial.print("Temperature (K): ");
-    Serial.print(half_bridge.get_temperature_in_kelvin());
+    Serial.println(half_bridge.get_temperature_in_kelvin());
 }

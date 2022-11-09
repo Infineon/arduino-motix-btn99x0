@@ -34,7 +34,7 @@ namespace btn99x0
             /* Configuration */
             void set_pwm(uint8_t duty);
             void set_pwm_in_percentage(uint8_t duty_in_pct);  
-            void set_slew_rate(slew_rate_level_t sr_level);  
+            error_t set_slew_rate(slew_rate_level_t sr_level);  
             /* Experimental value setting */
             void set_ktis(float ktis_amps_per_kelvin);
             void set_dk(uint16_t dk);
@@ -46,7 +46,7 @@ namespace btn99x0
             
         private:
             
-            static constexpr float fault_current_amps = 0.00225;                /**< Fault current threshold in amperes */
+            static constexpr float fault_current_amps = 0.00251;                /**< Fault current threshold in amperes */
             static const ic_experimental_const_t btn9970lv_typical_exp_const;   /**< BTN9970LV typical experimental constants */
             static const ic_experimental_const_t btn9990lv_typical_exp_const;   /**< BTN9990LV typical experimental constants */
 
@@ -54,9 +54,14 @@ namespace btn99x0
             ic_experimental_const_t exp_const;
             hw_conf_t hw_conf;
 
+            /* Inhibit value tracking for special functions state machine */
+            uint8_t inhibit_pin_value;       
+            void set_inhibit_pin(uint8_t value);
+
             double calculate_current_at_sense_resistor_in_amps();
             void calculate_sense_resistor_offset_current();    
-            ic_experimental_const_t get_typical_experimental_constants(ic_variant_t ic_variant);                         
+            ic_experimental_const_t get_typical_experimental_constants(ic_variant_t ic_variant); 
+          
     };
 }
 

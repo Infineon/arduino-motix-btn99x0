@@ -65,6 +65,10 @@ void HalfBridge::begin()
 {
     delay(100);
     calculate_sense_resistor_offset_current();
+
+    /* Initialize inhibit and input to LOW */
+    set_inhibit_pin(LOW);
+    digitalWrite(io_pins.input, LOW); 
 }
 
 /**
@@ -74,7 +78,7 @@ void HalfBridge::begin()
  */
 void HalfBridge::enable()
 {
-    digitalWrite(io_pins.inhibit, HIGH);                       
+    set_inhibit_pin(HIGH);                       
 }
 
 /**
@@ -84,7 +88,7 @@ void HalfBridge::enable()
  */
 void HalfBridge::disable()
 {
-    digitalWrite(io_pins.inhibit, LOW);                      
+    set_inhibit_pin(LOW);                      
 }
 
 /**
@@ -122,25 +126,35 @@ void HalfBridge::set_pwm_in_percentage(uint8_t duty_in_pct)
  *              Find more information in the section "4.4.2 Adjustable
  *              slew rate" in page 23 of the BTN99x0 datasheet (Rev. 1.0)
  * @param[in]   re_level Slew rate level
- * @pre         None
+ * @pre         begin() and disable() if the half bridge has been previously enabled.
+ * @warning     The current operation requires the device to be in slew rate selection 
+ *              mode, meaning the INH pin to be set to low.
+ *              The function operates the INPUT pin, any 
+ *              PWM value previously configured will be overwritten
+ * @return      Error code
+ * @retval      INVALID_OPERATION_ERROR if the half bridge inhibit pin is not LOW
+ * @retval      NO_ERROR if the half-bridge is operating properly
  */
-void HalfBridge::set_slew_rate(slew_rate_level_t sr_level)
+error_t HalfBridge::set_slew_rate(slew_rate_level_t sr_level)
 {
-    disable();                   
-    delayMicroseconds(5);
+    if(LOW != inhibit_pin_value)
+    {
+        return INVALID_OPERATION_ERROR;
+    }
 
     /*
     pulses the input_pin pin
     */
-    for (uint8_t i = 0; i <= ((uint8_t)sr_level + 1); i++)
+    delayMicroseconds(5);  
+    for(uint8_t i = 0; i <= ((uint8_t)sr_level + 1); i++)
     {                                 
         digitalWrite(io_pins.input, HIGH);                 
         delayMicroseconds(1);      
         digitalWrite(io_pins.input, LOW);                 
     }
-    delayMicroseconds(5);
+    delayMicroseconds(5);  
 
-    enable();                    
+    return NO_ERROR;                  
 }
 
 /**     
@@ -161,7 +175,7 @@ error_t HalfBridge::get_diagnosis()
         return FAULT_CURRENT_ERROR;
     }
 
-   return NO_ERROR;
+    return NO_ERROR;
 }
 
 /**     
@@ -187,7 +201,7 @@ void HalfBridge::set_ktis(float ktis_amps_per_kelvin)
  */
 void HalfBridge::set_dk(uint16_t dk) 
 {
-    exp_const.dk= dk;
+    exp_const.dk = dk;
 }
 
 /**     
@@ -202,23 +216,42 @@ double HalfBridge::get_load_current_in_amps()
 
 /**     
  * @brief       Gets the device temperature in kelvin
+ * @pre         begin() and disable() if the half bridge has been previously enabled.
+ * @warning     The current operation requires the device to be in slew rate selection 
+ *              mode, meaning the INH pin to be set to low.
+ *              The function operates the INPUT pin, any 
+ *              PWM value previously configured will be overwritten           
  * @return      Temperature in kelvin
- * @pre         begin()
+ * @retval      Negative value. INVALID_OPERATION_ERROR if the half bridge inhibit pin is not LOW
  */
 double HalfBridge::get_temperature_in_kelvin()
 {
+    if(LOW != inhibit_pin_value)
+    {
+        return (double)INVALID_OPERATION_ERROR;
+    }
+
     double chip_temperature;
-  
-    disable();
-    
+
     digitalWrite(io_pins.input, HIGH);
     delayMicroseconds(7);
 
     chip_temperature = (calculate_current_at_sense_resistor_in_amps())/exp_const.ktis_amps_per_kelvin;
 
-    enable();   
-
     return chip_temperature;  
+}
+
+/**     
+ * @brief       Set the inhibit pin to the given value
+ * @details     Convenience function to store the actual value
+ *              of the inhibit pin together with setting the pin
+ * @param[in]   value Digital pin value. HIGH or LOW
+ * @pre         None
+ */
+void HalfBridge::set_inhibit_pin(uint8_t value)
+{
+    inhibit_pin_value = value;
+    digitalWrite(io_pins.inhibit, value); 
 }
 
 /**     
@@ -241,8 +274,6 @@ double HalfBridge::calculate_current_at_sense_resistor_in_amps()
  */
 void HalfBridge::calculate_sense_resistor_offset_current(void)
 {
-    delay(1000); //Is this delay required?
-
     enable();                                     
     digitalWrite(io_pins.input, LOW);                          
     

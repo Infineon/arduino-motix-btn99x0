@@ -24,6 +24,11 @@ void setup()
     btn_motor_control.begin();
     delay(2000);
 
+    /**
+     * To set the slew rate, the half bridge have to disabled.
+     * As the motrol control has been just initiliazed it is
+     * not required to disable its half bridges 
+     */
     btn_motor_control.set_slew_rate(SLEW_RATE_LEVEL_7);
 }
 

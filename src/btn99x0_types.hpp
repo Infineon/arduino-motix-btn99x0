@@ -83,7 +83,8 @@ typedef enum
 typedef enum 
 {
     NO_ERROR = 0,                           /**< No error */
-    FAULT_CURRENT_ERROR = -1                /**< Fault current error */
+    FAULT_CURRENT_ERROR = -1,               /**< Fault current error */
+    INVALID_OPERATION_ERROR = -2            /**< Invalid operation error */ 
 } error_t;
 
 }

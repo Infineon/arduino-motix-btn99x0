@@ -88,10 +88,11 @@ void loop()
     {
         Serial.print("Detected error: ");
         Serial.println(ret);
-
-        /** Currently get error also disables device when there 
-          * is an error. This is hidden behaviour, we could move 
-          * it here to the example, and create a small function 
-          */
+                
+        /* Disable output and set signal to 0 */
+        half_bridge.disable();                                          
+        half_bridge.set_pwm(0);
+        
+        return;
     }
 }

@@ -1,8 +1,8 @@
-/** 
+/**
  * @file        btn99x0_motor_control.cpp
  * @brief       BTN99x0 Motor Control API
  * @copyright   Copyright (c) 2022 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -12,7 +12,7 @@ using namespace btn99x0;
 
 /**
  * @brief       BTN99x0 Motor Control Constructor
- * @param[in]   shield  DC shield reference to be used for motor controlling    
+ * @param[in]   shield  DC shield reference to be used for motor controlling
  * @pre         None
  */
 MotorControl::MotorControl(DCShield & shield)
@@ -20,7 +20,7 @@ MotorControl::MotorControl(DCShield & shield)
 hb1(shield.get_half_bridge(DCShield::HALF_BRIDGE_1)),
 hb2(shield.get_half_bridge(DCShield::HALF_BRIDGE_2))
 {
- 
+
 }
 
 /**
@@ -34,7 +34,7 @@ MotorControl::~MotorControl()
 
 /**
  * @brief       Initializes the motor controller
- * @details     Initialites both half-bridges
+ * @details     Initializes both half-bridges
  * @pre         None
  */
 void MotorControl::begin()
@@ -46,13 +46,13 @@ void MotorControl::begin()
 /**
  * @brief       Sets the motor speed
  * @details     Enables the half-bridges outputs and provides
- *              a PWM with the given duty cycle to half-bridge 
- *              1 if the speed is positive, or to half-bridge 
+ *              a PWM with the given duty cycle to half-bridge
+ *              1 if the speed is positive, or to half-bridge
  *              2 if the speed is negative
- * @param[in]   speed Motor speed. Valid range is between -255 and 255. 
+ * @param[in]   speed Motor speed. Valid range is between -255 and 255.
  *                    Use positive duty values for forward rotation
  *                    and negative for backward rotation
- * @note        If speed values out of range are provided these 
+ * @note        If speed values out of range are provided these
  *              will be set the maximum or minimum allowed
  * @pre         None
  */
@@ -63,13 +63,13 @@ void MotorControl::set_speed(int16_t speed)
 
     if(speed >= 0)
     {
-        hb1.set_pwm((uint8_t)speed);                                
-        hb2.set_pwm(0);                                   
+        hb1.set_pwm((uint8_t)speed);
+        hb2.set_pwm(0);
     }
     else
     {
         speed = -speed;
-        hb1.set_pwm(0);                                   
+        hb1.set_pwm(0);
         hb2.set_pwm((uint8_t)speed);
     }
 }
@@ -81,7 +81,7 @@ void MotorControl::set_speed(int16_t speed)
  */
 void MotorControl::freewheel()
 {
-    hb1.disable();                                  
+    hb1.disable();
     hb2.disable();
 }
 
@@ -92,18 +92,18 @@ void MotorControl::freewheel()
  */
 void MotorControl::brake()
 {
-    hb1.set_pwm(0);                                  
+    hb1.set_pwm(0);
     hb2.set_pwm(0);
 }
 
 /**
  * @brief       Sets slew rate level
  * @details     Sets the slew rate level of both half-bridges
- * @param[in]   sr_level Slew rate level 
+ * @param[in]   sr_level Slew rate level
   * @pre        begin() and freewheel() if the motor has been previously enabled
- * @warning     The current operation requires the device to be in slew rate selection 
+ * @warning     The current operation requires the device to be in slew rate selection
  *              mode, meaning the INH pins to be set to low.
- *              The function operates the INPUT pins, any 
+ *              The function operates the INPUT pins, any
  *              PWM values previously configured will be overwritten
  */
 void MotorControl::set_slew_rate(slew_rate_level_t sr_level)

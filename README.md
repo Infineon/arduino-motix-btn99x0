@@ -1,4 +1,4 @@
-# Arduino BTN99x0 
+# Arduino BTN99x0
 
 [![build-check](https://github.com/Infineon/arduino-motix-btn99x0/actions/workflows/build-check.yml/badge.svg?branch=master)](https://github.com/Infineon/arduino-motix-btn99x0/actions/workflows/build-check.yml)
 
@@ -22,7 +22,7 @@ Arduino library of Infineon's **BTN99X0 DC motor control shield**
 
 ### Supported Frameworks
 
-The library should be supported by any Arduino platform based on the reference Arduino cores. 
+The library should be supported by any Arduino platform based on the reference Arduino cores.
 
 Check in this [link](https://arduino-BTN99x0.readthedocs.io/en/latest/hw-platforms.html) the already verified (at least successfully built) platforms.
 
@@ -38,7 +38,7 @@ Find a getting started tutorial based on the  BTN9970/BTN9990 motor control shie
 
 Look for ```MOTIX BTN99x0``` in the Arduino library manager.
 
-other installation alternatives here: [Arduino library installation](https://arduino-BTN99x0.readthedocs.io/en/latest/lib-install.html) 
+other installation alternatives here: [Arduino library installation](https://arduino-BTN99x0.readthedocs.io/en/latest/lib-install.html)
 
 ### More Information
 

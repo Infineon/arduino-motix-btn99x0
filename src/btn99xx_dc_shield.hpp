@@ -1,8 +1,8 @@
-/** 
+/**
  * @file        btn99x0_dc_shield.hpp
  * @brief       BTN99x0 DC Shield API
  * @copyright   Copyright (c) 2022 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -26,7 +26,7 @@ namespace btn99x0
             /**
              * @enum Half-bridge identifier
              */
-            typedef enum 
+            typedef enum
             {
                 HALF_BRIDGE_1,      /**< Half-bridge identifier 1 */
                 HALF_BRIDGE_2       /**< Half-bridge identifier 2 */
@@ -39,7 +39,7 @@ namespace btn99x0
             void enable_all(void);
 
         private:
-           
+
             constexpr static uint16_t isense_r_ohms = 2000; /**< Current sense resistor in ohms */
 
             const static io_pins_t hb1_io_pins_default;     /**< Half-bridge 1 IO pins */
@@ -47,7 +47,7 @@ namespace btn99x0
             const static hw_conf_t hw_conf_default;         /**< Default hardware configuration */
 
             HalfBridge hb1;                                 /**< DC shield half-bridge 1 */
-            HalfBridge hb2;                                 /**< DC shield half-bridge 2 */                     
+            HalfBridge hb2;                                 /**< DC shield half-bridge 2 */
     };
 }
 

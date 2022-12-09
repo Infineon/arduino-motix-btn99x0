@@ -2,7 +2,9 @@
 Introduction
 ************
 
-Welcome to the Infineon BTN99x0 Arduino library docs!
+.. |trade|    unicode:: U+2122 .. TRADEMARK SIGN
+
+Welcome to the Infineon MOTIX\ |trade|\  BTN99x0 Arduino library docs!
 
 .. image:: img/arduino-logo.png
     :height: 75
@@ -17,9 +19,7 @@ Scope
 =====
 This library covers the following products:
 
-.. |trade|    unicode:: U+2122 .. TRADEMARK SIGN
-
-MOTIX\ |trade|\ Single Half-Bridge ICs
+MOTIX\ |trade|\  Single Half-Bridge ICs
 --------------------------------------
 
 * `DC Motor Control Shield with BTN9970LV and BTN9990LV`_

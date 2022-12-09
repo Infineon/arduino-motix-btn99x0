@@ -74,12 +74,12 @@ DC Motor Connection Variants
 * One **bidirectional** DC motor:
 
 .. image:: img/dc_shield_motor_con_1.png
-    :height: 200
+    :height: 300
 
 * Two **unidirectional** DC motors:
 
 .. image:: img/dc_shield_motor_con_2.png
-    :height: 200
+    :height: 300
 
 Ready To Go!
 """"""""""""

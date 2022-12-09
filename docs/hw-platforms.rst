@@ -103,7 +103,7 @@ Find out which boards are build checked under continuous integration `here <http
 
 Known Issues
 ^^^^^^^^^^^^
-* **When using the Infineon `XMC for Arduino`_ boards**: The analog input pins **cannot** be set as analog outputs, which affects current and temperature measurement on these boards. If you want to use this functionality please use jumper wires to different pins.
-* **When using the Infineon `XMC for Arduino`_ boards**: PWM functionality works only on XMC for Arduino >= 2.0.1
+* When using the Infineon `XMC for Arduino`_ boards: The analog input pins **cannot** be set as analog outputs, which affects current and temperature measurement on these boards. If you want to use this functionality please use jumper wires to different pins.
+* When using the Infineon `XMC for Arduino`_ boards: PWM functionality works only on XMC for Arduino >= 2.0.1
 
 .. _`XMC for Arduino`: https://github.com/Infineon/XMC-for-Arduino

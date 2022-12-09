@@ -3,20 +3,8 @@
 Hardware Platforms
 ==================
 
-Supported Products
------------------------
-
-This library can support the following Infineon products:
-
-.. image:: img/btn99x0_shield.png
-    :width: 150
-
-.. image:: img/btn99x0_chip.png
-    :width: 150
-
-Shields for Arduino
-"""""""""""""""""""
-* `BTN9970 / BTN9990 Motor control shield <https://www.infineon.com/cms/en/product/evaluation-boards/dc-shield_btn9970lv/>`_
+DC Motor Control Shield with BTN9970LV and BTN9990LV
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Pinout Diagram
 ^^^^^^^^^^^^^^
@@ -93,20 +81,15 @@ Pin Description
 
 .. _`board manual`: https://www.infineon.com/dgdl/Infineon-User_manual_for_NovalithIC_BTN9970LVBTN9990_motor_control_shield-UserManual-v01_00-EN.pdf?fileId=8ac78c8c7d0d8da4017d0fb6fdc12cca
 
-Chip only
-"""""""""
-* `BTN9970 <https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9970lv/>`_
-* `BTN9990 <https://www.infineon.com/cms/en/product/power/motor-control-ics/brushed-dc-motor-driver-ics/single-half-bridge-ics/btn9990lv/>`_
 
 Supported MCU Platforms
------------------------
+"""""""""""""""""""""""
 
 In principle, the library is supported by any Arduino compatible MCU platform.
 Its Arduino core needs to implement the `Arduino reference language <https://www.arduino.cc/reference/en/>`_.
 
-
 Verified MCU Boards
-"""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^
 The library examples have been built and successfully executed on the following hardware platforms:
 
 .. list-table::

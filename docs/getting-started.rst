@@ -68,7 +68,18 @@ As soon as the shield is connected to the Arduino you can connect a USB cable to
 .. image:: img/arduino-btn99x0-stack.PNG
     :height: 200
 
-Now you can attach the power supply to the X1 connector.Now you have to attach your load to the desired output channel in the X2 connec                                                                                                                                                                                                                                                                tor.The DC brush motor need to be connected between the outputs OUT1 and OUT2 of both half bridges of BTN9970 and BTN9990.
+DC Motor Connection Variants
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* One **bidirectional** DC motor:
+
+.. image:: img/dc_shield_motor_con_1.png
+    :height: 300
+
+* Two **unidirectional** DC motors:
+
+.. image:: img/dc_shield_motor_con_2.png
+    :height: 300
 
 Ready To Go!
 """"""""""""

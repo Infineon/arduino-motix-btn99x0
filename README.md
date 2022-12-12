@@ -34,7 +34,7 @@ Find a getting started tutorial based on the  BTN9970/BTN9990 motor control shie
 
 ### Library Installation
 
-Look for ```MOTIX BTN99x0``` in the Arduino library manager.
+Look for ```motix-btn99x0``` in the Arduino library manager.
 
 other installation alternatives here: [Arduino library installation](https://arduino-motix-btn99x0.readthedocs.io/en/latest/lib-install.html)
 

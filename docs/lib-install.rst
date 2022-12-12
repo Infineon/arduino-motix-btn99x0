@@ -19,7 +19,7 @@ These installation processes are conveniently described on the official `Arduino
 
 * **Arduino IDE Library Manager**
 
-Library name: ``MOTIX BTN99x0``
+Library name: ``motix-btn99x0``
 
 * **Arduino IDE Manual Installation**
 

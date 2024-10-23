@@ -30,7 +30,7 @@ using namespace btn99x0;
     #define ACD_RESOLUTION_STEPS 1023
     #define ACD_VOLTAGE_RANGE_VOLTS 5.0
 
-#elif defined(XMC4700_Relax_Kit)
+#elif defined(XMC4700_Relax_Kit) || defined(XMC1100_XMC2GO) || defined(XMC1400_XMC2GO)
 
     #define ACD_RESOLUTION_STEPS 1023
     #define ACD_VOLTAGE_RANGE_VOLTS 3.3

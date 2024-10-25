@@ -96,7 +96,9 @@ The library examples have been built and successfully executed on the following 
     :header-rows: 1
 
     * - MCU Platforms
-    * - `XMC1100 Boot Kit <https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc11_boot_001>`_
+    * - `KIT_XMC11_BOOT_001 <https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc11_boot_001>`_
+    * - `KIT_XMC14_2GO  <https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc14_2go>`_
+    * - `KIT_XMC47_RELAX_LITE_V1 <https://www.infineon.com/cms/de/product/evaluation-boards/kit_xmc47_relax_lite_v1>`_
     * - `Arduino Uno Rev3 <https://store.arduino.cc/arduino-uno-rev3>`_
 
 Find out which boards are build checked under continuous integration `here <https://github.com/Infineon/arduino-motix-btn99x0/blob/master/.github/workflows/build-check.yml>`_.

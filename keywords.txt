@@ -9,7 +9,7 @@ io_pins_t KEYWORD1
 ic_experimental_const_t KEYWORD1
 ic_variant_t KEYWORD1
 slew_rate_level_t KEYWORD1
-error_t KEYWORD1
+btn_error_t KEYWORD1
 half_bridge_id_t KEYWORD1
 
 ################################################

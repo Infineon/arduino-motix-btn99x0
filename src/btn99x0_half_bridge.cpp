@@ -135,7 +135,7 @@ void HalfBridge::set_pwm_in_percentage(uint8_t duty_in_pct)
  * @retval      INVALID_OPERATION_ERROR if the half bridge inhibit pin is not LOW
  * @retval      NO_ERROR if the half-bridge is operating properly
  */
-error_t HalfBridge::set_slew_rate(slew_rate_level_t sr_level)
+btn_error_t HalfBridge::set_slew_rate(slew_rate_level_t sr_level)
 {
     if(LOW != inhibit_pin_value)
     {
@@ -168,7 +168,7 @@ error_t HalfBridge::set_slew_rate(slew_rate_level_t sr_level)
  * @retval      NO_ERROR if the half-bridge is operating properly
  * @pre         begin()
  */
-error_t HalfBridge::get_diagnosis()
+btn_error_t HalfBridge::get_diagnosis()
 {
     if(calculate_current_at_sense_resistor_in_amps() >= fault_current_amps)
     {

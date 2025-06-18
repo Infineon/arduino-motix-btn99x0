@@ -82,7 +82,7 @@ void loop()
 
 void diagnose_and_fail_safe(HalfBridge & half_bridge)
 {
-    error_t error_code = half_bridge.get_diagnosis();
+    btn_error_t error_code = half_bridge.get_diagnosis();
     if(NO_ERROR != error_code)
     {
         /* Disable output and set signal to 0 */

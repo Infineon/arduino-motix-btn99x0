@@ -34,7 +34,7 @@ namespace btn99x0
             /* Configuration */
             void set_pwm(uint8_t duty);
             void set_pwm_in_percentage(uint8_t duty_in_pct);
-            error_t set_slew_rate(slew_rate_level_t sr_level);
+            btn_error_t set_slew_rate(slew_rate_level_t sr_level);
             /* Experimental value setting */
             void set_ktis(float ktis_amps_per_kelvin);
             void set_dk(uint16_t dk);
@@ -42,7 +42,7 @@ namespace btn99x0
             /* Diagnosis */
             double get_load_current_in_amps();
             double get_temperature_in_kelvin();
-            error_t get_diagnosis();
+            btn_error_t get_diagnosis();
 
         private:
 

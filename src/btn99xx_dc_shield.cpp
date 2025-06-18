@@ -25,19 +25,16 @@ using namespace btn99x0;
 #define BTN99X0_DC_SHIELD_HB2_INHIBIT 13
 #define BTN99x0_DC_SHIELD_HB2_INPUT 9
 
-#if defined(ARDUINO_AVR_UNO) || defined(XMC1100_Boot_Kit)
 
-    #define ACD_RESOLUTION_STEPS 1023
-    #define ACD_VOLTAGE_RANGE_VOLTS 5.0
-
-#elif defined(XMC4700_Relax_Kit) || defined(XMC1100_XMC2GO) || defined(XMC1400_XMC2GO)
+#if defined(XMC4700_Relax_Kit) || defined(XMC1100_XMC2GO) || defined(XMC1400_XMC2GO) || defined(ARDUINO_SAMD_MKRZERO) || defined(CY8CKIT_062S2_AI)
 
     #define ACD_RESOLUTION_STEPS 1023
     #define ACD_VOLTAGE_RANGE_VOLTS 3.3
 
 #else
-
-    #warning "Default platform undefined. Specify your own pinout connectivity and platform hardware configuration in the sketch. Do NOT use the default constructor arguments."
+    #define ACD_RESOLUTION_STEPS 1023
+    #define ACD_VOLTAGE_RANGE_VOLTS 5.0
+    //#warning "Default platform undefined. Specify your own pinout connectivity and platform hardware configuration in the sketch. Do NOT use the default constructor arguments."
 
 #endif
 

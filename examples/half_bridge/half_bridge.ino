@@ -83,7 +83,7 @@ void loop()
     /* Diagnose every second and report in case of error */
     delay(1000);
 
-    error_t ret = half_bridge.get_diagnosis();
+    btn_error_t ret = half_bridge.get_diagnosis();
     if(ret != NO_ERROR)
     {
         Serial.print("Detected error: ");

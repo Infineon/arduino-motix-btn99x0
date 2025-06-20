@@ -34,7 +34,7 @@ using namespace btn99x0;
 #else
     #define ACD_RESOLUTION_STEPS 1023
     #define ACD_VOLTAGE_RANGE_VOLTS 5.0
-    //#warning "Default platform undefined. Specify your own pinout connectivity and platform hardware configuration in the sketch. Do NOT use the default constructor arguments."
+    
 
 #endif
 

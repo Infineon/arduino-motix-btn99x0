@@ -1,8 +1,9 @@
-Sphinx==4.3.1
-sphinx-rtd-theme==0.5.0
-sphinx-sitemap==2.2.0
-recommonmark==0.6.0
-sphinxemoji==0.1.8
-sphinx-tabs==3.0.0
-breathe==4.31.0
-exhale==0.2.4
+sphinx>=7.2.6
+sphinx-rtd-theme
+sphinx-sitemap
+recommonmark>=0.6.0
+sphinxemoji
+sphinx-tabs
+breathe
+exhale
+doxygen

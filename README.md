@@ -1,5 +1,8 @@
 # Arduino MOTIX™ BTN99x0
 
+[![Compile examples](https://github.com/Infineon/arduino-motix-btn99x0/actions/workflows/compile_examples.yml/badge.svg)](https://github.com/Infineon/arduino-motix-btn99x0/actions/workflows/compile_examples.yml)  [![Build docs](https://github.com/Infineon/arduino-motix-btn99x0/actions/workflows/build_docs.yml/badge.svg?branch=devops%2Fadd-docs-check)](https://github.com/Infineon/arduino-motix-btn99x0/actions/workflows/build_docs.yml)
+
+
 Arduino library of Infineon's **MOTIX™ BTN99X0 DC motor control shield**
 
 ## Supported Product

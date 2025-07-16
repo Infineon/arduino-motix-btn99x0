@@ -25,10 +25,6 @@ project = 'Arduino MOTIX™ BTN99x0'
 copyright = '2022 Infineon Technologies AG'
 author = 'Infineon Technologies AG'
 
-# The full version, including alpha/beta/rc tags
-release = '1.1.0'
-
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be

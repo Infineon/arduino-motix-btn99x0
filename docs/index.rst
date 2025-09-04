@@ -34,7 +34,7 @@ MOTIX\ |trade|\  Single Half-Bridge ICs
 License
 =======
 
-Find the license for this library `here <https://github.com/Infineon/arduino-motix-btn99x0/blob/master/LICENSE>`_.
+Find the license for this library `here <https://github.com/Infineon/arduino-motix-btn99x0/blob/master/LICENSE.md>`_.
 
 .. toctree::
    :maxdepth: 3
